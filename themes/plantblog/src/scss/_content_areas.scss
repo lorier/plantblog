@@ -1,0 +1,152 @@
+// ==== BLOG ==== //
+/*
+Content Area
+---------------------------------------------------------------------------------------------------- */
+
+/* Entries
+--------------------------------------------- */
+//error 404
+
+.error404 {
+	.entry-content {
+	    max-width: 520px;
+	    margin: 0 auto;
+	}
+    .entry-title {
+    	text-align: center;
+    }
+}
+
+//site map
+.page-id-292 .entry-content {
+	max-width: 520px;
+	margin: 0 auto;
+	.sitetree-list {		
+		border-left: 5px solid $yellow;
+		margin-left: 0px;
+		padding-left: 20px;
+		list-style-position: inside;
+
+	}
+	ul.sitetree-list  {
+		margin-left: 0;
+	}
+	.sitetree-list li {
+		list-style-type: none;
+	}
+}
+
+.entry {
+	margin-bottom: 40px;
+}
+
+.entry-content .entry-title a {
+	color: $yellow;
+}
+
+.entry-content p a:hover {
+	color: $green;
+	text-decoration: underline;
+}
+
+.entry-content .attachment a,
+.entry-content .gallery a {
+	border: none;
+}
+
+.entry-content address,
+.entry-content ol,
+.entry-content p,
+.entry-content ul,
+.quote-caption {
+	margin-bottom: 26px;
+}
+
+.entry-content ol,
+.entry-content ul {
+	margin-left: 40px;
+}
+
+.entry-content ol > li {
+	list-style-type: decimal;
+}
+.entry-content .link-list li {
+	&:after {
+		font-family: 'FontAwesome';
+		content: '\f105';
+		font-size: 12px;
+		position: relative;
+		top: 0px;
+		right: -5px;
+	}
+}
+.entry-content li {
+	margin-bottom: 10px;
+
+	a[href*='mydocsonline']{
+		padding-left: 8px;
+	}
+	a[href*='mydocsonline']:before {
+		font-family: 'FontAwesome';
+		content: '\f0ed';
+		font-size: 12px;
+		position: relative;
+		top: 0px;
+		left: -6px;
+	}
+	
+	a[href$='.pdf'] {
+		padding-left: 8px;
+	}
+	a[href$='.pdf']:before {
+		font-family: 'FontAwesome';
+		content: '\f1c1';
+		font-size: 12px;
+		position: relative;
+		top: -1px;
+		left: -7px;
+	}
+
+}
+.entry-content li a {
+	color: black;
+	
+	span:hover {
+		text-decoration: underline;
+	}
+	
+	&:hover{
+		text-decoration: underline;
+	}
+
+}
+
+.entry-content ul > li {
+	list-style-type: disc;
+}
+.entry-content ul > li > ul > li {
+	list-style-type: circle;
+}
+
+.entry-content ol ol,
+.entry-content ul ul {
+	margin-bottom: 0;
+}
+
+.entry-content .search-form {
+	width: 50%;
+}
+.entry-content hr {
+	color: $gray-rule;
+	border-bottom-style: none;
+}
+
+//remove white at bottom of For Clients page and Your Exam Page
+.page-id-11, .page-id-268, .page-id-10, .page-id-392 {
+	.site-inner {
+		padding-bottom: 0;
+	}
+	.content article.page {
+		margin-bottom: 0;
+	}
+}

@@ -1,0 +1,1 @@
+[21-May-2016 17:22:06 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): Connection refused in /Applications/MAMP/htdocs/plantblog/wp-includes/wp-db.php on line 1490

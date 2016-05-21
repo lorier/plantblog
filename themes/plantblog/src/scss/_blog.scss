@@ -1,0 +1,292 @@
+// ==== BLOG ==== //
+
+/* Entry Meta 
+-----------------------------------------------*/
+.tag-title {
+	margin-bottom: 0;
+}
+.entry-meta {
+	color: #7f8c8d;
+	font-size: 14px;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
+.entry-meta a {
+	color: #999;
+}
+
+.entry-header .entry-meta {
+	margin-bottom: 24px;
+}
+
+.entry-header .entry-meta::before {
+	background-color: #e9e9e9;
+	content: "";
+	display: block;
+	height: 4px;
+	margin-bottom: 24px;
+	width: 61px;
+}
+
+.entry-footer {
+	border-top: 1px solid $gray-rule;
+	border-bottom: 1px solid $gray-rule;
+	.entry-meta{
+		text-transform: none;
+		margin: 0;
+		padding: 20px 0;
+	}
+	.entry-meta a {
+		color: $green;
+	}
+	.entry-meta a:hover {
+		text-decoration: underline;
+	}
+}
+
+.entry-comments-link::before {
+	font-family: 'FontAwesome';
+	content: "\f075";
+	padding-top: 8px;
+	margin: 0 6px 0 2px;
+	display: inline-block;
+}
+
+.entry-categories,
+.entry-tags {
+	display: block;
+}
+/* Pagination
+--------------------------------------------- */
+
+.archive-pagination,
+.entry-pagination {
+	font-size: 18px;
+	margin: 40px 0;
+}
+.archive-pagination a,
+.entry-pagination a {
+	color: $green;
+	border: 1px solid $green;
+	padding: 11px 20px 10px 20px;
+	&:hover {
+		background-color: $green;
+		color: white;
+	}
+}
+.archive-pagination li {
+	display: inline;
+}
+
+.archive-pagination li a {
+	background-color: #333;
+	border-radius: 3px;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	padding: 8px 12px;
+}
+
+.archive-pagination li a:hover,
+.archive-pagination li.active a {
+	background-color: #f15123;
+}
+
+.entry-pagination a {
+	border-bottom: 1px solid #ddd;
+}
+.pagination-previous a:before {
+	font-family: 'FontAwesome';
+	content: '\f104';
+	font-size: 12px;
+	position: relative;
+	top: 0px;
+	left: -5px;
+}
+.pagination-next a:after {
+	font-family: 'FontAwesome';
+	content: '\f105';
+	font-size: 12px;
+	position: relative;
+	top: 0px;
+	right: -5px;
+}
+/* Post Formats
+--------------------------------------------- */
+
+.format-quote .entry-content {
+	background-color: $yellow;
+	color: #fff;
+	display: inline-block;
+	font-size: 36px;
+	font-weight: 300;
+	line-height: 1.25;
+	margin: 0 40px 40px 0;
+	padding: 30px;
+	position: relative;
+}
+
+.format-quote .entry-content p:last-child {
+	margin-bottom: 0;
+}
+
+/* Comments
+--------------------------------------------- */
+
+.comment-respond,
+.entry-comments,
+.entry-pings {
+	background-color: #fff;
+	margin-bottom: 40px;
+}
+
+.entry-comments {
+}
+
+.comment-respond,
+.entry-pings {
+	padding-bottom: 16px;
+}
+
+.comment-respond a,
+.entry-comments a {
+	border-bottom: 1px solid #ddd;
+}
+
+.comment-content {
+	clear: both;
+}
+
+.comment-reply a {
+	border-bottom: none;
+}
+
+.entry-comments .comment-author {
+	margin-bottom: 0;
+}
+
+.comment-respond {
+	margin-top: 40px;
+}
+
+.comment-respond input[type="email"],
+.comment-respond input[type="text"],
+.comment-respond input[type="url"] {
+	width: 50%
+}
+
+.comment-respond label {
+	display: block;
+	margin-right: 12px;
+}
+
+.comment-respond textarea {
+	background-color: #f5f5f5;
+}
+
+.comment-list {
+	margin-top: -16px;
+}
+
+.comment-list li,
+.ping-list li {
+	list-style-type: none;
+}
+
+.comment-list li {
+	padding: 32px;
+}
+
+.comment-list li li {
+	margin-bottom: -32px;
+	margin-left: 32px;
+	margin-right: -32px;
+}
+
+.comment-list li.depth-1 {
+	border-bottom: 1px solid #ddd;
+}
+
+.comment .avatar {
+	margin: 0 16px 24px 0;
+}
+
+.entry-pings .reply {
+	display: none;
+}
+
+.bypostauthor {
+	background-color: #f5f5f5;
+	margin-top: 32px;
+}
+
+.comment-list li li.bypostauthor {
+	margin-bottom: 0;
+}
+
+.form-allowed-tags {
+	background-color: #f5f5f5;
+	font-size: 14px;
+	padding: 24px;
+}
+/*
+Widgets
+---------------------------------------------------------------------------------------------------- */
+
+/* Calendar
+--------------------------------------------- */
+
+.widget_calendar caption {
+	font-weight: 700;
+}
+
+.widget_calendar {
+	font-weight: 600;
+}
+
+.widget_calendar thead {
+	display: none;
+}
+
+.widget_calendar td#prev {
+	text-align: left;
+}
+
+.widget_calendar td#next {
+	text-align: right;
+}
+
+
+// Begin MCN 
+.entry-header {
+	.entry-meta:before {
+		background-color: $yellow;
+		margin-bottom: 10px;
+	}
+	.entry-meta {
+		text-transform: none;
+		font-weight: 300;
+		font-size: 14px;
+	}
+}
+
+/* Tag Cloud
+--------------------------------------------- */
+
+.widget_tag_cloud a {
+	background-color: $yellow;
+
+	color: #fff;
+	display: inline-block;
+	font-size: 11px;
+	font-weight: 600;
+	margin-bottom: 6px;
+	padding: 5px 12px 5px 12px;
+	text-transform: uppercase;
+}
+
+.widget_tag_cloud a:hover {
+	background-color: darken($yellow, 10%);
+}
+

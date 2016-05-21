@@ -1,0 +1,528 @@
+
+//Scroll to fixed border bottom
+//
+.scroll-to-fixed-fixed {
+	border-bottom: 1px solid $gray-rule;
+}
+// Logo 
+.header-image .site-header .wrap {
+	background: none;
+	padding: 0;
+}
+.header-image .site-title {
+	// @media screen and (max-width: $mobile-nav-down) {
+	// 	display: none;
+	// }
+	background-image: url(images/logo.svg);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	background-size: 148px auto;
+
+	@media screen and (max-width: $mobile-nav-down){
+		background-size: 150px;
+		background-position: center center;
+	}
+}
+@media screen and (max-width: 1000px){
+	.site-header .widget-area {
+		float: none;
+		text-align: center;
+	}
+	.title-area {
+		float: none;
+	}
+	.site-title {
+	    margin: 0 auto;
+	    height: 100px;
+	    width: 200px;
+	    float: none;
+    }
+}
+
+// Navigation
+body .genesis-nav-menu {
+    clear: both;
+    font-family: 'SofiaProRegular',sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1;
+    width: 100%;
+}
+	
+.portal-logins {
+	background-color: $purple;
+	width: auto;
+	clear: none;
+	color: white;
+	padding-top: 5px;
+	font-size: 12px;
+	ul .portal-title {
+		padding-right: 10px;
+		color: white;
+		text-transform: uppercase;
+	}
+	ul .menu-item:hover a {
+		background-color: rgba(255,255,255,0.1);
+		color: white;
+	}
+	ul .menu-item {
+		background-color: transparent;
+	}
+	ul .menu-item a {
+		border: 1px solid $lightest-purple;
+		padding: 6px 22px;
+		color: white;
+		display: block;
+		&:after {
+			//forward caret
+			font-family: 'FontAwesome';
+			content: '\f105';
+			font-size: 12px;
+			position: relative;
+			top: 0px;
+			right: -5px;
+		}
+	}
+}
+#nav-secondary-wrap.mobile-hidden .portal-logins{
+	display: inline-block;
+	float: right;
+	width: auto;
+}
+#nav-secondary-wrap {
+	background-color: $purple;
+	color: white;
+	width: auto;
+}
+#menu-secondary-nav {
+    font-family: 'SofiaProRegular', sans-serif;
+	float: left;
+	width: auto;
+	display: inline-block;
+	clear: none;
+	.menu-item {
+		background-color: transparent;
+	}
+	.menu-item:hover a, .menu-item:focus a {
+		background-color: transparent;
+		text-decoration: underline;
+		color: white;
+	}
+
+	.current-menu-item a {
+		background-color: transparent;
+		color: white;
+	}
+	.current-menu-item span {
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	//Change focus from outline to underline
+	.menu-item a:focus {
+		outline: none;	
+		text-decoration: underline;
+	}	
+}
+// Main Nav
+.site-header {
+	background-color: white;
+}
+.site-header .widget-area.header-widget-area {
+	padding-top: 39px;
+    padding-bottom: 20px;
+}
+.nav-primary .menu-item {
+    background-color: transparent;
+    display: inline-block;
+    margin-right: 8px;
+    text-align: left;
+    &:hover a {
+    	background-color: white;
+    	color: black;
+    }
+    a {
+    	text-transform: none;
+    	color: black;
+    	font-size: 16px;
+    	padding: 12px 14px;
+    }
+    &:hover {
+    	background-color: transparent;
+    }
+    &:hover a span, &.current-menu-item a span {
+    	text-decoration: underline;
+    	background-color: transparent;
+    }
+    &:hover a:after {
+		text-decoration: none;
+    } 
+    &.current-menu-item a {
+    	background-color: transparent;
+    	font-weight: bold;
+    }
+
+    &.menu-item-has-children > a:after {
+		font-family: 'FontAwesome';
+		content: '\f0dd';
+		position: relative;
+		top: -1px;
+		right: -5px;
+		display: inline-block;
+		text-decoration: none;
+    }
+    // Sub Menu
+    .sub-menu {
+    	border-bottom: 3px solid $yellow;
+    }
+    .sub-menu a {
+		background-color: white;
+		font-size: 14px;
+    }
+    .sub-menu a span {
+    	text-decoration: none;
+    }
+    .sub-menu a:hover {
+    	color: black;
+    	text-decoration: underline;
+    }
+    .sub-menu .menu-item {
+    	border-bottom: 1px solid $gray-rule;
+    }
+    .sub-menu .menu-item:last-child {
+    	border-bottom: none;
+    }
+    a:focus {
+		outline: none;	
+		text-decoration: underline;
+	}
+	&.current-menu-item .sub-menu a {
+		font-weight: 300 !important;
+	}
+	.current-menu-item a:hover {
+		background-color: white !important;
+	}		
+}
+.schedule-now {
+	border: 1px solid $green;
+
+	a span {
+		color: $green;
+		text-transform: uppercase;
+		font-size: 14px;
+		&:after {
+			font-family: 'FontAwesome';
+			//down caret
+			content: '\f105';
+			font-size: 12px;
+			position: relative;
+			top: 0px;
+			right: -5px;
+			text-decoration: none !important;
+			display: inline-block;
+		}
+	}
+
+}
+/////////////////////
+//   Mobile nav 
+/////////////////////
+
+// Portal Nav
+.portal-logins.desktop-hidden {
+	height: 80px;
+	.portal-title {
+		display: block;
+		width: 100%;
+		font-size: 16px;
+		line-height: 18px;
+	}
+	ul {
+		text-align: center;
+		height: 80px;
+	}
+	li {
+		display: inline-block;
+		margin: 8px 5px;
+		width: 42%;
+	}
+	a {
+		font-size: 18px;
+		font-weight: 300;
+		padding: 0px 20px;
+		line-height: 20px;
+	}
+}
+// Hamburger Menu
+@media screen and (max-width: $mobile-nav-down){
+
+	.site-header {
+		background-color: white;
+	}
+	.site-header .widget-area.header-widget-area {
+		padding: 0;
+	}
+	.menu-toggle.nav-primary {
+		float: right;
+	    display: inline-block;
+	    width: auto;
+	    height: 80px;
+	    background-color: white;
+	    color: $purple;
+	    &:after, &:before {
+	    	color: $purple;
+		    font-size: 30px;
+	    }
+	    &:focus:before, &:hover:before{
+	    	color: inherit;
+	    }
+
+	}
+
+	.header-image .site-title {
+		height: 80px;
+	}
+	.header-image .title-area {
+		float: left;
+		height: 80px;
+	}
+	//turn off hover for mobile
+	.js nav .genesis-nav-menu .menu-item:hover {
+		// background-color: transparent;
+		span {
+			text-decoration: none;
+		}
+	}
+	.js .genesis-nav-menu .menu-item:hover>a {
+		background-color: transparent;
+	}
+	.js .menu-toggle:focus, 
+	.js nav .genesis-nav-menu .menu-item .sub-menu li a:focus, 
+	.js nav .genesis-nav-menu .menu-item a:focus, 
+	.js nav button:focus {
+	    background-color: transparent;
+		color: black;
+		outline: none;
+		text-decoration: none;
+	 }
+	 .js .genesis-nav-menu .menu-item a {
+	 	color: black;
+	 	&:hover {
+	 		color: black;
+	 	}
+	 }
+	.nav-primary ul {
+		border-top: 1px solid $gray-rule;
+	}
+	.nav-primary .menu-item.current-menu-item a {
+	    background-color: white;
+	}
+	.nav-primary .menu-item.current-menu-item a span {
+	    text-decoration: none;
+	}
+	// sub menu
+	// 
+	.nav-primary .menu-item {
+		border-bottom: 1px solid $gray-rule;
+	}
+	.nav-primary .menu-item .sub-menu  {
+		padding-bottom: 10px;
+	}
+	.nav-primary .menu-item .sub-menu .menu-item {
+		border-bottom:0;
+	}
+
+	.nav-primary .menu-item:hover a span {
+		color: black;
+	}
+	.nav-primary .menu-item.schedule-now:hover a span{
+		color: $green;
+	}
+	.nav-primary .menu-item.current-menu-item .sub-menu a {
+		font-weight: 300;
+	}
+	.nav-primary .menu-item.menu-item-has-children a:after {
+		content: '';
+	}
+
+	// Secondary nav
+	.utility a{
+		background-color: $light-gray;
+	}
+	.js .genesis-nav-menu .menu-item.utility:hover a{
+		background-color: $light-gray;
+	}
+	.nav-primary .menu-item.current-menu-item.utility a {
+	    background-color: $light-gray;
+	}
+	.schedule-now {
+		border: none;
+	}
+	.sub-menu-toggle {
+		-webkit-transition: none;
+		transition: none;
+		background-color: transparent;
+		top: 0;
+		padding: 11px;
+		// border-left: 1px solid $gray-rule;
+		&:hover {
+			background-color: transparent;
+		}
+	}
+	.sub-menu-toggle:before {
+		content: '\f0dd';
+		color: black;
+		position: relative;
+		top: -2px;
+	}
+	.sub-menu-toggle.activated:before {
+		content: '\f0de';
+		color: black;
+		position: relative;
+		top: 2px;
+	}
+}
+// Footer 
+
+// 4 footer widgets
+.footer-widgets-1 {
+	width: 20%;
+}
+.footer-widgets-2 {
+	width: 15%;
+}
+.footer-widgets-3 {
+	width: 25%;
+}
+.footer-widgets-4 {
+	width: 30%;
+}
+
+.footer-widgets-1, 
+.footer-widgets-2,
+.footer-widgets-3,
+.footer-widgets-4 {
+	padding: 1%;
+}
+
+.footer-widgets-1,
+.footer-widgets-2,
+.footer-widgets-3 {
+ float: left;
+}
+
+.footer-widgets-4 {
+ float: right;
+}
+
+
+
+
+.footer-widgets {
+	background-color: $green;
+	a:hover, a:focus {
+		text-decoration: underline;
+		outline: none;
+	}
+	.footer-widgets-2,
+	.footer-widgets-3{
+		a:after {
+			font-family: 'FontAwesome';
+			//down caret
+			content: '\f105';
+			font-size: 12px;
+			position: relative;
+			top: 0px;
+			right: -5px;
+			text-decoration: none !important;
+			display: inline-block;
+		}
+	 }
+	.footer-widgets-1 img{
+		width: 130px;
+	}
+
+	.widget-title {
+		color: white;
+		font-weight: 400;
+		font-size: 14px;
+		text-transform: uppercase;
+		margin-bottom: 5px;
+	}
+	.textwidget, .textwidget a {
+		color: black;
+	}
+	.widget_nav_menu a {
+		color: black;
+	}
+}
+@media screen and (max-width: 700px){
+	.footer-widgets, .widget-area, .wrap {
+		padding: 0;
+	}
+
+	.footer-widgets-2{
+		width: 100%;
+		text-align: center;
+	}
+	.widget-title {
+		display: none;
+	}
+	.footer-widgets-1 {
+		width: 100%;
+		text-align: center;
+		padding-top: 20px;
+
+	}
+	.footer-widgets-2 li {
+		padding: 10px 0;
+		border-top: 1px solid white;
+		&:last-child{
+			border-bottom: 1px solid white;
+		}
+	}
+	.footer-widgets-2 .widget_nav_menu a {
+		font-size: 18px;
+		&:after {
+			content: '';
+		}
+	}
+	.footer-widgets-3,
+	.footer-widgets-4 {
+		display: none;
+	}
+}
+
+.site-footer {
+	:focus {
+		outline: none;	
+	}
+	color: black;
+	background-color: $green;
+	padding: 10px;
+	ul {
+		list-style-type: none;
+	}
+	li {
+		display: inline-block;
+		color: black;
+	}
+	li:first-child:after {
+		content: '|';
+		display: inline;
+		position: relative;
+		right: -2px;
+	}
+	li a {
+		color: black;
+		display: inline-block;
+		padding: 5px;
+		text-decoration: underline;
+		&:hover {
+			color: black;
+		}
+		&:focus {
+			outline: none;
+			font-weight: bold;	
+		}
+	}
+}

@@ -1,0 +1,49 @@
+// // ==== GENERAL ==== //
+// 
+// Media Queries:
+// 1400px
+// 1139px
+// 1023px
+// 900px
+// 480px
+// 400px
+
+// Media Queries
+$mobile-nav-down: 900px;
+$desktop-nav-up: 901px;
+
+// Color Palette
+$purple: #401040;
+$light-purple: #5f215f;
+$yellow: #fcb53b;
+$green: #67c39b;
+$light-green: #95e8c4;
+$red: #cb2c30;
+$light-red: #ee3a3e;
+$gray-rule: #b2b2b2;
+$light-gray: #e4e4e4;
+$lightest-gray: #f1f1f1;
+$lightest-purple: #8a7189;
+$forms-gray: #d3d3d3;
+
+
+//Fonts
+body {
+	font-family: 'SofiaProRegular', 'open-sans', Helvetica, Arial, sans-serif !important;
+}
+
+
+// Helper Classes
+.desktop-hidden {
+	@media screen and (min-width: $desktop-nav-up){
+		display: none !important;
+		visibility: hidden;
+	}
+}
+.mobile-hidden {
+	@media screen and (max-width: $mobile-nav-down){
+		display: none;
+		visibility: hidden;
+	}
+}
+

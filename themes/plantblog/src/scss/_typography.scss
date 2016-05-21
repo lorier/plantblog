@@ -1,0 +1,222 @@
+// ==== Typographic Elements ==== //
+
+
+/* Typographical Elements
+--------------------------------------------- */
+
+body {
+	background-color: #fff;
+	color: black;
+	font-family: 'SofiaProRegular', 'open-sans', Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 1.6;
+}
+
+a,
+button,
+input:focus,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+textarea:focus,
+.button,
+.featured-link {
+	-webkit-transition: all 0.1s ease-in-out;
+	-moz-transition:    all 0.1s ease-in-out;
+	-ms-transition:     all 0.1s ease-in-out;
+	-o-transition:      all 0.1s ease-in-out;
+	transition:         all 0.1s ease-in-out;
+}
+
+a {
+	color: $green;
+	text-decoration: none;
+}
+
+a img {
+	margin-bottom: -4px;
+}
+
+a:hover {
+	color: #333;
+}
+
+a.more-link,
+.entry-content a.more-link {
+	background-color: $yellow;
+	color: #fff;
+	display: inline-block;
+	font-size: 11px;
+	font-weight: 600;
+	margin-bottom: 6px;
+	border-radius: 0;
+	padding: 8px 12px 8px 12px;
+	text-transform: uppercase;
+}
+
+a.more-link:hover,
+.entry-content a.more-link:hover,
+.blog-top .entry-content a.more-link:hover {
+	background-color: darken($yellow, 10%);
+	color: white;
+}
+
+p {
+	margin: 0 0 24px;
+	padding: 0;
+}
+
+strong {
+	font-weight: 700;
+}
+
+ol,
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+blockquote,
+blockquote::before {
+	color: $green;
+	font-size: 21px;
+	line-height: 30px;
+}
+
+blockquote {
+	padding-left: 15px;
+	border-left: 5px solid $yellow;
+}
+
+// blockquote::before {
+// 	content: "\201C";
+// 	display: block;
+// 	font-size: 30px;
+// 	height: 0;
+// 	left: -20px;
+// 	position: relative;
+// 	top: -10px;
+// }
+
+.entry-content code {
+	background-color: #333;
+	color: #ddd;
+}
+
+cite {
+	font-style: normal;
+}
+
+/* Headings
+--------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: black;
+	font-family: 'SofiaProRegular', 'open-sans', sans-serif;
+	font-weight: 300;
+	margin: 0 0 16px;
+	line-height: 1.3em;
+}
+
+h1 {
+	font-size: 36px;
+}
+
+h2 {
+	font-size: 30px;
+}
+
+h3 {
+	font-size: 24px;
+}
+
+h4 {
+	font-size: 20px;
+}
+
+h5 {
+	font-size: 18px;
+	line-height: 1.5em;
+}
+
+h6 {
+	font-size: 16px;
+	text-transform: uppercase;
+}
+
+/* Objects
+--------------------------------------------- */
+
+embed,
+iframe,
+img,
+object,
+video,
+.wp-caption {
+	max-width: 100%;
+}
+
+img {
+	height: auto;
+	width: auto; /* IE8 */
+}
+
+/* Titles
+--------------------------------------------- */
+
+.entry-title {
+	color: $green;
+	// font-size: 34px;
+	// line-height: 1;
+}
+.entry-title a {
+	color: $green;
+}
+
+.page-template-default .entry-title,
+.page-contact .entry-title,
+.page-pricing .entry-title {
+	font-size: 48px;
+	text-transform: uppercase;
+}
+
+.single .entry-title {
+	font-size: 30px;
+	margin-bottom: 35px;
+}
+.single h1 {
+	font-size: 30px;
+}
+
+.sidebar .widget-title a {
+	color: $yellow;
+}
+
+.entry-title a:hover {
+	 color: darken($green, 10%);
+}
+
+.widget-title {
+	color: $yellow;
+	font-size: 18px;
+	font-weight: 300;
+	margin-bottom: 10px;
+	// text-transform: uppercase;
+}
+
+.sidebar .widget-title a {
+	border: none;
+}
+
+.archive-title {
+	color: black;
+	font-size: 34px;
+	margin-bottom: 0;
+}
+
