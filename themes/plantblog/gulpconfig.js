@@ -15,16 +15,11 @@ var project     = 'mcn'                 // The directory name for your theme; ch
 module.exports = {
 
   browsersync: {
-  // files: [build+'/**', '!'+build+'/**.map'] // Exclude map files
-   notify: false // In-line notifications (the blocks of text saying whether you are connected to the BrowserSync server or not)
+  files: [build+'/**', '!'+build+'/**.map'] // Exclude map files
+  , notify: true // In-line notifications (the blocks of text saying whether you are connected to the BrowserSync server or not)
   , open: true // Set to false if you don't like the browser window opening automatically
-  , port: 3000 // Port number for the live version of the site; default: 3000
-  , https: true
-  , proxy: 'https://dev.mcn.com'
-  , https: {
-        key: "../../../../dev.mcn.com.key",
-        cert: "../../../../dev.mcn.com.crt"
-  } // We need to use a proxy instead of the built-in server because WordPress has to do some server-side rendering for the theme to work
+  , port: 3000
+  , proxy: 'localhost:8080' // Port number for the live version of the site; default: 3000
   , watchOptions: {
       debounceDelay: 2000 // This introduces a small delay when watching for file change events to avoid triggering too many reloads
     }
@@ -61,7 +56,7 @@ module.exports = {
   },
 
   livereload: {
-    port: 9000 // This is a standard port number that should be recognized by your LiveReload helper; there's probably no need to change it
+    port: 35729 // This is a standard port number that should be recognized by your LiveReload helper; there's probably no need to change it
   },
 
   scripts: {

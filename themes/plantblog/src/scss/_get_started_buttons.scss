@@ -10,7 +10,7 @@
     }
     p {
     	margin-bottom: 0;
-    	color: black;
+    	color: $dark-gray;
     }
 }
 
@@ -27,7 +27,7 @@
 .providers-button{
 	@extend %button;
 	
-	background-color: $green;
+	background-color: $brown;
     background-image: 	url('images/providers-icon.png'),
    						url('images/right-arrow.svg');
    	background-position: 5% center, 95% center;

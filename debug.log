@@ -1,1 +1,19 @@
 [21-May-2016 17:22:06 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): Connection refused in /Applications/MAMP/htdocs/plantblog/wp-includes/wp-db.php on line 1490
+[22-May-2016 00:07:54 UTC] PHP Parse error:  syntax error, unexpected 'genesis' (T_STRING) in /Applications/MAMP/htdocs/plantblog/wp-content/themes/plantblog/build/single-plant.php on line 3
+[22-May-2016 01:12:16 UTC] PHP Parse error:  syntax error, unexpected 'function' (T_FUNCTION) in /Applications/MAMP/htdocs/plantblog/wp-content/themes/plantblog/build/front-page.php on line 92
+[22-May-2016 01:52:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /Applications/MAMP/htdocs/plantblog/wp-content/themes/plantblog/build/functions.php:246) in /Applications/MAMP/htdocs/plantblog/wp-includes/pluggable.php on line 1171
+[22-May-2016 03:36:43 UTC] PHP Warning:  mysqli_real_connect(): MySQL server has gone away in /Applications/MAMP/htdocs/plantblog/wp-includes/wp-db.php on line 1490
+[22-May-2016 03:36:43 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2006): MySQL server has gone away in /Applications/MAMP/htdocs/plantblog/wp-includes/wp-db.php on line 1490
+[22-May-2016 14:56:05 UTC] PHP Warning:  mysqli_real_connect(): php_network_getaddresses: getaddrinfo failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/plantblog/wp-includes/wp-db.php on line 1490
+[22-May-2016 14:56:05 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): php_network_getaddresses: getaddrinfo failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/plantblog/wp-includes/wp-db.php on line 1490
+[22-May-2016 15:26:00 UTC] PHP Notice:  Undefined offset: 4 in phar:///usr/local/bin/wp/php/WP_CLI/DocParser.php on line 124
+[22-May-2016 15:26:28 UTC] PHP Notice:  Undefined offset: 4 in phar:///usr/local/bin/wp/php/WP_CLI/DocParser.php on line 124
+[22-May-2016 15:26:57 UTC] PHP Notice:  Undefined offset: 4 in phar:///usr/local/bin/wp/php/WP_CLI/DocParser.php on line 124
+[22-May-2016 15:27:05 UTC] PHP Notice:  Undefined offset: 4 in phar:///usr/local/bin/wp/php/WP_CLI/DocParser.php on line 124
+[22-May-2016 15:27:49 UTC] PHP Notice:  Undefined offset: 4 in phar:///usr/local/bin/wp/php/WP_CLI/DocParser.php on line 124
+[22-May-2016 15:36:38 UTC] WordPress database error Duplicate entry '106-2' for key 'PRIMARY' for query INSERT INTO `plantblog_term_relationships` (`object_id`, `term_taxonomy_id`) VALUES (106, 2) made by wp_nav_menu_update_menu_items, wp_update_nav_menu_item, wp_set_object_terms
+[22-May-2016 15:36:39 UTC] WordPress database error Duplicate entry '105-2' for key 'PRIMARY' for query INSERT INTO `plantblog_term_relationships` (`object_id`, `term_taxonomy_id`) VALUES (105, 2) made by wp_nav_menu_update_menu_items, wp_update_nav_menu_item, wp_set_object_terms
+[22-May-2016 15:54:39 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'pb_do_custom_loop' not found or invalid function name in /Applications/MAMP/htdocs/plantblog/wp-includes/plugin.php on line 525
+[22-May-2016 18:05:51 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 262144 bytes) in /Applications/MAMP/htdocs/plantblog/wp-includes/query.php on line 4006
+[22-May-2016 18:09:42 UTC] PHP Notice:  Undefined offset: 4 in phar:///usr/local/bin/wp/php/WP_CLI/DocParser.php on line 124
+[23-May-2016 00:09:02 UTC] PHP Notice:  Undefined variable: crumb in /Applications/MAMP/htdocs/plantblog/wp-content/themes/genesis/lib/classes/breadcrumb.php on line 446

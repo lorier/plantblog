@@ -38,7 +38,7 @@
 		padding: 20px 0;
 	}
 	.entry-meta a {
-		color: $green;
+		color: $brown;
 	}
 	.entry-meta a:hover {
 		text-decoration: underline;
@@ -67,11 +67,11 @@
 }
 .archive-pagination a,
 .entry-pagination a {
-	color: $green;
-	border: 1px solid $green;
+	color: $brown;
+	border: 1px solid $gray-rule;
 	padding: 11px 20px 10px 20px;
 	&:hover {
-		background-color: $green;
+		background-color: $brown;
 		color: white;
 	}
 }
@@ -80,9 +80,8 @@
 }
 
 .archive-pagination li a {
-	background-color: #333;
-	border-radius: 3px;
-	color: #fff;
+	background-color: white;
+	color: $dark-gray;
 	cursor: pointer;
 	display: inline-block;
 	padding: 8px 12px;
@@ -90,11 +89,11 @@
 
 .archive-pagination li a:hover,
 .archive-pagination li.active a {
-	background-color: #f15123;
+	background-color: $yellow;
 }
 
 .entry-pagination a {
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid $gray-rule;
 }
 .pagination-previous a:before {
 	font-family: 'FontAwesome';

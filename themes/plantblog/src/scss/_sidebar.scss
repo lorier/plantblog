@@ -4,26 +4,24 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
+  
 }
-.page .sidebar .widget-title {
-	font-weight: 700;
-	color: black;
-}
+
 .sidebar {
-	color: black;
-	font-size: 16px;
+	color: $dark-gray;
+	font-size: 14px;
 }
 .sidebar a {
-	color: black;
+	color: $dark-gray;
 }
-.sidebar li:after {
-	font-family: 'FontAwesome';
-	content: '\f105';
-	font-size: 12px;
-	position: relative;
-	top: 0px;
-	right: -5px;
-}
+// .sidebar li:after {
+// 	font-family: 'FontAwesome';
+// 	content: '\f105';
+// 	font-size: 12px;
+// 	position: relative;
+// 	top: 0px;
+// 	right: -5px;
+// }
 .sidebar li a:hover {
 	text-decoration: underline;
 }
@@ -51,13 +49,13 @@
 	li {
 		padding: 10px 0 10px 18px;
 	}
-	li:before {
-		font-family: 'FontAwesome';
-		content: '\f105';
-		font-size: 12px;
-		margin: 0 5px 0 -15px;
-		color: $yellow;
-	}
+	// li:before {
+	// 	font-family: 'FontAwesome';
+	// 	content: '\f105';
+	// 	font-size: 12px;
+	// 	margin: 0 5px 0 -15px;
+	// 	color: $yellow;
+	// }
 }
 .sidebar .widget_calendar a {
 	color: $yellow;
@@ -76,14 +74,14 @@
 }
 .sidebar .menu li.current-menu-item,
 .sidebar .menu li.current-menu-item a  {
-	color: $green;
+	color: $brown;
 }
 .sidebar ul > li:last-child {
 	margin-bottom: 0;
 }
 
 .sidebar .widget {
-	background-color: #fff;
+	background-color: transparent;
 	border-radius: 3px;
 	margin-bottom: 40px;
 }

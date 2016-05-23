@@ -5,12 +5,11 @@
 --------------------------------------------- */
 
 body {
-	background-color: #fff;
-	color: black;
-	font-family: 'SofiaProRegular', 'open-sans', Helvetica, Arial, sans-serif;
-	font-size: 16px;
+	color: $dark-gray;
+	font-family: 'Oswald', 'open-sans', Helvetica, Arial, sans-serif;
+	font-size: 14px;
 	font-weight: 300;
-	line-height: 1.6;
+	line-height: 1.5;
 }
 
 a,
@@ -30,7 +29,7 @@ textarea:focus,
 }
 
 a {
-	color: $green;
+	color: $brown;
 	text-decoration: none;
 }
 
@@ -79,7 +78,7 @@ ul {
 
 blockquote,
 blockquote::before {
-	color: $green;
+	color: $brown;
 	font-size: 21px;
 	line-height: 30px;
 }
@@ -117,8 +116,8 @@ h3,
 h4,
 h5,
 h6 {
-	color: black;
-	font-family: 'SofiaProRegular', 'open-sans', sans-serif;
+	color: $dark-gray;
+	font-family: 'Oswald', sans-serif;
 	font-weight: 300;
 	margin: 0 0 16px;
 	line-height: 1.3em;
@@ -171,12 +170,12 @@ img {
 --------------------------------------------- */
 
 .entry-title {
-	color: $green;
+	color: $brown;
 	// font-size: 34px;
 	// line-height: 1;
 }
 .entry-title a {
-	color: $green;
+	color: $dark-gray;
 }
 
 .page-template-default .entry-title,
@@ -195,16 +194,16 @@ img {
 }
 
 .sidebar .widget-title a {
-	color: $yellow;
+	color: $brown;
 }
 
 .entry-title a:hover {
-	 color: darken($green, 10%);
+	 color: darken($brown, 10%);
 }
 
 .widget-title {
-	color: $yellow;
-	font-size: 18px;
+	color: $brown;
+	font-size: 20px;
 	font-weight: 300;
 	margin-bottom: 10px;
 	// text-transform: uppercase;
@@ -215,7 +214,7 @@ img {
 }
 
 .archive-title {
-	color: black;
+	color: $dark-gray;
 	font-size: 34px;
 	margin-bottom: 0;
 }

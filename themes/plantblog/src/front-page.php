@@ -7,55 +7,40 @@
  * @link    http://demo.leanthemes.co/kickstart/
  */
 
-add_action( 'wp_head', 'kickstart_front_page_setup' );
-/**
- * Add widget support for homepage. If no widgets active, display the default loop.
- *
- */
-function kickstart_front_page_setup() {
 
-	if ( is_active_sidebar( 'home-top-slider' ) || is_active_sidebar( 'home-top' ) ) {
+// function pb_archive_post_class( $classes ) {
+// 	global $wp_query;
+// 	if( ! $wp_query->is_main_query() )
+// 		return $classes;
+		
+// 	$classes[] = 'one-third';
+// 	if( 0 == $wp_query->current_post || 0 == $wp_query->current_post % 3 )
+// 		$classes[] = 'first';
+// 	return $classes;
+// }
+// add_filter( 'post_class', 'pb_archive_post_class' );
 
-		// Add front-page body class
-		add_filter( 'body_class', 'kickstart_body_class' );
-		function kickstart_body_class( $classes ) {
-   			$classes[] = 'front-page';
+// //* Add support for Genesis Grid Loop
+// remove_action( 'genesis_loop', 'genesis_do_loop' );
+// add_action( 'genesis_loop', 'pb_grid_loop_helper' );
+// function pb_grid_loop_helper() {
+//   if ( function_exists( 'genesis_grid_loop' ) ) {
+// 		echo 'i am front page';
+// 		genesis_grid_loop( array(
+// 			'features' => 2,
+// 			'feature_image_size' => 1,
+// 			'feature_image_class' => 'alignleft post-image',
+// 			'feature_content_limit' => 0,
+// 			'grid_image_size' => 'grid-thumbnail',
+// 			'grid_image_class' => 'alignleft post-image',
+// 			'grid_content_limit' => 0,
+// 			'more' => __( '[Continue reading...]', 'genesis' ),
+// 		) );
+// 	} else {
+// 		genesis_standard_loop();
+// 	}
+// }
 
-  			return $classes;
-		}
-
-		// Force full-width-content layout setting
-		add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_full_width_content' );
-
-		// Add homepage top area
-		add_action( 'genesis_after_header', 'kickstart_homepage_top' );
-
-	}
-}
-
-// Setup homepage top area
-function kickstart_homepage_top() {
-	genesis_widget_area( 'home-top-callout', array(
-		'before' => '<div id="home-top-callout" class="home-top-callout widget-area"><div class="wrap">',
-		'after'  => '</div></div>',
-	) );
-
-	if ( is_active_sidebar( 'home-top-slider' ) ) {
-		genesis_widget_area( 'home-top-slider', array(
-			'before' => '<div id="home-top-slider" class="home-top-slider widget-area"><div class="wrap">',
-			'after'  => '</div></div>',
-		) );
-	}
-	else if ( is_active_sidebar( 'home-top' ) ) {
-		echo '<div class="before-content">';
-			genesis_widget_area( 'home-top', array(
-				'before' => '<div id="home-top" class="home-top widget-area"><div class="wrap">',
-				'after'  => '</div></div>',
-			) );
-		echo '</div>';
-	}
-}
-
-
-
+// //* Remove the post meta function for front page only
+// remove_action( 'genesis_entry_footer', 'genesis_post_meta', 10 );
 genesis();

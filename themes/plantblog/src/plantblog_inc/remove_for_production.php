@@ -1,5 +1,4 @@
 <?php
-
 // enable viewing of subpages in a temporary nav panel
 // add_action('genesis_before_content', 'sg_temporary_nav');
 function rcms_temporary_nav(){
@@ -38,3 +37,4 @@ function tw_setup_livereload(){
 function rcms_print_pre($value) {
     echo "<pre>",print_r($value, true),"</pre>";
 }
+

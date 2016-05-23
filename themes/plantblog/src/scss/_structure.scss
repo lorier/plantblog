@@ -10,7 +10,7 @@
 .site-inner, .pagebuilder-contain,
 .wrap {
 	margin: 0 auto;
-	max-width: 970px;
+	max-width: 1000px;
 }
 
 .site-inner {
@@ -31,7 +31,7 @@
 .content-sidebar-sidebar .content-sidebar-wrap,
 .sidebar-content-sidebar .content-sidebar-wrap,
 .sidebar-sidebar-content .content-sidebar-wrap {
-	width: 920px;
+	width: 950px;
 }
 
 .content-sidebar-sidebar .content-sidebar-wrap {
@@ -46,8 +46,8 @@
 /* Content */
 
 .content {
-	float: right; //not sure why this was here. Disabled due to a conflict with Inked Accordion
-	width: 700px;
+	float: right; 
+	width: 750px
 }
 
 .content-sidebar .content,
@@ -70,7 +70,7 @@
 
 .sidebar-primary {
 	float: right;
-	width: 220px;
+	width: 200px;
 }
 
 .sidebar-content .sidebar-primary,

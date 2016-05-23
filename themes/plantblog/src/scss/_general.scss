@@ -13,23 +13,31 @@ $mobile-nav-down: 900px;
 $desktop-nav-up: 901px;
 
 // Color Palette
-$purple: #401040;
-$light-purple: #5f215f;
-$yellow: #fcb53b;
-$green: #67c39b;
-$light-green: #95e8c4;
-$red: #cb2c30;
+$purple: #8FC4FF;
+// $light-purple: #5f215f;
+$yellow: #BFBF4A;
+// $yellow: #E8CF55;
+// $yellow: #B97B3B;
+$brown: #8D5230;
+// $light-green: #95e8c4;
+// $red: #cb2c30;
 $light-red: #ee3a3e;
-$gray-rule: #b2b2b2;
+$gray-rule: #E6DDC8;
 $light-gray: #e4e4e4;
 $lightest-gray: #f1f1f1;
-$lightest-purple: #8a7189;
+// $lightest-purple: #8a7189;
 $forms-gray: #d3d3d3;
+$off-white: #ECF1DF	;
+$dark-gray: #799088;
 
+
+//#946a4b
 
 //Fonts
 body {
-	font-family: 'SofiaProRegular', 'open-sans', Helvetica, Arial, sans-serif !important;
+	font-family: 'Lora', 'open-sans', Helvetica, Arial, sans-serif !important;
+	background-color: $off-white;
+	font-weight: 300;
 }
 
 

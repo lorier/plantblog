@@ -29,13 +29,13 @@
 	padding-left: 30px;
 }
 .left-green-bar {
-	border-left: 5px solid $green;
+	border-left: 5px solid $brown;
 	padding-left: 30px;
 }
 .short-hr hr {
 	width: 80px;
-	color: black;
-	border-color: black;
+	color: $dark-gray;
+	border-color: $dark-gray;
 }
 .rcms-yellow-wide, 
 .rcms-green-wide {
@@ -45,8 +45,8 @@
 	margin-bottom:20px;
 	hr {
 		width: 80px;
-		color: black;
-		border-color: black;
+		color: $dark-gray;
+		border-color: $dark-gray;
 		border-width: 2px;
 	}
 }
@@ -59,8 +59,8 @@
 // 	padding-bottom: 40px;
 // 	hr {
 // 		width: 80px;
-// 		color: black;
-// 		border-color: black;
+// 		color: $dark-gray;
+// 		border-color: $dark-gray;
 // 	}
 // }
 .no-bottom-margin h2,
@@ -104,7 +104,7 @@
 		margin-bottom: 0px;
 	}
 	.expertise-panel a {
-		color: black;
+		color: $dark-gray;
 		&:after {
 			font-family: 'FontAwesome';
 			content: '\f105';
@@ -211,7 +211,7 @@ body .so-widget-ink-blog {
 	.iw-so-article-title {
 		font-weight: 700;
 		a:hover {
-			color: black;
+			color: $dark-gray;
 			text-decoration: underline;
 		}
 	}
@@ -229,7 +229,7 @@ body .so-widget-ink-blog {
 		margin-bottom: 3px;
 	}
 	.iw-so-article-btn {
-		color: black;
+		color: $dark-gray;
 	    text-decoration: none;
 	    font-size: 18px;
 	    padding: 0;
@@ -248,7 +248,7 @@ body .so-widget-ink-blog {
 		height: auto !important
 	}
 	.iw-so-article-btn-hover:hover, .so-widget-ink-blog-thumb-left .iw-so-article-btn-hover:focus {
-	    color: black;
+	    color: $dark-gray;
 	    background: transparent;
 	    border-color: none;
 	}

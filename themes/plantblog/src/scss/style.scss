@@ -44,8 +44,8 @@ Domain Path: #{metadata(theme-text-domain-path)}
 @import "content_areas";
 @import "pagebuilder_classes";
 @import "get_started_buttons";
-@import "accordion";
-
+@import "grid";
+@import "teasers";
 // Reset: eliminate default browser styling (optional; commented out by default)
 //@import "reset";
 

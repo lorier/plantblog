@@ -4,6 +4,274 @@
 .scroll-to-fixed-fixed {
 	border-bottom: 1px solid $gray-rule;
 }
+
+// Kickstart styles
+
+
+/*
+Site Header
+---------------------------------------------------------------------------------------------------- */
+
+.site-header {
+	position: relative;
+	z-index: 498;
+	background: url(images/treebark.jpg) no-repeat center top;
+}
+
+.site-header .wrap {
+	max-width: 1000px;
+	padding: 60px 0;
+}
+
+/* Title Area
+--------------------------------------------- */
+
+.title-area {
+	float: left;
+	font-weight: normal;
+}
+
+.header-image .title-area {
+	padding: 0;
+}
+
+.site-title {
+	font-size: 80px;
+	font-weight: 300;
+	font-family: 'Oswald', sans-serif;
+	line-height: 1;
+	// text-transform: uppercase;
+}
+
+.site-title a {
+	color: $off-white;
+	display: block;
+	// padding: 12px 0px;
+}
+
+.site-title a:hover {
+	background-color: #efefef;
+	color: #999;
+}
+
+.site-description {
+	font-family: 'Oswald', sans-serif;
+	color: $off-white;
+	// float: left;
+	font-size: 18px;
+	font-weight: 300;
+	line-height: 1;
+	margin-bottom: 0;
+	padding: 12px 0px;
+	text-transform: uppercase;
+}
+
+/* Logo, hide text */
+
+.header-image .site-header .wrap {
+	background: url(images/logo.png) no-repeat left center;
+	padding: 0;
+}
+
+.header-image .site-description,
+.header-image .site-title a {
+	display: block;
+	text-indent: -9999px;
+}
+
+.header-image .site-title {
+	background: none;
+}
+
+.header-image .site-title a {
+	background: none;
+	float: left;
+	height: 80px;
+	max-height: 80px;
+	padding: 0;
+	width: 155px;
+}
+
+.header-image .site-description {
+	height: 0;
+	padding: 0;
+}
+
+/* Widget Area
+--------------------------------------------- */
+
+.widget-area {
+	word-wrap: break-word;
+}
+
+.site-header .widget-area {
+	float: right;
+	text-align: right;
+}
+
+.header-image .site-header .widget-area {
+	padding: 40px 0;
+}
+
+
+/*
+Site Navigation
+---------------------------------------------------------------------------------------------------- */
+
+.genesis-nav-menu {
+	clear: both;
+	color: #999;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1;
+	width: 100%;
+}
+
+.genesis-nav-menu .menu-item {
+	background-color: $yellow;
+	display: inline-block;
+	margin-right: 8px;
+	text-align: left;
+}
+
+.genesis-nav-menu .menu-item:last-child {
+	margin-right: 0;
+}
+
+.genesis-nav-menu a {
+	border: none;
+	color: #fff;
+	display: block;
+	padding: 12px 22px;
+	position: relative;
+}
+
+.genesis-nav-menu .menu-item:hover a,
+.genesis-nav-menu .current-menu-item > a,
+.genesis-nav-menu .sub-menu a:hover {
+	background-color: $yellow;
+	color: white;
+}
+
+.genesis-nav-menu .sub-menu .current-menu-item > a {
+	color: #999;
+}
+
+.genesis-nav-menu > .menu-item > a {
+	text-transform: uppercase;
+}
+
+.genesis-nav-menu .sub-menu {
+	left: -9999px;
+	opacity: 0;
+	position: absolute;
+	-webkit-transition: opacity .4s ease-in-out;
+	-moz-transition:    opacity .4s ease-in-out;
+	-ms-transition:     opacity .4s ease-in-out;
+	-o-transition:      opacity .4s ease-in-out;
+	transition:         opacity .4s ease-in-out;
+	width: 200px;
+	z-index: 99;
+}
+
+.genesis-nav-menu .sub-menu a {
+	background-color: #efefef;
+	border-top: none;
+	color: #999;
+	position: relative;
+	text-transform: uppercase;
+	width: 200px;
+}
+
+.genesis-nav-menu .sub-menu a:hover,
+.genesis-nav-menu .sub-menu .current-menu-item > a:hover {
+	background-color: $yellow;
+	color: #fff;
+}
+
+.genesis-nav-menu .sub-menu .sub-menu {
+	margin: -37px 0 0 199px;
+}
+
+.genesis-nav-menu .menu-item:hover {
+	position: static;
+}
+
+.genesis-nav-menu .menu-item:hover > .sub-menu {
+	left: auto;
+	opacity: 1;
+}
+
+.genesis-nav-menu > .first > a {
+	padding-left: 0;
+}
+
+.genesis-nav-menu > .last > a {
+	padding-right: 0;
+}
+
+.genesis-nav-menu > .right {
+	display: inline-block;
+	float: right;
+	list-style-type: none;
+	padding: 28px 0;
+	text-transform: uppercase;
+}
+
+.genesis-nav-menu > .right > a {
+	display: inline;
+	padding: 0;
+}
+
+.genesis-nav-menu > .rss > a {
+	margin-left: 48px;
+}
+
+.genesis-nav-menu > .search {
+	padding: 14px 0 0;
+}
+
+/* Accessible Menu
+--------------------------------------------- */
+
+.menu .menu-item:focus {
+	position: static;
+}
+
+.menu .menu-item > a:focus + ul.sub-menu,
+.menu .menu-item.sfHover > ul.sub-menu {
+	left: auto;
+	opacity: 1;
+}
+
+/* Responsive Menu
+--------------------------------------------- */
+
+.sub-menu-toggle,
+.menu-toggle {
+	display: none;
+	visibility: hidden;
+}
+
+/* Skip Links
+--------------------------------------------- */
+
+.genesis-skip-link {
+	margin: 0;
+}
+
+.genesis-skip-link li {
+	height: 0;
+	width: 0;
+	list-style: none;
+}
+
+/* Display outline on focus */
+:focus {
+	color: #333;
+	outline: #ccc solid 1px;
+}
+
 // Logo 
 .header-image .site-header .wrap {
 	background: none;
@@ -48,116 +316,79 @@ body .genesis-nav-menu {
     line-height: 1;
     width: 100%;
 }
-	
-.portal-logins {
-	background-color: $purple;
-	width: auto;
-	clear: none;
-	color: white;
-	padding-top: 5px;
-	font-size: 12px;
-	ul .portal-title {
-		padding-right: 10px;
-		color: white;
-		text-transform: uppercase;
-	}
-	ul .menu-item:hover a {
-		background-color: rgba(255,255,255,0.1);
-		color: white;
-	}
-	ul .menu-item {
-		background-color: transparent;
-	}
-	ul .menu-item a {
-		border: 1px solid $lightest-purple;
-		padding: 6px 22px;
-		color: white;
-		display: block;
-		&:after {
-			//forward caret
-			font-family: 'FontAwesome';
-			content: '\f105';
-			font-size: 12px;
-			position: relative;
-			top: 0px;
-			right: -5px;
-		}
-	}
-}
-#nav-secondary-wrap.mobile-hidden .portal-logins{
-	display: inline-block;
-	float: right;
-	width: auto;
-}
-#nav-secondary-wrap {
-	background-color: $purple;
-	color: white;
-	width: auto;
-}
-#menu-secondary-nav {
-    font-family: 'SofiaProRegular', sans-serif;
-	float: left;
-	width: auto;
-	display: inline-block;
-	clear: none;
-	.menu-item {
-		background-color: transparent;
-	}
-	.menu-item:hover a, .menu-item:focus a {
-		background-color: transparent;
-		text-decoration: underline;
-		color: white;
-	}
 
-	.current-menu-item a {
-		background-color: transparent;
-		color: white;
-	}
-	.current-menu-item span {
-		font-weight: bold;
-		text-decoration: underline;
-	}
-	//Change focus from outline to underline
-	.menu-item a:focus {
-		outline: none;	
-		text-decoration: underline;
-	}	
-}
+// #nav-secondary-wrap.mobile-hidden .portal-logins{
+// 	display: inline-block;
+// 	float: right;
+// 	width: auto;
+// }
+// #nav-secondary-wrap {
+// 	background-color: $purple;
+// 	color: white;
+// 	width: auto;
+// }
+// #menu-secondary-nav {
+//     font-family: 'SofiaProRegular', sans-serif;
+// 	float: left;
+// 	width: auto;
+// 	display: inline-block;
+// 	clear: none;
+// 	.menu-item {
+// 		background-color: transparent;
+// 	}
+// 	.menu-item:hover a, .menu-item:focus a {
+// 		background-color: transparent;
+// 		text-decoration: underline;
+// 		color: white;
+// 	}
+
+// 	.current-menu-item a {
+// 		background-color: transparent;
+// 		color: white;
+// 	}
+// 	.current-menu-item span {
+// 		font-weight: bold;
+// 		text-decoration: underline;
+// 	}
+// 	//Change focus from outline to underline
+// 	.menu-item a:focus {
+// 		outline: none;	
+// 		text-decoration: underline;
+// 	}	
+// }
 // Main Nav
 .site-header {
 	background-color: white;
 }
 .site-header .widget-area.header-widget-area {
-	padding-top: 39px;
-    padding-bottom: 20px;
 }
 .nav-primary .menu-item {
-    background-color: transparent;
+    // background-color: transparent;
     display: inline-block;
     margin-right: 8px;
     text-align: left;
     &:hover a {
-    	background-color: white;
-    	color: black;
+    	background-color: darken($yellow, 10%);
+    	color: white;
     }
     a {
     	text-transform: none;
-    	color: black;
+    	color: 	white;
     	font-size: 16px;
     	padding: 12px 14px;
     }
     &:hover {
-    	background-color: transparent;
+    	// background-color: transparent;
     }
     &:hover a span, &.current-menu-item a span {
     	text-decoration: underline;
-    	background-color: transparent;
+    	// background-color: transparent;
     }
     &:hover a:after {
 		text-decoration: none;
     } 
     &.current-menu-item a {
-    	background-color: transparent;
+    	// background-color: transparent;
     	font-weight: bold;
     }
 
@@ -177,12 +408,13 @@ body .genesis-nav-menu {
     .sub-menu a {
 		background-color: white;
 		font-size: 14px;
+		color: $dark-gray;
     }
     .sub-menu a span {
     	text-decoration: none;
     }
     .sub-menu a:hover {
-    	color: black;
+    	color: $dark-gray;
     	text-decoration: underline;
     }
     .sub-menu .menu-item {
@@ -202,27 +434,27 @@ body .genesis-nav-menu {
 		background-color: white !important;
 	}		
 }
-.schedule-now {
-	border: 1px solid $green;
+// .schedule-now {
+// 	border: 1px solid $brown;
 
-	a span {
-		color: $green;
-		text-transform: uppercase;
-		font-size: 14px;
-		&:after {
-			font-family: 'FontAwesome';
-			//down caret
-			content: '\f105';
-			font-size: 12px;
-			position: relative;
-			top: 0px;
-			right: -5px;
-			text-decoration: none !important;
-			display: inline-block;
-		}
-	}
+// 	a span {
+// 		color: $brown;
+// 		text-transform: uppercase;
+// 		font-size: 14px;
+// 		&:after {
+// 			font-family: 'FontAwesome';
+// 			//down caret
+// 			content: '\f105';
+// 			font-size: 12px;
+// 			position: relative;
+// 			top: 0px;
+// 			right: -5px;
+// 			text-decoration: none !important;
+// 			display: inline-block;
+// 		}
+// 	}
 
-}
+// }
 /////////////////////
 //   Mobile nav 
 /////////////////////
@@ -293,28 +525,28 @@ body .genesis-nav-menu {
 		}
 	}
 	.js .genesis-nav-menu .menu-item:hover>a {
-		background-color: transparent;
+		// background-color: transparent;
 	}
 	.js .menu-toggle:focus, 
 	.js nav .genesis-nav-menu .menu-item .sub-menu li a:focus, 
 	.js nav .genesis-nav-menu .menu-item a:focus, 
 	.js nav button:focus {
-	    background-color: transparent;
-		color: black;
+	    // background-color: transparent;
+		color: $dark-gray;
 		outline: none;
 		text-decoration: none;
 	 }
 	 .js .genesis-nav-menu .menu-item a {
-	 	color: black;
+	 	color: $dark-gray;
 	 	&:hover {
-	 		color: black;
+	 		color: $dark-gray;
 	 	}
 	 }
 	.nav-primary ul {
 		border-top: 1px solid $gray-rule;
 	}
 	.nav-primary .menu-item.current-menu-item a {
-	    background-color: white;
+	    // background-color: white;
 	}
 	.nav-primary .menu-item.current-menu-item a span {
 	    text-decoration: none;
@@ -332,10 +564,10 @@ body .genesis-nav-menu {
 	}
 
 	.nav-primary .menu-item:hover a span {
-		color: black;
+		color: $dark-gray;
 	}
 	.nav-primary .menu-item.schedule-now:hover a span{
-		color: $green;
+		color: $brown;
 	}
 	.nav-primary .menu-item.current-menu-item .sub-menu a {
 		font-weight: 300;
@@ -357,7 +589,16 @@ body .genesis-nav-menu {
 	.schedule-now {
 		border: none;
 	}
+
+	.menu-toggle,
 	.sub-menu-toggle {
+		color: #fff;
+		display: block;
+		margin: 0 auto;
+		overflow: hidden;
+		padding: 13px 24px;
+		text-align: center;
+		visibility: visible;
 		-webkit-transition: none;
 		transition: none;
 		background-color: transparent;
@@ -370,13 +611,13 @@ body .genesis-nav-menu {
 	}
 	.sub-menu-toggle:before {
 		content: '\f0dd';
-		color: black;
+		color: $dark-gray;
 		position: relative;
 		top: -2px;
 	}
 	.sub-menu-toggle.activated:before {
 		content: '\f0de';
-		color: black;
+		color: $dark-gray;
 		position: relative;
 		top: 2px;
 	}
@@ -418,7 +659,7 @@ body .genesis-nav-menu {
 
 
 .footer-widgets {
-	background-color: $green;
+	background-color: $brown;
 	a:hover, a:focus {
 		text-decoration: underline;
 		outline: none;
@@ -449,10 +690,10 @@ body .genesis-nav-menu {
 		margin-bottom: 5px;
 	}
 	.textwidget, .textwidget a {
-		color: black;
+		color: $dark-gray;
 	}
 	.widget_nav_menu a {
-		color: black;
+		color: $dark-gray;
 	}
 }
 @media screen and (max-width: 700px){
@@ -496,15 +737,15 @@ body .genesis-nav-menu {
 	:focus {
 		outline: none;	
 	}
-	color: black;
-	background-color: $green;
+	color: $dark-gray;
+	background-color: $brown;
 	padding: 10px;
 	ul {
 		list-style-type: none;
 	}
 	li {
 		display: inline-block;
-		color: black;
+		color: $dark-gray;
 	}
 	li:first-child:after {
 		content: '|';
@@ -513,12 +754,12 @@ body .genesis-nav-menu {
 		right: -2px;
 	}
 	li a {
-		color: black;
+		color: $dark-gray;
 		display: inline-block;
 		padding: 5px;
 		text-decoration: underline;
 		&:hover {
-			color: black;
+			color: $dark-gray;
 		}
 		&:focus {
 			outline: none;
