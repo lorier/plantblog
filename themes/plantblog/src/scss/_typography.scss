@@ -6,7 +6,7 @@
 
 body {
 	color: $dark-gray;
-	font-family: 'Oswald', 'open-sans', Helvetica, Arial, sans-serif;
+	font-family: $body-font;
 	font-size: 14px;
 	font-weight: 300;
 	line-height: 1.5;
@@ -117,7 +117,7 @@ h4,
 h5,
 h6 {
 	color: $dark-gray;
-	font-family: 'Oswald', sans-serif;
+	font-family: $headline-font, sans-serif;
 	font-weight: 300;
 	margin: 0 0 16px;
 	line-height: 1.3em;

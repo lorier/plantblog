@@ -25,9 +25,11 @@ function kickstart_fonts_scripts() {
 	wp_enqueue_style( 'google-font-open-sans', '//fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic', array(), CHILD_THEME_VERSION );
 
 	wp_enqueue_style('google-font-merriweather-sans', '//fonts.googleapis.com/css?family=Merriweather+Sans:300,300italic,700,700italic', array(), CHILD_THEME_VERSION);
-	wp_enqueue_style('google-font-playfair', '//fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700', array(), CHILD_THEME_VERSION);
-	wp_enqueue_style('google-font-lora', '//fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic', array(), CHILD_THEME_VERSION);
-	wp_enqueue_style('google-font-oswald', '//fonts.googleapis.com/css?family=Oswald:300,700,400', array(), CHILD_THEME_VERSION);
+	// wp_enqueue_style('google-font-abel', '//fonts.googleapis.com/css?family=Abel', array(), CHILD_THEME_VERSION);
+	// wp_enqueue_style('google-font-lora', '//fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic', array(), CHILD_THEME_VERSION);
+	// wp_enqueue_style('google-font-oswald', '//fonts.googleapis.com/css?family=Oswald:300,700,400', array(), CHILD_THEME_VERSION);
+	wp_enqueue_style('google-font-volkov', '//fonts.googleapis.com/css?family=Volkhov:400italic', array(), CHILD_THEME_VERSION);
+	wp_enqueue_style('google-font-playfair', '//fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic', array(), CHILD_THEME_VERSION);
 
 	wp_enqueue_script( 'kickstart-responsive-menu', get_stylesheet_directory_uri() . '/js/responsivemenu.js', array( 'jquery' ), CHILD_THEME_VERSION, true );
 	$output = array(

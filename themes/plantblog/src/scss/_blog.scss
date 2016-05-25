@@ -9,7 +9,8 @@
 	color: #7f8c8d;
 	font-size: 14px;
 	font-weight: 300;
-	text-transform: uppercase;
+	font-family: 'Volkhov', cursive;
+	letter-spacing: .01em;
 }
 
 .entry-meta a {
@@ -136,7 +137,7 @@
 .comment-respond,
 .entry-comments,
 .entry-pings {
-	background-color: #fff;
+	// background-color: #fff;
 	margin-bottom: 40px;
 }
 
@@ -181,7 +182,7 @@
 }
 
 .comment-respond textarea {
-	background-color: #f5f5f5;
+	background-color: white;
 }
 
 .comment-list {

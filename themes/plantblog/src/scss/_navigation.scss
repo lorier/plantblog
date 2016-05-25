@@ -15,12 +15,12 @@ Site Header
 .site-header {
 	position: relative;
 	z-index: 498;
-	background: url(images/treebark.jpg) no-repeat center top;
+	background: url(images/treebark.jpg) repeat-x center top;
 }
 
 .site-header .wrap {
 	max-width: 1000px;
-	padding: 60px 0;
+	padding: 60px 0 25px;
 }
 
 /* Title Area
@@ -29,6 +29,7 @@ Site Header
 .title-area {
 	float: left;
 	font-weight: normal;
+	margin: 0;
 }
 
 .header-image .title-area {
@@ -36,15 +37,17 @@ Site Header
 }
 
 .site-title {
-	font-size: 80px;
+	font-size: 55px;
 	font-weight: 300;
-	font-family: 'Oswald', sans-serif;
+	letter-spacing: -.02em;
+	font-family: $headline-font, sans-serif;
 	line-height: 1;
+	margin-bottom: 5px;
 	// text-transform: uppercase;
 }
 
 .site-title a {
-	color: $off-white;
+	color: $brown;
 	display: block;
 	// padding: 12px 0px;
 }
@@ -55,15 +58,17 @@ Site Header
 }
 
 .site-description {
-	font-family: 'Oswald', sans-serif;
-	color: $off-white;
+	font-family: $italic-font;
+	font-weight: 700;
+	font-style: italic;
+	color: $site-description;
 	// float: left;
-	font-size: 18px;
+	font-size: 19px;
 	font-weight: 300;
 	line-height: 1;
 	margin-bottom: 0;
-	padding: 12px 0px;
-	text-transform: uppercase;
+	padding: 8px 0px;
+	// text-transform: uppercase;
 }
 
 /* Logo, hide text */
@@ -128,10 +133,10 @@ Site Navigation
 }
 
 .genesis-nav-menu .menu-item {
-	background-color: $yellow;
 	display: inline-block;
 	margin-right: 8px;
 	text-align: left;
+	// border: 1px solid $lightest-gray;
 }
 
 .genesis-nav-menu .menu-item:last-child {
@@ -149,8 +154,6 @@ Site Navigation
 .genesis-nav-menu .menu-item:hover a,
 .genesis-nav-menu .current-menu-item > a,
 .genesis-nav-menu .sub-menu a:hover {
-	background-color: $yellow;
-	color: white;
 }
 
 .genesis-nav-menu .sub-menu .current-menu-item > a {
@@ -310,52 +313,14 @@ Site Navigation
 // Navigation
 body .genesis-nav-menu {
     clear: both;
-    font-family: 'SofiaProRegular',sans-serif;
+    font-family: $body-font, sans-serif;
     font-size: 12px;
     font-weight: 400;
     line-height: 1;
     width: 100%;
+    margin-top: 30px;
 }
 
-// #nav-secondary-wrap.mobile-hidden .portal-logins{
-// 	display: inline-block;
-// 	float: right;
-// 	width: auto;
-// }
-// #nav-secondary-wrap {
-// 	background-color: $purple;
-// 	color: white;
-// 	width: auto;
-// }
-// #menu-secondary-nav {
-//     font-family: 'SofiaProRegular', sans-serif;
-// 	float: left;
-// 	width: auto;
-// 	display: inline-block;
-// 	clear: none;
-// 	.menu-item {
-// 		background-color: transparent;
-// 	}
-// 	.menu-item:hover a, .menu-item:focus a {
-// 		background-color: transparent;
-// 		text-decoration: underline;
-// 		color: white;
-// 	}
-
-// 	.current-menu-item a {
-// 		background-color: transparent;
-// 		color: white;
-// 	}
-// 	.current-menu-item span {
-// 		font-weight: bold;
-// 		text-decoration: underline;
-// 	}
-// 	//Change focus from outline to underline
-// 	.menu-item a:focus {
-// 		outline: none;	
-// 		text-decoration: underline;
-// 	}	
-// }
 // Main Nav
 .site-header {
 	background-color: white;
@@ -365,31 +330,23 @@ body .genesis-nav-menu {
 .nav-primary .menu-item {
     // background-color: transparent;
     display: inline-block;
-    margin-right: 8px;
+    margin-right: 60px;
     text-align: left;
-    &:hover a {
-    	background-color: darken($yellow, 10%);
-    	color: white;
+    &:hover  {
+    	border-bottom: 1px solid $dark-gray;
     }
     a {
     	text-transform: none;
-    	color: 	white;
+    	color: 	$dark-gray;
     	font-size: 16px;
-    	padding: 12px 14px;
+    	padding: 5px 0px;
     }
-    &:hover {
-    	// background-color: transparent;
-    }
-    &:hover a span, &.current-menu-item a span {
-    	text-decoration: underline;
-    	// background-color: transparent;
-    }
+   
     &:hover a:after {
 		text-decoration: none;
     } 
-    &.current-menu-item a {
-    	// background-color: transparent;
-    	font-weight: bold;
+    &.current-menu-item  {
+    	border-bottom: 1px solid $dark-gray
     }
 
     &.menu-item-has-children > a:after {
@@ -405,10 +362,14 @@ body .genesis-nav-menu {
     .sub-menu {
     	border-bottom: 3px solid $yellow;
     }
+    .submenu .menu-item {
+
+    }
     .sub-menu a {
 		background-color: white;
 		font-size: 14px;
 		color: $dark-gray;
+		padding: 12px 20px;
     }
     .sub-menu a span {
     	text-decoration: none;
@@ -423,9 +384,9 @@ body .genesis-nav-menu {
     .sub-menu .menu-item:last-child {
     	border-bottom: none;
     }
-    a:focus {
+    &:focus {
+    	border-bottom: 1px solid $dark-gray;
 		outline: none;	
-		text-decoration: underline;
 	}
 	&.current-menu-item .sub-menu a {
 		font-weight: 300 !important;
