@@ -37,7 +37,7 @@ function pb_plant() {
 		'description'           => __( 'A plant', 'text_domain' ),
 		'labels'                => $labels,
 		'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'comments', 'revisions', 'custom-fields', ),
-		'taxonomies'            => array( 'plant_type' ),
+		'taxonomies'            => array( 'plant_type', 'pb_light_requirement', 'pb_year_planted', 'pb_location' ),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
