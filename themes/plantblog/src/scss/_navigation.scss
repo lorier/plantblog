@@ -15,12 +15,14 @@ Site Header
 .site-header {
 	position: relative;
 	z-index: 498;
-	background: url(images/treebark.jpg) repeat-x center top;
+	background-image: url(images/treebark.jpg), url(images/treeline.png);
+	background-repeat: repeat-x, repeat-x;
+	background-position: center -14px, center bottom;
 }
 
 .site-header .wrap {
 	max-width: 1000px;
-	padding: 60px 0 25px;
+	padding: 40px 0 60px;
 }
 
 /* Title Area
@@ -40,7 +42,7 @@ Site Header
 	font-size: 55px;
 	font-weight: 300;
 	letter-spacing: -.02em;
-	font-family: $headline-font, sans-serif;
+	font-family: 'Lobster', sans-serif;
 	line-height: 1;
 	margin-bottom: 5px;
 	// text-transform: uppercase;
@@ -58,17 +60,17 @@ Site Header
 }
 
 .site-description {
-	font-family: $italic-font;
+	font-family: $body-font;
 	font-weight: 700;
-	font-style: italic;
 	color: $site-description;
 	// float: left;
-	font-size: 19px;
+	font-size: 13px;
 	font-weight: 300;
 	line-height: 1;
 	margin-bottom: 0;
 	padding: 8px 0px;
-	// text-transform: uppercase;
+	text-transform: uppercase;
+	letter-spacing: .03em
 }
 
 /* Logo, hide text */
@@ -309,7 +311,6 @@ Site Navigation
 	    float: none;
     }
 }
-
 // Navigation
 body .genesis-nav-menu {
     clear: both;
@@ -319,6 +320,7 @@ body .genesis-nav-menu {
     line-height: 1;
     width: 100%;
     margin-top: 30px;
+    padding-right: 40px;
 }
 
 // Main Nav

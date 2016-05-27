@@ -6,27 +6,31 @@
 	margin-bottom: 0;
 }
 .entry-meta {
-	color: #7f8c8d;
+	color: $site-description;
 	font-size: 14px;
 	font-weight: 300;
-	font-family: 'Volkhov', cursive;
+	font-family: $body-font, sans-serif;
 	letter-spacing: .01em;
+	text-transform: uppercase;
 }
 
 .entry-meta a {
-	color: #999;
+	color: $site-description;
 }
 
 .entry-header .entry-meta {
 	margin-bottom: 24px;
+	font-size: 12px;
+
 }
 
+
 .entry-header .entry-meta::before {
-	background-color: #e9e9e9;
+	background-color: $yellow;
 	content: "";
 	display: block;
 	height: 4px;
-	margin-bottom: 24px;
+	margin-bottom: 14px;
 	width: 61px;
 }
 
@@ -63,8 +67,9 @@
 
 .archive-pagination,
 .entry-pagination {
-	font-size: 18px;
+	font-size: 14px;
 	margin: 40px 0;
+	font-family: $italic-font;
 }
 .archive-pagination a,
 .entry-pagination a {
@@ -257,19 +262,6 @@ Widgets
 	text-align: right;
 }
 
-
-// Begin MCN 
-.entry-header {
-	.entry-meta:before {
-		background-color: $yellow;
-		margin-bottom: 10px;
-	}
-	.entry-meta {
-		text-transform: none;
-		font-weight: 300;
-		font-size: 14px;
-	}
-}
 
 /* Tag Cloud
 --------------------------------------------- */
