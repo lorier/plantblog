@@ -1,5 +1,7 @@
 <?php
-
+function lr_print_pre($value) {
+    echo "<pre>",print_r($value, true),"</pre>";
+}
 add_action( 'genesis_setup', 'pb_load_includes', 15 );
 function pb_load_includes() {
     foreach ( glob( dirname( __FILE__ ) . '/plantblog_inc/*.php' ) as $file ) { include $file; }
@@ -13,9 +15,11 @@ load_child_theme_textdomain( 'lean-kickstart', apply_filters( 'child_theme_textd
 
 
 // Child theme (do not remove)
-define( 'CHILD_THEME_NAME', 'MCN' );
-define( 'CHILD_THEME_URL', 'http://rcms.com' );
+define( 'CHILD_THEME_NAME', 'A Tree Garden' );
+define( 'CHILD_THEME_URL', 'http://atreegarden.com' );
 define( 'CHILD_THEME_VERSION', '0.0.1' );
+
+
 
 add_action( 'wp_enqueue_scripts', 'kickstart_fonts_scripts' );
 // Enqueue fonts

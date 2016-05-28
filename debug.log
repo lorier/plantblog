@@ -33,3 +33,4 @@
 [23-May-2016 04:18:06 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): php_network_getaddresses: getaddrinfo failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/plantblog/wp-includes/wp-db.php on line 1490
 [23-May-2016 04:19:47 UTC] PHP Warning:  mysqli_real_connect(): php_network_getaddresses: getaddrinfo failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/plantblog/wp-includes/wp-db.php on line 1490
 [23-May-2016 04:19:47 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): php_network_getaddresses: getaddrinfo failed: nodename nor servname provided, or not known in /Applications/MAMP/htdocs/plantblog/wp-includes/wp-db.php on line 1490
+[28-May-2016 20:01:18 UTC] PHP Notice:  Undefined offset: 4 in phar:///usr/local/bin/wp/php/WP_CLI/DocParser.php on line 124

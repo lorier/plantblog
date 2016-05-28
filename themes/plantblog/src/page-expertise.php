@@ -1,10 +1,10 @@
 <?php
 /**
- * Kickstart Pro
+ * Plant Blog
  *
- * @author  Lean Themes
+ * @author  Lorie Ransom
  * @license GPL-2.0+
- * @link    http://demo.leanthemes.co/kickstart/
+ * @link    http://tinywhalecreative.com
  */
 
 // Template Name: Expertise - Sidebar

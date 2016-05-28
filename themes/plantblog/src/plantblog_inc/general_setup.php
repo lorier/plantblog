@@ -1,5 +1,6 @@
 <?php
 
+define('TAXONOMIES', "['plant-type','location','year-planted','light-requirement']");
 
 // Register the Third Nav menu
 add_action( 'init', 'rcms_register_portal_menu' );
@@ -14,10 +15,6 @@ function pb_move_featured_image(){
 		add_action('genesis_entry_header', 'genesis_do_post_image', 8);
 	}
 }
-////////////////////////////////////
-// add_image_size('grid-thumbnail', 100, 100, TRUE);
-
-
 
 //* Reposition the secondary navigation menu
 remove_action( 'genesis_after_header', 'genesis_do_subnav' );
@@ -103,4 +100,26 @@ function rcms_post_info_filter($post_info) {
 		$post_info = '[post_date]';
 		return $post_info;
 	}
+}
+
+//////////////////////////////////////
+// Template selection
+//////////////////////////////////////
+
+// @param string, default template path
+// @return string, modified template path
+
+add_filter( 'template_include', 'lr_template_redirect' );
+function lr_template_redirect( $template ) {
+	// echo get_query_var( 'post_type');
+ //    if ( is_post_type_archive('plant')){
+ //        echo '<h1>this is the plant archive</h1>';
+ //        // $template = locate_template( array('page-plants.php'), false ); 
+ //        return $template;
+ //    }else 
+    if ( is_tax(['plant-type','location','year-planted','light-requirement'])) {
+    	// echo 'is tax';
+        $template = get_query_template( 'page-plants' );    
+    }
+    return $template;
 }
