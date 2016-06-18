@@ -27,7 +27,7 @@ $light-gray: #e4e4e4;
 $lightest-gray: #f1f1f1;
 // $lightest-purple: #8a7189;
 $forms-gray: #d3d3d3;
-$off-white: #ECF1DF	;
+$off-white: #dde7c0	;
 $dark-gray: #799088;
 
 $site-description: #B0B7B5;
@@ -57,4 +57,9 @@ body {
 		visibility: hidden;
 	}
 }
-
+.full-width-stretch {
+	text-align: center;
+    width: 300%;
+    margin-left: -1000px;
+    margin-right: 1000px;
+}

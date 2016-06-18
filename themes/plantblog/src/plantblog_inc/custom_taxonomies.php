@@ -35,6 +35,7 @@ function pb_type_taxonomy() {
 		'show_admin_column'          => true,
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
+		'query_var'					 => true
 	);
 	register_taxonomy( 'plant-type', array( 'plant' ), $args );
 
@@ -80,7 +81,8 @@ function pb_light_requirement() {
 		'show_ui'                    => true,
 		'show_admin_column'          => true,
 		'show_in_nav_menus'          => true,
-		'show_tagcloud'              => true,
+		'query_var'					 => true,
+		'show_tagcloud'              => true
 	);
 	register_taxonomy( 'light-requirement', array( 'plant' ), $args );
 
@@ -124,7 +126,8 @@ function pb_year_planted() {
 		'show_ui'                    => true,
 		'show_admin_column'          => true,
 		'show_in_nav_menus'          => true,
-		'show_tagcloud'              => true,
+		'query_var'					 => true,
+		'show_tagcloud'              => true
 	);
 	register_taxonomy( 'year-planted', array( 'plant' ), $args );
 
@@ -169,7 +172,8 @@ function pb_location() {
 		'show_ui'                    => true,
 		'show_admin_column'          => true,
 		'show_in_nav_menus'          => true,
-		'show_tagcloud'              => true,
+		'query_var'					 => true,
+		'show_tagcloud'              => true
 	);
 	register_taxonomy( 'location', array( 'plant' ), $args );
 

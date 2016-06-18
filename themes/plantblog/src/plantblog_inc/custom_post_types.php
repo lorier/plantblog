@@ -36,7 +36,7 @@ function pb_plant() {
 		'label'                 => __( 'Plant', 'text_domain' ),
 		'description'           => __( 'A plant', 'text_domain' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'comments', 'revisions', 'custom-fields', ),
+		'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'comments', 'revisions', 'custom-fields', 'genesis-cpt-archives-settings' ),
 		'taxonomies'            => array( 'plant_type', 'pb_light_requirement', 'pb_year_planted', 'pb_location' ),
 		'hierarchical'          => false,
 		'public'                => true,
@@ -50,6 +50,7 @@ function pb_plant() {
 		'exclude_from_search'   => false,
 		'publicly_queryable'    => true,
 		'capability_type'       => 'page',
+		'rewrite'				=> array( 'slug' => 'plant-list' )
 	);
 	register_post_type( 'plant', $args );
 

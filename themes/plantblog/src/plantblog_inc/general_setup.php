@@ -84,7 +84,7 @@ remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
 add_action( 'genesis_entry_header', 'genesis_post_info', 9 );
 // add_action( 'genesis_entry_header', 'genesis_post_info', 0);
 
-add_action( 'loop_start', 'remove_titles_all_single_posts' );
+// add_action( 'loop_start', 'remove_titles_all_single_posts' );
 function remove_titles_all_single_posts() {
     if ( is_front_page() ) {
         // remove_action( 'genesis_entry_content', 'genesis_do_post_content' );
@@ -109,7 +109,7 @@ function rcms_post_info_filter($post_info) {
 // @param string, default template path
 // @return string, modified template path
 
-add_filter( 'template_include', 'lr_template_redirect' );
+// add_filter( 'template_include', 'lr_template_redirect' );
 function lr_template_redirect( $template ) {
 	// echo get_query_var( 'post_type');
  //    if ( is_post_type_archive('plant')){

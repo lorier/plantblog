@@ -15,23 +15,27 @@ Site Header
 .site-header {
 	position: relative;
 	z-index: 498;
-	background-image: url(images/treebark.jpg), url(images/treeline.png);
-	background-repeat: repeat-x, repeat-x;
-	background-position: center -14px, center bottom;
+	// background-image: url(images/treebark.jpg), url(images/treeline.png);
+	// background-repeat: repeat-x, repeat-x;
+	// background-position: center -14px, center bottom;
+		background-image: url(images/treebark.jpg);
+	background-repeat: repeat-x;
+	background-position: center -14px;
 }
 
 .site-header .wrap {
 	max-width: 1000px;
-	padding: 40px 0 60px;
+	padding: 40px 0 40px;
 }
 
 /* Title Area
 --------------------------------------------- */
 
 .title-area {
-	float: left;
+	// float: left;
 	font-weight: normal;
 	margin: 0;
+	text-align: center;
 }
 
 .header-image .title-area {
@@ -112,8 +116,8 @@ Site Header
 }
 
 .site-header .widget-area {
-	float: right;
-	text-align: right;
+	// float: right;
+	text-align: center;
 }
 
 .header-image .site-header .widget-area {
@@ -320,7 +324,6 @@ body .genesis-nav-menu {
     line-height: 1;
     width: 100%;
     margin-top: 30px;
-    padding-right: 40px;
 }
 
 // Main Nav

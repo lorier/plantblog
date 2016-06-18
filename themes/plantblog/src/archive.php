@@ -11,6 +11,6 @@ add_action('genesis_loop', 'show_query_vars');
 function show_query_vars(){
 	global $wp_query;
 	
-	lr_print_pre($wp_query->query_vars);
+	// lr_print_pre($wp_query->query_vars);
 }
 genesis();

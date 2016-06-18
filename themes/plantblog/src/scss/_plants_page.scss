@@ -1,0 +1,92 @@
+// ==== Plants Page ==== //
+
+/* Entry Meta 
+-----------------------------------------------*/
+.post-type-archive-plant{
+
+	//http://w3bits.com/css-masonry/
+
+	.masonry { /* Masonry container */
+	    column-count: 3;
+	    column-gap: 1em;
+	}
+
+	.item { /* Masonry bricks or child elements */
+	    display: inline-block;
+	    margin: 0 0 1em;
+	    width: 100%;
+	}
+
+	@media only screen and (min-width: 400px) {
+	    .masonry {
+	        -moz-column-count: 2;
+	        -webkit-column-count: 2;
+	        column-count: 2;
+	    }
+	}
+
+	// @media only screen and (min-width: 700px) {
+	//     .masonry {
+	//         -moz-column-count: 3;
+	//         -webkit-column-count: 3;
+	//         column-count: 3;
+	//     }
+	// }
+
+	body{ 
+	    -webkit-column-break-inside:avoid;
+	}
+	.site-inner {
+		padding-top: 0;
+	}
+	.archive-description {
+		.archive-title {
+		color: rgba(255,255,255,0.8);
+
+		}
+		background-color: $brown;
+		color: rgba(255,255,255,0.8);
+		@extend .full-width-stretch;
+	}
+	// .content-sidebar-wrap {
+	// 	margin-bottom: 10px;
+	// 	padding-bottom: 10px;
+	// }
+
+	.plant {
+		background-color: transparent;
+		padding: 0;
+		position: relative;
+		padding-left: 80px;
+		margin-bottom: 1px;
+		min-height: 80px;
+		border-top: 1px solid $dark-gray;
+		img {
+			width: 60px;
+			height: 60px;
+			float:left;
+			position: absolute;
+			left: 10px;
+		}
+	}
+	h3, h3 a {
+		font-size: 16px;
+		margin-bottom: 2px;
+	}
+	.latin-name {
+		margin-bottom: 5px;
+		font-family: $italic-font;
+	}
+	.terms-list{
+		li {
+			display: inline-block;
+			font-size: 11px;
+			margin-right: 5px;
+		}
+	}
+	#sorter {
+		li {
+			display: inline-block;
+		}
+	}
+}
