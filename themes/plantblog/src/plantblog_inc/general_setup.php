@@ -29,7 +29,7 @@ function sp_custom_footer() {
 	echo $output;
 }
 
-add_action('genesis_before', 'add_blank_div');
+add_action('genesis_before_header', 'add_blank_div', 10);
 
 function add_blank_div(){
 	echo '<div class="decorative-bar"></div>';

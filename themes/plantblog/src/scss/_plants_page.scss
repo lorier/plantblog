@@ -41,12 +41,12 @@
 	}
 	.archive-description {
 		.archive-title {
-		color: rgba(255,255,255,0.8);
+		color: $brown;
 
 		}
-		background-color: $brown;
+		background-color: $yellow;
 		color: rgba(255,255,255,0.8);
-		@extend .full-width-stretch;
+		// @extend .full-width-stretch;
 	}
 	// .content-sidebar-wrap {
 	// 	margin-bottom: 10px;

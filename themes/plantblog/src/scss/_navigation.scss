@@ -5,8 +5,7 @@
 	border-bottom: 1px solid $gray-rule;
 }
 .decorative-bar {
-	height: 5px;
-	background-color: #fff;
+	height: 1px;
 	// background: url(images/treebark.jpg) repeat-x center bottom;
 }
 
@@ -16,18 +15,19 @@
 /*
 Site Header
 ---------------------------------------------------------------------------------------------------- */
-
+.site-header {
+	background: url(images/treegarden_brown.png) no-repeat center top;
+	height: 258px;
+}
 .site-header {
 	position: relative;
 	z-index: 498;
-	// background-image: url(images/treebark.jpg), url(images/treeline.png);
 	// background-repeat: repeat-x, repeat-x;
 	// background-position: center -14px, center bottom;
-	background-repeat: repeat-x;
-	background-position: center -14px;
+	
 }
 
-.site-header .wrap {
+.site-header > .wrap {
 	max-width: 1000px;
 	padding: 40px 0 40px;
 }
@@ -63,7 +63,7 @@ Site Header
 }
 
 .site-title a:hover {
-	background-color: #efefef;
+	// background-color: #efefef;
 	color: #999;
 }
 
@@ -331,11 +331,8 @@ body .genesis-nav-menu {
 }
 
 // Main Nav
-.site-header {
-	background-color: white;
-}
-.site-header .widget-area.header-widget-area {
-}
+
+
 .nav-primary .menu-item {
     // background-color: transparent;
     display: inline-block;
@@ -345,12 +342,12 @@ body .genesis-nav-menu {
     	border-bottom: 1px solid $dark-gray;
     }
     a {
-	    color: $dark-gray;
+	    color: $brown;
 	    font-size: 16px;
 	    padding: 5px 0;
 	    text-transform: uppercase;
 	    letter-spacing: .06em;
-	    font-family: Playfair Display;
+	    font-family: Oswald, sans-serif;
     }
    
     &:hover a:after {
