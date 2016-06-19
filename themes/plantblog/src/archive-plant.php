@@ -166,11 +166,11 @@ function pb_get_thumbnail($id=null){
 }
 
 function pb_get_latin_name($id=null){
-    $latin_name = get_field('latin-name', $id, true);
+    $latin_name = get_field('latin_name', $id, true);
     if($latin_name){
         return $latin_name;
     }
-    return 'Latin Name';
+    return '--';
 
 }
 

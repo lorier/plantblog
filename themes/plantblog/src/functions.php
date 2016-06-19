@@ -28,7 +28,7 @@ function kickstart_fonts_scripts() {
 	wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', array(), '4.5.0' );
 	wp_enqueue_style( 'google-font-open-sans', '//fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic', array(), CHILD_THEME_VERSION );
 
-	wp_enqueue_style('google-font-merriweather-sans', '//fonts.googleapis.com/css?family=Merriweather+Sans:300,300italic,700,700italic', array(), CHILD_THEME_VERSION);
+	wp_enqueue_style('google-font-merriweather-sans', '//fonts.googleapis.com/css?family=Merriweather+Sans:300,300italic,400,400italic,700,700italic', array(), CHILD_THEME_VERSION);
 	// wp_enqueue_style('google-font-abel', '//fonts.googleapis.com/css?family=Abel', array(), CHILD_THEME_VERSION);
 	// wp_enqueue_style('google-font-lora', '//fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic', array(), CHILD_THEME_VERSION);
 	// wp_enqueue_style('google-font-oswald', '//fonts.googleapis.com/css?family=Oswald:300,700,400', array(), CHILD_THEME_VERSION);

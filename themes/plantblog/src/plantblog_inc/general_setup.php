@@ -29,6 +29,11 @@ function sp_custom_footer() {
 	echo $output;
 }
 
+add_action('genesis_before', 'add_blank_div');
+
+function add_blank_div(){
+	echo '<div class="decorative-bar"></div>';
+}
 
 // Enable shortcode use in widgets
 add_filter('widget_text', 'do_shortcode');

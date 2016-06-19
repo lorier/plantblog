@@ -322,22 +322,25 @@ class acf_field_relationship extends acf_field {
 		// elements
 		if( !empty($field['elements']) ) {
 			
+			// featured_image
 			if( in_array('featured_image', $field['elements']) ) {
 				
-				$image = '';
+				// vars
+				$class = 'thumbnail';
+				$thumbnail = acf_get_post_thumbnail($post->ID, array(17, 17));
 				
-				if( $post->post_type == 'attachment' ) {
+				
+				// icon
+				if( $thumbnail['type'] == 'icon' ) {
 					
-					$image = wp_get_attachment_image( $post->ID, array(17, 17) );
-					
-				} else {
-					
-					$image = get_the_post_thumbnail( $post->ID, array(17, 17) );
+					$class .= ' -' . $thumbnail['type'];
 					
 				}
 				
 				
-				$title = '<div class="thumbnail">' . $image . '</div>' . $title;
+				// append
+				$title = '<div class="' . $class . '">' . $thumbnail['html'] . '</div>' . $title;
+				
 			}
 			
 		}
@@ -640,7 +643,7 @@ class acf_field_relationship extends acf_field {
 								<input type="hidden" name="<?php echo $field['name']; ?>[]" value="<?php echo $post->ID; ?>" />
 								<span data-id="<?php echo $post->ID; ?>" class="acf-rel-item">
 									<?php echo $this->get_post_title( $post, $field ); ?>
-									<a href="#" class="acf-icon acf-icon-minus small dark" data-name="remove_item"></a>
+									<a href="#" class="acf-icon -minus small dark" data-name="remove_item"></a>
 								</span>
 							</li><?php
 							

@@ -4,6 +4,11 @@
 .scroll-to-fixed-fixed {
 	border-bottom: 1px solid $gray-rule;
 }
+.decorative-bar {
+	height: 5px;
+	background-color: #fff;
+	// background: url(images/treebark.jpg) repeat-x center bottom;
+}
 
 // Kickstart styles
 
@@ -18,7 +23,6 @@ Site Header
 	// background-image: url(images/treebark.jpg), url(images/treeline.png);
 	// background-repeat: repeat-x, repeat-x;
 	// background-position: center -14px, center bottom;
-		background-image: url(images/treebark.jpg);
 	background-repeat: repeat-x;
 	background-position: center -14px;
 }
@@ -43,7 +47,7 @@ Site Header
 }
 
 .site-title {
-	font-size: 55px;
+	font-size: 68px;
 	font-weight: 300;
 	letter-spacing: -.02em;
 	font-family: 'Lobster', sans-serif;
@@ -65,7 +69,7 @@ Site Header
 
 .site-description {
 	font-family: $body-font;
-	font-weight: 700;
+	font-weight: 300;
 	color: $site-description;
 	// float: left;
 	font-size: 13px;
@@ -73,7 +77,7 @@ Site Header
 	line-height: 1;
 	margin-bottom: 0;
 	padding: 8px 0px;
-	text-transform: uppercase;
+	// text-transform: uppercase;
 	letter-spacing: .03em
 }
 
@@ -341,10 +345,12 @@ body .genesis-nav-menu {
     	border-bottom: 1px solid $dark-gray;
     }
     a {
-    	text-transform: none;
-    	color: 	$dark-gray;
-    	font-size: 16px;
-    	padding: 5px 0px;
+	    color: $dark-gray;
+	    font-size: 16px;
+	    padding: 5px 0;
+	    text-transform: uppercase;
+	    letter-spacing: .06em;
+	    font-family: Playfair Display;
     }
    
     &:hover a:after {
