@@ -8,7 +8,7 @@ function rcms_register_portal_menu() {
 	register_nav_menu( 'third-menu' ,__( 'Third Navigation Menu' ));
 }
 
-add_action( 'genesis_before', 'pb_move_featured_image' );
+// add_action( 'genesis_before', 'pb_move_featured_image' );
 function pb_move_featured_image(){
 	if( is_front_page()){
 		remove_action( 'genesis_entry_content', 'genesis_do_post_image', 8);
@@ -16,6 +16,12 @@ function pb_move_featured_image(){
 	}
 }
 
+//add featured image to posts and plants 
+add_action( 'genesis_entry_content', 'pb_featured_post_image', 8 );
+function pb_featured_post_image() {
+  if ( ! is_singular( array('post', 'plant') ) )  return;
+	the_post_thumbnail('post-image');
+}
 //* Reposition the secondary navigation menu
 remove_action( 'genesis_after_header', 'genesis_do_subnav' );
 
@@ -84,10 +90,6 @@ function rcms_favicon_filter( $favicon_url ) {
 	$base = get_stylesheet_directory_uri();
 	return  esc_url($base) . 'images/favicon.ico';
 }
-// remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
-remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
-add_action( 'genesis_entry_header', 'genesis_post_info', 9 );
-// add_action( 'genesis_entry_header', 'genesis_post_info', 0);
 
 // add_action( 'loop_start', 'remove_titles_all_single_posts' );
 function remove_titles_all_single_posts() {
