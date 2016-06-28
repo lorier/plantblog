@@ -10,4 +10,5 @@ add_filter('genesis_pre_get_option_site_layout', '__genesis_return_content_sideb
 
 remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
 
+
 genesis();

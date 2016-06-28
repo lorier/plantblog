@@ -95,16 +95,10 @@ add_theme_support( 'genesis-accessibility', array( 'headings', 'drop-down-menu',
 // Add viewport meta tag for mobile browsers
 add_theme_support( 'genesis-responsive-viewport' );
 
-// Add support for custom background
-// add_theme_support( 'custom-background', array( 'wp-head-callback' => 'kickstart_background_callback' ) );
-
 // Move menu to Header Right and remove the wrap div
 remove_action( 'genesis_after_header','genesis_do_nav' ) ;
 add_action( 'genesis_header_right','genesis_do_nav' );
 add_theme_support( 'genesis-structural-wraps', array( 'header', 'footer-widgets', 'footer' ) );
-
-// Unregister secondary navigation menu
-// add_theme_support( 'genesis-menus', array( 'primary' => __( 'Primary Navigation Menu', 'genesis' ) ) );
 
 // Unregister alternate layouts
 genesis_unregister_layout( 'content-sidebar-sidebar' );
@@ -219,7 +213,7 @@ function kickstart_single_next_prev() {
 	echo '</div>';
 }
 //Include MCN-specific Function files
-add_action('wp_head', 'rcms_favicons' );
+// add_action('wp_head', 'rcms_favicons' );
 function rcms_favicons(){
 	$blog_url = esc_url( get_stylesheet_directory_uri() ); 
 	echo 

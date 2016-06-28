@@ -18,6 +18,17 @@ function pb_do_sidebar() {
     dynamic_sidebar( 'plants-sidebar' );
 }
 
+add_action('genesis_before_content', 'pb_add_plant_list_link');
+function pb_add_plant_list_link(){
+    echo '<p>< Back to Main <a href="'.esc_attr( get_post_type_archive_link( 'plant' ) ).'">Plant List</a></p>';
+}
+
+add_action('genesis_before_loop', 'mcn_add_tag_title');
+function mcn_add_tag_title(){
+    if (is_tax()){
+        echo '<p class="tag-title">Viewing plants categorized:</p>';
+    }
+}
 
 ///////////////////////////////////////
 // TODO implement this for titles 
@@ -71,9 +82,9 @@ function pb_do_plant_loop() {
 
             printf( '<article %s>', genesis_attr( 'entry' ) );
 
-                $output = '<h2>'.get_the_title().'</h2>';
-                $output .= '<p>'.get_the_excerpt().'</p>';
-                $output .= pb_get_terms_list(get_the_ID());
+                $output = '<h2><a href="'.esc_attr(get_the_permalink()).'">'.get_the_title().'</a></h2>';
+                $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p>';                // $output .= '<p>'.get_the_excerpt().'</p>';
+                // $output .= pb_get_terms_list(get_the_ID());
                 echo $output;
             echo '</article>';
 

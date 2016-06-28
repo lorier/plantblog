@@ -43,12 +43,15 @@ function pb_sort_menu(){
     // global $plant_type;
     // global $location;
     global $sort_by_taxonomy;
+
     $plant_type = array('sort-by' => 'plant-type');
     $location = array('sort-by' => 'location');
+    $light = array('sort-by' => 'light-requirement');
     $output = '<ul id="sorter" class="'.esc_attr($sort_by_taxonomy).'">';
         $output .= '
         <li class="plant-type-link"><a href="'.esc_url(add_query_arg($plant_type)).'">Plant Type</a></li>
         <li class="location-link"><a href="'.esc_url(add_query_arg($location)).'">Location</a></li>
+        <li class="light-link"><a href="'.esc_url(add_query_arg($light)).'">Light Needs</a></li>
     </ul>';
     echo $output;
 }
@@ -111,7 +114,7 @@ function list_posts_by_term( ) {
         //add title before each grouping
         echo '<h2>' . ucfirst($page_title) . '</h2> ';
         if( !empty( term_description($term) ) ){
-            echo '<p>'.term_description($term).'</p>';
+            echo term_description($term);
         }
             $tax_args = array(
                 array(
@@ -173,14 +176,7 @@ function pb_get_thumbnail($id=null){
     return $image;
 }
 
-function pb_get_latin_name($id=null){
-    $latin_name = get_field('latin_name', $id, true);
-    if($latin_name){
-        return $latin_name;
-    }
-    return '--';
 
-}
 
 //Get and return terms in a linked, unordered list
 
