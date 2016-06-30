@@ -43,15 +43,18 @@ function pb_sort_menu(){
     // global $plant_type;
     // global $location;
     global $sort_by_taxonomy;
+    $sorter_class = 'plant-type';
+    if ($sort_by_taxonomy) $sorter_class = $sort_by_taxonomy;
 
     $plant_type = array('sort-by' => 'plant-type');
     $location = array('sort-by' => 'location');
     $light = array('sort-by' => 'light-requirement');
-    $output = '<ul id="sorter" class="'.esc_attr($sort_by_taxonomy).'">';
+    $output = '<ul id="sorter" class="'.esc_attr($sorter_class).'">';
         $output .= '
+        <li id="sort-by">Sort By:</li>
         <li class="plant-type-link"><a href="'.esc_url(add_query_arg($plant_type)).'">Plant Type</a></li>
         <li class="location-link"><a href="'.esc_url(add_query_arg($location)).'">Location</a></li>
-        <li class="light-link"><a href="'.esc_url(add_query_arg($light)).'">Light Needs</a></li>
+        <li class="light-link"><a href="'.esc_url(add_query_arg($light)).'">Light</a></li>
     </ul>';
     echo $output;
 }
@@ -112,7 +115,7 @@ function list_posts_by_term( ) {
 
         echo '<article class="item">';
         //add title before each grouping
-        echo '<h2>' . ucfirst($page_title) . '</h2> ';
+        echo '<a href="'.esc_url(get_term_link($term->term_id)).'"><h2>' . ucfirst($page_title) . '</h2></a>';
         if( !empty( term_description($term) ) ){
             echo term_description($term);
         }
