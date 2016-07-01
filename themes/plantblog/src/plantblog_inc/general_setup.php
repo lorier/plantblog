@@ -12,10 +12,10 @@ function rcms_register_portal_menu() {
 }
 
 
-//add featured image to posts and plants 
+//add featured image to posts
 add_action( 'genesis_entry_content', 'pb_featured_post_image', 8 );
 function pb_featured_post_image() {
-  if ( ! is_singular( array('post', 'plant') ) )  return;
+  if ( ! is_singular( array('post') ) )  return;
 	the_post_thumbnail('post-image');
 }
 
@@ -35,8 +35,8 @@ function add_blank_div(){
 	echo '<div class="decorative-bar"></div>';
 }
 // Disable auto paragraph tags in TinyMCE
-remove_filter ('the_content',  'wpautop');
-remove_filter ('comment_text', 'wpautop');
+// remove_filter ('the_content',  'wpautop');
+// remove_filter ('comment_text', 'wpautop');
 
 // Enable shortcode use in widgets
 add_filter('widget_text', 'do_shortcode');

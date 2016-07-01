@@ -6,4 +6,17 @@
 	.entry-title {
 		font-size: 45px;
 	}
+	aside {
+		width: 30%;
+		background-color: #fff;
+		h3,
+		ul,
+		p	{
+			padding: 0 20px;
+			
+			}
+	}
+	main {
+		width: 65%;
+	}
 }

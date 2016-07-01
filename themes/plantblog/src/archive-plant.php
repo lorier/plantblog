@@ -34,10 +34,6 @@ function lr_add_custom_class( $attributes ) {
 
 $sort_by_taxonomy = sanitize_text_field($_GET['sort-by']);
 
-//Define and add the taxonomy names the sort navigation
-// $plant_type = array('sort-by' => 'plant-type');
-// $location = array('sort-by' => 'location');
-
 add_action('genesis_before_loop', 'pb_sort_menu', 10);
 function pb_sort_menu(){
     // global $plant_type;
