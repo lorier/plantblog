@@ -117,13 +117,13 @@ function kickstart_background_callback() {
 add_theme_support( 'genesis-footer-widgets', 4 );
 
 // Add post formats
-add_theme_support( 'post-formats', array( 'aside', 'status', 'quote' ) );
+add_theme_support( 'post-formats', array( 'quote' ) );
 
 // Add excerpt support for pages, because pages deserve excerpts too
 add_post_type_support( 'page', 'excerpt' );
 
 // Image sizes
-add_image_size( 'post_featured', 360, 250, true );
+add_image_size( 'post_featured', 370, 250, true );
 add_image_size( 'post_medium', 400, 218, true );
 add_image_size( 'post_large', 573, 285, true );
 

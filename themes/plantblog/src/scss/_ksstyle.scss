@@ -1615,9 +1615,6 @@ Media Queries
 
 @media only screen and (max-width: 1023px) {
 
-	body {
-		background-color: #fff;
-	}
 
 	.content,
 	.content-sidebar-sidebar .content,
@@ -1863,8 +1860,8 @@ Media Queries
 	.two-fourths,
 	.two-sixths,
 	.two-thirds {
-		margin: 0;
-		width: 100%;
+		// margin: 0;
+		// width: 100%;
 	}
 
 	.site-header {
@@ -2226,6 +2223,27 @@ Media Queries
 		left: 0;
 		margin-left: 0;
 		max-width: 100%;
+	}
+
+}
+@media only screen and (max-width: 800px) {
+	.columns-2 .quote,
+	.columns-3 .quote,
+	.columns-4 .quote,
+	.home-row4 .post,
+	.five-sixths,
+	.four-sixths,
+	.one-fourth,
+	.one-half,
+	.one-sixth,
+	.one-third,
+	.three-fourths,
+	.three-sixths,
+	.two-fourths,
+	.two-sixths,
+	.two-thirds {
+		margin: 0;
+		width: 100%;
 	}
 
 }
