@@ -13,10 +13,12 @@ $mobile-nav-down: 900px;
 $desktop-nav-up: 901px;
 
 // Color Palette
-$purple: #8FC4FF;
-$yellow: #e1d02e;
+// $purple: #8FC4FF;
+$yellow: #dbaf34;
+$dark-gray: #625e61;
 
 $brown: #8D5230;
+$brown: $dark-gray;
 
 $green: #BBCA4E;
 $dark-green: #63643b;
@@ -24,15 +26,14 @@ $dark-green: #63643b;
 $forest-green: #7aa394;
 $forest-green: #2b473d;
 
-$gray-rule: #E6DDC8;
+$gray-rule: #cbccb0;
 $light-gray: #e4e4e4;
 $lightest-gray: #f1f1f1;
 // $lightest-purple: #8a7189;
 $forms-gray: #d3d3d3;
 $off-white: #eef3db;
-$dark-gray: #799088;
 
-$site-description: #B0B7B5;
+$site-description: #dbaf34;
 
 $body-font: 'Muli', sans-serif;
 $headline-font: 'Oswald', sans-serif;

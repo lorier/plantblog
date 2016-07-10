@@ -16,7 +16,7 @@
 Site Header
 ---------------------------------------------------------------------------------------------------- */
 .site-header {
-	background: url(images/treegarden_brown.png) no-repeat center top;
+	background: url(images/header.png) no-repeat center top;
 	height: 258px;
 }
 .site-header {
@@ -57,7 +57,7 @@ Site Header
 }
 
 .site-title a {
-	color: $brown;
+	color: $dark-gray;
 	display: block;
 	// padding: 12px 0px;
 }
@@ -468,9 +468,9 @@ body .genesis-nav-menu {
 	    width: auto;
 	    height: 80px;
 	    background-color: white;
-	    color: $purple;
+	    color: $brown;
 	    &:after, &:before {
-	    	color: $purple;
+	    	color: $brown;
 		    font-size: 30px;
 	    }
 	    &:focus:before, &:hover:before{

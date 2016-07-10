@@ -11,14 +11,6 @@ function rcms_register_portal_menu() {
 	register_nav_menu( 'third-menu' ,__( 'Third Navigation Menu' ));
 }
 
-
-//add featured image to posts
-add_action( 'genesis_entry_content', 'pb_featured_post_image', 8 );
-function pb_featured_post_image() {
-  if ( ! is_singular( array('post') ) )  return;
-	the_post_thumbnail('post-image');
-}
-
 // Customize the legal text
 remove_action( 'genesis_footer', 'genesis_do_footer' );
 add_action( 'genesis_footer', 'sp_custom_footer' );
@@ -97,13 +89,7 @@ function rcms_favicon_filter( $favicon_url ) {
 //     }
 // }
 
-add_filter( 'genesis_post_info', 'rcms_post_info_filter', 0 );
-function rcms_post_info_filter($post_info) {
-	if ( !is_page() ) {
-		$post_info = '[post_date]';
-		return $post_info;
-	}
-}
+
 add_action( 'genesis_before', 'pb_move_featured_image' );
 function pb_move_featured_image(){
 	if( is_front_page()){
