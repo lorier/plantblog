@@ -22,7 +22,7 @@ function pb_single_post_meta_filter($post_meta){
 }
 
 //add featured image to posts
-add_action( 'genesis_entry_content', 'pb_single_featured_post_image', 8 );
+add_action( 'genesis_before_entry_content', 'pb_single_featured_post_image', 8 );
 function pb_single_featured_post_image() {
 	// echo '<a href="'.esc_url(the_post_thumbnail_url()).'">'.the_post_thumbnail('post-image').'</a>';
 	$thumb_id = get_post_thumbnail_id();
@@ -32,8 +32,8 @@ function pb_single_featured_post_image() {
 	if ( has_post_thumbnail() ) {
 	    $large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' );
 	    if ( ! empty( $large_image_url[0] ) ) {
-	    	global $post;
-	        printf( '<a data-rel=lightbox class="size-large" href="%1$s" alt="%2$s">%3$s</a></div>',
+	    	// global $post;
+	        printf( '<a data-rel="lightbox" href="%1$s" alt="%2$s">%3$s</a>',
 	            esc_url( $large_image_url[0] ),
 	            esc_attr( $thumb_url ),
 	            // get_the_post_thumbnail( $post_id, 'thumbnail', array( 'class' => 'alignleft' ) )
