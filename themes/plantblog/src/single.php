@@ -24,7 +24,6 @@ function pb_single_post_meta_filter($post_meta){
 //add featured image to posts
 add_action( 'genesis_before_entry_content', 'pb_single_featured_post_image', 8 );
 function pb_single_featured_post_image() {
-	// echo '<a href="'.esc_url(the_post_thumbnail_url()).'">'.the_post_thumbnail('post-image').'</a>';
 	$thumb_id = get_post_thumbnail_id();
 	$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'large', true);
 	$thumb_url = $thumb_url_array[0];

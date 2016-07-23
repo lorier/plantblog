@@ -118,9 +118,9 @@ function lr_template_redirect( $template ) {
  //        // $template = locate_template( array('page-plants.php'), false ); 
  //        return $template;
  //    }else 
-    if ( is_tax(['plant-type','location','year-planted','light-requirement'])) {
-    	// echo 'is tax';
-        $template = get_query_template( 'page-plants' );    
-    }
-    return $template;
+    // if ( is_tax( array('plant-type','location','year-planted','light-requirement') ) {
+    // 	// echo 'is tax';
+    //     $template = get_query_template( 'page-plants' );    
+    // }
+    // return $template;
 }

@@ -96,7 +96,7 @@ function list_posts_by_term( ) {
     foreach ( $tax_terms as $term ) {
 
         //don't show certain types
-        if ( in_array($term->slug, ['evergreen', 'dead']) ) {
+        if ( in_array($term->slug, array('evergreen', 'dead') ) ) {
             continue;
         }
 
@@ -112,7 +112,8 @@ function list_posts_by_term( ) {
         echo '<article class="item">';
         //add title before each grouping
         echo '<a href="'.esc_url(get_term_link($term->term_id)).'"><h2>' . ucfirst($page_title) . '</h2></a>';
-        if( !empty( term_description($term) ) ){
+        $desc = term_description($term) ? : '';
+        if( !empty( $desc ) ){
             echo term_description($term);
         }
             $tax_args = array(
@@ -185,8 +186,8 @@ function pb_get_terms_list($id=null,$sort_by_taxonomy ){
     $types = wp_get_post_terms($id, array('plant-type'), array("fields" => "all"));
     $light_reqs = wp_get_post_terms($id, array('light-requirement'), array("fields" => "all"));
     
-    $plant_type_terms = [];
-    $light_reqs_terms = [];
+    $plant_type_terms = array();
+    $light_reqs_terms = array();
 
     //if we are viewing the list categorized by location, add the plant type to the listing
     

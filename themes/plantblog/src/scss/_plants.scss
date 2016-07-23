@@ -3,7 +3,9 @@
 /* Entry Meta 
 -----------------------------------------------*/
 .post-type-archive-plant{
-
+	h3 a {
+		color: $dark-gray;
+	}
 	.site-inner {
 		padding-top: 0;
 	}
@@ -86,6 +88,8 @@
 	.latin-name {
 		margin-bottom: 5px;
 		font-family: $italic-font;
+		color: $light-gray;
+		font-size: 14px;
 	}
 	.terms-list{
 		font-size: 11px;
@@ -140,5 +144,59 @@
 			color: $dark-gray;
 		}
 
+	}
+}
+.single-plant{
+	aside {
+		padding-bottom: 15px;
+	}
+	.sidebar .wp-post-image {
+		width: 100%;
+		max-width: 100%;
+		margin: 0 0 10px 0;
+		height: auto;
+		margin-bottom: 17px;
+	}
+	.sidebar h3 {
+		font-size: 28px;
+	}
+	h1.entry-title {
+		margin-bottom: 10px;
+	}
+	.latin {
+		font-family: $italic-font;
+		font-size: 18px;
+	}
+	.entry-footer {
+		border-bottom: none;
+		clear: both;
+	}
+	.taxonomy {
+		padding-bottom: 10px;
+	}
+	.taxonomy-title {
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: 14px;
+		border-bottom: none;
+		padding-bottom: 5px;
+	}
+	.taxonomy a {
+		color: $yellow;
+	}
+	.cc-image img {
+		margin-bottom: 3px;
+	}
+	.cc-caption {
+		color: #a7a6a6;
+		float: left;
+		font-size: 10px;
+		font-weight: 300;
+
+		a img {
+			width: 14px;
+			height: 14px;
+			display: none;
+		}
 	}
 }
