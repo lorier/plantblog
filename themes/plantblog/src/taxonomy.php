@@ -8,6 +8,22 @@
  */
 add_filter('genesis_pre_get_option_site_layout', '__genesis_return_content_sidebar');
 
+add_filter( 'body_class', function( $classes ) {
+    $classes[] = 'taxonomy';
+    return $classes;
+} );
+
+remove_action( 'genesis_before_loop', 'genesis_do_taxonomy_title_description', 15 );
+add_action('genesis_before_loop', 'pb_add_tag_title',9);
+function pb_add_tag_title(){
+        echo '<div class="tax-title"><p class="tag-title">Viewing plants categorized:</p>';
+        genesis_do_taxonomy_title_description();
+        echo '</div>';
+}
+// add_action('genesis_before_content', 'genesis_do_taxonomy_title_description', 12);
+
+
+
 add_action('get_header', 'pb_output_plants_sidebar');
 function pb_output_plants_sidebar(){
         remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
@@ -20,15 +36,9 @@ function pb_do_sidebar() {
 
 add_action('genesis_before_content', 'pb_add_plant_list_link');
 function pb_add_plant_list_link(){
-    echo '<p>< Back to Main <a href="'.esc_attr( get_post_type_archive_link( 'plant' ) ).'">Plant List</a></p>';
+    echo '<p class="back-link">< Back to Main <a href="'.esc_attr( get_post_type_archive_link( 'plant' ) ).'">Plant List</a></p>';
 }
 
-add_action('genesis_before_loop', 'mcn_add_tag_title');
-function mcn_add_tag_title(){
-    if (is_tax()){
-        echo '<p class="tag-title">Viewing plants categorized:</p>';
-    }
-}
 
 ///////////////////////////////////////
 // TODO implement this for titles 
@@ -51,8 +61,8 @@ function pb_do_plant_loop() {
         'nopaging'               => false,
         'posts_per_page'         => '30',
         'posts_per_archive_page' => '30',
-        'order'                  => 'DESC',
-        'orderby'                => 'modified',
+        'order'                  => 'ASC',
+        'orderby'                => 'title',
         'cache_results'          => true,
         'update_post_meta_cache' => true,
         'update_post_term_cache' => true,
@@ -79,10 +89,13 @@ function pb_do_plant_loop() {
             $query->the_post();
 
             do_action( 'genesis_before_entry' );
-
+            $output = '';
             printf( '<article %s>', genesis_attr( 'entry' ) );
+                if(has_post_thumbnail( $post_id )){
+                    $output .= get_the_post_thumbnail($post->post_id, 'thumbnail', array('class'=>'alignleft') );
+                }else { $output .= '<img src="'.get_site_url().'/wp-content/uploads/2016/07/Untitled-1-150x150.png" class="alignleft wp-post-image"/>'; }
 
-                $output = '<h2><a href="'.esc_attr(get_the_permalink()).'">'.get_the_title().'</a></h2>';
+                $output .= '<h2><a href="'.esc_attr(get_the_permalink()).'">'.get_the_title().'</a></h2>';
                 $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p>';                // $output .= '<p>'.get_the_excerpt().'</p>';
                 // $output .= pb_get_terms_list(get_the_ID());
                 echo $output;

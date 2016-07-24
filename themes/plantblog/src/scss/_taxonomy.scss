@@ -1,0 +1,46 @@
+// ==== Taxonomy Archive ========  //
+
+.taxonomy {
+	.content-sidebar-wrap {
+		max-width: 850px;
+		margin: 0 auto;
+	}
+	.content {
+		width: 600px;
+	}
+	.site-inner {
+		padding-top: 20px;
+	}
+	.back-link {
+		margin-bottom: 5px;
+	}
+	.tax-title {
+		padding: 15px 25px;
+		background-color: #fff;
+		margin-bottom: 25px;
+	}
+	.archive-title {
+		font-size: 46px;
+	}
+	.archive-description {
+		border-bottom: none;
+		padding: 0;
+		font-size: 16px;
+	}
+	// .tag-title {
+	// 	text-align: center;
+	// }
+	// .archive-description {
+	// 	text-align: center;
+	// }
+	.content article {
+		margin-bottom: 10px;
+		h2 {
+			margin-bottom: 5px;
+		}
+	}
+	.wp-post-image {
+		width: 80px;
+		height: 80px;
+	}
+}

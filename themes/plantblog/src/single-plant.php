@@ -30,7 +30,9 @@ function pb_featured_image_sidebar() {
 	            get_the_post_thumbnail()
 	        );
 	    }
-	}
+	} else {
+	    	echo '<img src="'.get_site_url().'/wp-content/uploads/2016/07/Untitled-1.png" class="alignleft wp-post-image"/>';
+	    }
 }
 
 add_action('genesis_entry_header', 'pb_alt_names',12);
