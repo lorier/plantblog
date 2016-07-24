@@ -33,8 +33,8 @@
 	list-style-type: none;
 		margin-bottom: 0px;
 		word-wrap: break-word;
-		border-bottom: 1px solid $gray-rule;
-		padding: 10px 0;
+		// border-bottom: 1px solid $gray-rule;
+		padding: 4px 0;
 }
 .sidebar .tag-list li {
 	line-height: 19px;
@@ -91,12 +91,6 @@
 	margin-right: 2px;
 	padding: 11px 13px;
 }
-
-// .sidebar .widget input[type="search"] {
-// 	border: 1px solid $gray-rule;
-// 	color: $light-gray;
-// 	background-color: white;
-// }
 
 .sidebar .enews {
 	background-color: $yellow;

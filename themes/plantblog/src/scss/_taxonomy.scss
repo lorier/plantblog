@@ -1,6 +1,10 @@
 // ==== Taxonomy Archive ========  //
 
 .taxonomy {
+	aside {
+		border-right: 1px solid $light-gray;
+	    padding-right: 20px;
+	}
 	.content-sidebar-wrap {
 		max-width: 850px;
 		margin: 0 auto;
@@ -8,19 +12,24 @@
 	.content {
 		width: 600px;
 	}
+	.tag-title {
+		line-height: 1;
+		margin-bottom: 3px;
+	}
 	.site-inner {
 		padding-top: 20px;
 	}
 	.back-link {
 		margin-bottom: 5px;
+		padding-bottom: 20px;
 	}
 	.tax-title {
-		padding: 15px 25px;
-		background-color: #fff;
+		// padding: 15px 25px;
+		// background-color: #fff;
 		margin-bottom: 25px;
 	}
 	.archive-title {
-		font-size: 46px;
+		font-size: 55px;
 	}
 	.archive-description {
 		border-bottom: none;
@@ -34,13 +43,18 @@
 	// 	text-align: center;
 	// }
 	.content article {
-		margin-bottom: 10px;
+		margin-bottom: 12px;
 		h2 {
+			font-size: 25px;
 			margin-bottom: 5px;
 		}
+		border-bottom: 1px solid $forms-gray;
 	}
 	.wp-post-image {
 		width: 80px;
 		height: 80px;
+	}
+	img.alignleft {
+	    margin: 0 24px 10px 0;
 	}
 }

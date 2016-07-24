@@ -6,7 +6,7 @@
  * @license GPL-2.0+
  * @link    http://tinywhalecreative.com
  */
-add_filter('genesis_pre_get_option_site_layout', '__genesis_return_content_sidebar');
+add_filter('genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content');
 
 add_filter( 'body_class', function( $classes ) {
     $classes[] = 'taxonomy';
@@ -16,12 +16,20 @@ add_filter( 'body_class', function( $classes ) {
 remove_action( 'genesis_before_loop', 'genesis_do_taxonomy_title_description', 15 );
 add_action('genesis_before_loop', 'pb_add_tag_title',9);
 function pb_add_tag_title(){
-        echo '<div class="tax-title"><p class="tag-title">Viewing plants categorized:</p>';
-        genesis_do_taxonomy_title_description();
-        echo '</div>';
+        $output = '<div class="tax-title"><h1 class="tag-title">Category: ';
+        $output .= pb_taxonomy_description();
+        $output .= '</h1></div>';
+        echo $output;
 }
 // add_action('genesis_before_content', 'genesis_do_taxonomy_title_description', 12);
-
+function pb_taxonomy_description(){
+    global $wp_query;
+    $term = is_tax() ? get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ) : $wp_query->get_queried_object();
+    if ( $headline = $term->name ){
+        $headline = sprintf( '<span %s>%s</span>', genesis_attr( 'archive-title' ), strip_tags( $headline ) );
+    }
+    return $headline;
+}
 
 
 add_action('get_header', 'pb_output_plants_sidebar');
@@ -36,7 +44,7 @@ function pb_do_sidebar() {
 
 add_action('genesis_before_content', 'pb_add_plant_list_link');
 function pb_add_plant_list_link(){
-    echo '<p class="back-link">< Back to Main <a href="'.esc_attr( get_post_type_archive_link( 'plant' ) ).'">Plant List</a></p>';
+    echo '<p class="back-link"><span>< Back to Main <a href="'.esc_attr( get_post_type_archive_link( 'plant' ) ).'">Plant List</a></span></p>';
 }
 
 
