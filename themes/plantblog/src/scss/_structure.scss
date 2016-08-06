@@ -18,9 +18,24 @@
 	padding-top: 40px;
 	padding-bottom: 40px;
 }
+.site-inner .pb-wrap {
+	margin: 0 auto;
+	max-width: 1000px;
+}
 
-.front-page .site-inner {
+.post-type-archive-plant .site-inner,
+.archive .site-inner {
+	max-width: 100% !important;
+}
 
+@media screen and (max-width: $mobile-nav-down){
+	.post-type-archive-plant .site-inner {
+	    padding: 0 !important;
+	}
+	.pb-wrap {
+		padding-left: 5%;
+		padding-right: 5%;
+	}
 }
 
 /* Column Widths and Positions

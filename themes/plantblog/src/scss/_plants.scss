@@ -13,7 +13,8 @@
 		padding: 30px;
 		margin-bottom: 10px;
 		background-color: $green;
-		@extend .full-width-stretch;
+		text-align: center;
+		// @extend .full-width-stretch;
 
 		.archive-title {
 			// max-width: 800px;

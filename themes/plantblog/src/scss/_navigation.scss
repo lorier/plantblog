@@ -16,8 +16,9 @@
 Site Header
 ---------------------------------------------------------------------------------------------------- */
 .site-header {
-	background: url(images/header.png) no-repeat center top;
+	background: $green url(images/header.png) no-repeat center top;
 	height: 258px;
+	border-bottom: 10px solid $dark-gray;
 }
 .site-header {
 	position: relative;
@@ -309,13 +310,11 @@ Site Navigation
 		float: none;
 		text-align: center;
 	}
-	.title-area {
-		float: none;
-	}
+	
 	.site-title {
 	    margin: 0 auto;
 	    height: 100px;
-	    width: 200px;
+	    // width: 200px;
 	    float: none;
     }
 }
@@ -455,12 +454,20 @@ body .genesis-nav-menu {
 }
 // Hamburger Menu
 @media screen and (max-width: $mobile-nav-down){
-
+	
+	.title-area {
+		float: left;
+		margin-left: 40px;
+	}
 	.site-header {
 		background-color: white;
+		background-image: none;
 	}
 	.site-header .widget-area.header-widget-area {
 		padding: 0;
+	}
+	.site-header .widget-area .genesis-nav-menu {
+	    padding-bottom: 0px;
 	}
 	.menu-toggle.nav-primary {
 		float: right;
@@ -478,7 +485,9 @@ body .genesis-nav-menu {
 	    }
 
 	}
-
+	#menu-main-navigation {
+		background-color: #fff;
+	}
 	.header-image .site-title {
 		height: 80px;
 	}
@@ -486,6 +495,7 @@ body .genesis-nav-menu {
 		float: left;
 		height: 80px;
 	}
+
 	//turn off hover for mobile
 	.js nav .genesis-nav-menu .menu-item:hover {
 		// background-color: transparent;
@@ -500,7 +510,7 @@ body .genesis-nav-menu {
 	.js nav .genesis-nav-menu .menu-item .sub-menu li a:focus, 
 	.js nav .genesis-nav-menu .menu-item a:focus, 
 	.js nav button:focus {
-	    // background-color: transparent;
+	    background-color: white;
 		color: $dark-gray;
 		outline: none;
 		text-decoration: none;
@@ -514,8 +524,8 @@ body .genesis-nav-menu {
 	.nav-primary ul {
 		border-top: 1px solid $gray-rule;
 	}
-	.nav-primary .menu-item.current-menu-item a {
-	    // background-color: white;
+	.nav-primary .menu-item.current-menu-item {
+		border-bottom: 1px solid $gray-rule;		
 	}
 	.nav-primary .menu-item.current-menu-item a span {
 	    text-decoration: none;
@@ -543,6 +553,12 @@ body .genesis-nav-menu {
 	}
 	.nav-primary .menu-item.menu-item-has-children a:after {
 		content: '';
+	}
+	.js .genesis-nav-menu .menu-item:hover>a {
+		background-color: $lightest-gray;
+	}
+	.js nav button:focus {
+		background-color: transparent;
 	}
 
 	// Secondary nav

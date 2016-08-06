@@ -45,7 +45,7 @@ function pb_sort_menu(){
     $plant_type = array('sort-by' => 'plant-type');
     $location = array('sort-by' => 'location');
     $light = array('sort-by' => 'light-requirement');
-    $output = '<ul id="sorter" class="'.esc_attr($sorter_class).'">';
+    $output = '<ul id="sorter" class="pb-wrap '.esc_attr($sorter_class).'">';
         $output .= '
         <li id="sort-by">Sort By:</li>
         <li class="plant-type-link"><a href="'.esc_url(add_query_arg($plant_type)).'">Plant Type</a></li>
@@ -91,7 +91,7 @@ function list_posts_by_term( ) {
                 )
         )
     );
-    echo '<main class="masonry">';
+    echo '<main class="masonry pb-wrap">';
     //loop through each term, gathering all the posts for each term in chunks
     foreach ( $tax_terms as $term ) {
 
