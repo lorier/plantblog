@@ -5,18 +5,17 @@ function wpdf_editor_ajax_action_function() {
 	$modules = $_POST["modules"];
 
 	if(get_magic_quotes_gpc()) {
-		$keyword = stripslashes($_POST['keyword']);
+		$keyword = stripslashes(sanitize_text_field($_POST['keyword']));
 	} else {
-		$keyword = $_POST["keyword"];
+		$keyword = sanitize_text_field($_POST["keyword"]);
 	}
 
-	$nonce = $_POST["wpnonce"];
-	if (!wp_verify_nonce($nonce, 'wpdf_security_nonce')) {
+	if (!wp_verify_nonce($_POST["wpnonce"], 'wpdf_security_nonce')) {
 		echo json_encode(array("error" => "Invalid request."));
 		exit;
 	}	
 
-	if(empty($modules)) {
+	if(empty($modules) || !is_array($modules)) {
 		echo json_encode(array("error" => "No content source found."));
 		exit;	
 	}
@@ -35,8 +34,8 @@ function wpdf_editor_ajax_action_function() {
 	
 	$marray = array();
 	foreach($modules as $module) {
-		$mn = $module["name"];
-		$modulerun = $module["module_run"];
+		$mn = sanitize_text_field($module["name"]);
+		$modulerun = sanitize_text_field($module["module_run"]);
 		$start = 1 + (($modulerun - 1) * $items_per_req);
 
 		$marray[$mn] = array("count" => $items_per_req, "start" => $start);
@@ -48,8 +47,8 @@ function wpdf_editor_ajax_action_function() {
 	
 	if(is_array($result)) {
 		foreach($modules as $module) {
-			$mn = $module["name"];
-			$result[$mn]["modulerun"] = $module["module_run"];
+			$mn = sanitize_text_field($module["name"]);
+			$result[$mn]["modulerun"] = sanitize_text_field($module["module_run"]);
 		}	
 		echo json_encode(array("result" => $result));
 		exit;	
@@ -217,12 +216,12 @@ function wpdf_save_image($url, $post_id, $thumb = 0, $filename = "", $keyword = 
 
 function wpdf_save_image_function() {
 
-	$url = $_POST["src"];
-	$post_id = $_POST["post_id"];
-	$thumb = $_POST["feat_img"];
-	$filename = $_POST["filename"];
-	$keyword = $_POST["keyword"];
-	$attr = $_POST["attr"];
+	$url = esc_url($_POST["src"]);
+	$post_id = sanitize_text_field($_POST["post_id"]);
+	$thumb = sanitize_text_field($_POST["feat_img"]);
+	$filename = sanitize_text_field($_POST["filename"]);
+	$keyword = sanitize_text_field($_POST["keyword"]);
+	$attr = sanitize_text_field($_POST["attr"]);
 	
 	$nonce = $_POST["wpnonce"];
 	if (!wp_verify_nonce($nonce, 'wpdf_security_nonce')) {
@@ -254,10 +253,10 @@ function wpdf_save_image_function() {
 function wpdf_save_multiple_images_function() {
 
 	$images = $_POST["images"];
-	$post_id = $_POST["post_id"];
-	$thumb = $_POST["feat_img"];
-	$filename = $_POST["filename"];
-	$keyword = $_POST["keyword"];
+	$post_id = sanitize_text_field($_POST["post_id"]);
+	$thumb = sanitize_text_field($_POST["feat_img"]);
+	$filename = sanitize_text_field($_POST["filename"]);
+	$keyword = sanitize_text_field($_POST["keyword"]);
 	
 	$nonce = $_POST["wpnonce"];
 	if (!wp_verify_nonce($nonce, 'wpdf_security_nonce')) {
@@ -265,7 +264,7 @@ function wpdf_save_multiple_images_function() {
 		exit;
 	}		
 	
-	if(empty($images)) {
+	if(empty($images) || !is_array($images)) {
 		echo json_encode(array("error" => "No image source found."));
 		exit;	
 	}
@@ -278,6 +277,8 @@ function wpdf_save_multiple_images_function() {
 	$newimages = array();
 
 	foreach($images as $url) {
+	
+		$url = esc_url($url);
 	
 		$newsrc = wpdf_save_image($url, $post_id, $thumb, $filename, $keyword, $attr);
 

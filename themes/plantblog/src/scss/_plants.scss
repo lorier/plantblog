@@ -1,5 +1,17 @@
 // ==== Plants Page ==== //
 
+/* Search 
+----------------------------------*/
+.search_wrap {
+	background-color: $green;
+	padding: 0 0 30px;
+	float: left;
+}
+
+#ajaxsearchlite1 {
+	margin: 0;
+}
+
 /* Entry Meta 
 -----------------------------------------------*/
 .post-type-archive-plant{
@@ -9,29 +21,51 @@
 	.site-inner {
 		padding-top: 0;
 	}
+	// New styling 2-26
+	.custom-archive-description {
+		background-color: $green;
+		padding: 20px 0;
+		.wrap {
+			display: flex;
+			align-items: center;
+		}
+		.archive-title {
+			// float: left;
+			width: 25%;
+			align-self: flex-start;
+
+
+			// align-items: left;
+		}
+		.archive-description {
+			float: left;
+		}
+	}
+
+
+
 	.archive-description {
-		padding: 30px;
-		margin-bottom: 10px;
+		// margin-bottom: 10px;
 		background-color: $green;
 		text-align: center;
 		// @extend .full-width-stretch;
 
-		.archive-title {
-			// max-width: 800px;
-			margin: 0 auto;
-			font-family: $headline-sans-serif;
-			color: white;
-			font-weight: 400;
-			text-transform: uppercase;
-			font-size: 40px;
-			padding-bottom: 10px;
-		}
-		p { 
-			max-width: 600px;
-			margin: 0 auto;
-			color: $dark-green; 
-			// opacity: 0.8;
-		}
+	}
+	.archive-title {
+		// max-width: 800px;
+		// margin: 0 auto;
+		font-family: $headline-sans-serif;
+		color: white;
+		font-weight: 400;
+		text-transform: uppercase;
+		font-size: 40px;
+		// padding-bottom: 10px;
+	}
+	p { 
+		max-width: 600px;
+		margin: 0 auto;
+		color: $dark-green; 
+		// opacity: 0.8;
 	}
 	
 	//http://w3bits.com/css-masonry/
@@ -76,8 +110,8 @@
 	    float: left;
 	    width: 97%;
 		img {
-			width: 85px;
-			height: 85px;
+			width: 65px;
+			height: 65px;
 			float: left;
 			margin-right: 20px;
 		}
@@ -109,9 +143,10 @@
 	    font-size: 16px;
 	    font-weight: 400;
 	    text-transform: uppercase;
-	    margin-top: 27px;
+	    // margin-top: 27px;
 	    margin-bottom: 18px;
-	    border-bottom: 4px solid white;
+	    background-color: $off-white;
+	    // border-bottom: 4px solid white;
 	    padding: 0 0;
 		// &.location .location-link,
 		// &:not(.location) .plant-type-link,

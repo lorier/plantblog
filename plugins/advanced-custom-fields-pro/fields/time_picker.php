@@ -74,7 +74,7 @@ class acf_field_time_picker extends acf_field {
 		$e = '';
 		$div = array(
 			'class'					=> 'acf-time-picker acf-input-wrap',
-			'data-time_format'		=> acf_convert_date_to_js($field['display_format'])
+			'data-time_format'		=> acf_convert_time_to_js($field['display_format'])
 		);
 		$hidden = array(
 			'id'					=> $field['id'],
@@ -175,8 +175,10 @@ class acf_field_time_picker extends acf_field {
 	
 }
 
-new acf_field_time_picker();
 
-endif;
+// initialize
+acf_register_field_type( new acf_field_time_picker() );
+
+endif; // class_exists check
 
 ?>

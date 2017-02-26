@@ -104,7 +104,7 @@ $modulearray = array(
 			"default_align" => array("value" => "none", "name" => "Default Image Alignment", "type" => "select", "values" => array("none" => "None", "left" => "Left", "right" => "Right", "center" => "Center")),						
 			"attr_location" => array("value" => "caption", "name" => "Attribution Location", "type" => "select", "values" => array("caption" => "WordPress caption next to image", "bottom" => "Bottom of Post", "image" => "Next to the Image")),						
 			"items_per_req" => array("value" => "40", "name" => "Results per Search", "type" => "select", "values" => array("20" => "20", "30" => "30", "40" => "40", "50" => "50", "60" => "60", "80" => "80", "100" => "100", "100" => "100", "150" => "150", "200" => "200", "300" => "300")),									
-			"wpi_attr" => array("value" => 1, "name" => "Enable ImageInject Link", "type" => "checkbox", "info" => "Yes (adds an unobtrusive link to ImageInject inside the author attribution. If you do not use this please consider sharing in another way, e.g. via social media or by blogging about it. Thanks!)"),	
+			"wpi_attr" => array("value" => 0, "name" => "Enable ImageInject Link", "type" => "checkbox", "info" => "Yes (adds an unobtrusive link to ImageInject inside the author attribution. If you do not use this please consider sharing in another way, e.g. via social media or by blogging about it. Thanks!)"),	
 		)
 	),	
 	"advanced" => array(

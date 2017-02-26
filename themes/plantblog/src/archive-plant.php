@@ -9,6 +9,44 @@
 
 // Template Name: Plants
 
+// Remove custom headline and / or description from category / tag / taxonomy archive pages
+remove_action( 'genesis_before_loop', 'genesis_do_cpt_archive_title_description');
+
+// Add custom headline and / or description on category / tag / taxonomy archive pages
+add_action( 'genesis_after_header', 'lr_taxonomy_title_description_opening_wrap' );
+// add_action( 'genesis_after_header', 'genesis_do_cpt_archive_title_description' );
+add_action( 'genesis_after_header', 'lr_taxonomy_title_description_closing_wrap' );
+
+function lr_taxonomy_title_description_opening_wrap() {
+    echo '<div class="custom-archive-description"><div class="wrap">';
+    lr_cpt_archive_title_description();
+    // echo post_type_archive_title( '', false );;
+    // echo get_the_archive_description();
+
+}
+
+function lr_taxonomy_title_description_closing_wrap() {
+    echo '</div></div>';
+}
+
+
+//https://www.engagewp.com/retrieve-custom-post-type-archive-settings-genesis/
+
+// add_action( 'genesis_after_header', 'lr_cpt_archive_title_description' );
+function lr_cpt_archive_title_description() {
+    /**
+     *  Genesis stores the archive settings in an option (array) named genesis-cpt-archive-settings-{post_type}
+     *  This example uses a custom post type called 'service'
+     */
+    $archive_settings = get_option( 'genesis-cpt-archive-settings-plant' );
+    echo '<div class="archive-title">'.$archive_settings['headline'].'</div>';
+    echo '<div class="archive-description"><p>'.$archive_settings['intro_text'].'</p>'.do_shortcode('[wpdreams_ajaxsearchlite]').'</div>';
+}
+
+
+
+
+
 remove_action( 'genesis_loop', 'genesis_do_loop' );
 
 add_filter('genesis_pre_get_option_site_layout', '__genesis_return_full_width_content');
@@ -28,6 +66,12 @@ function lr_add_custom_class( $attributes ) {
     
     return $attributes;
 }
+// add_action('genesis_before_loop', 'lr_add_ajax_search', 10);
+// function lr_add_ajax_search(){
+//     echo '<div class="search_wrap">';
+//     echo do_shortcode('[wpdreams_ajaxsearchlite]');
+//     echo '</div>';
+// }
 
 //http://www.rlmseo.com/blog/passing-get-query-string-parameters-in-wordpress-url/
 //https://codepen.io/the_ruther4d/post/custom-query-string-vars-in-wordpress
@@ -45,12 +89,12 @@ function pb_sort_menu(){
     $plant_type = array('sort-by' => 'plant-type');
     $location = array('sort-by' => 'location');
     $light = array('sort-by' => 'light-requirement');
-    $output = '<ul id="sorter" class="pb-wrap '.esc_attr($sorter_class).'">';
+    $output = '<ul id="sorter" class="'.esc_attr($sorter_class).'">';
         $output .= '
         <li id="sort-by">Sort By:</li>
         <li class="plant-type-link"><a href="'.esc_url(add_query_arg($plant_type)).'">Plant Type</a></li>
         <li class="location-link"><a href="'.esc_url(add_query_arg($location)).'">Location</a></li>
-        <li class="light-link"><a href="'.esc_url(add_query_arg($light)).'">Light</a></li>
+        <li class="light-link"><a href="'.esc_url(add_query_arg($light)).'">Light Needs</a></li>
     </ul>';
     echo $output;
 }
@@ -141,10 +185,10 @@ function list_posts_by_term( ) {
                     
                     global $post;
                     printf( '<div %s>', genesis_attr( 'entry' ) );
-                        $output = pb_get_thumbnail($post->post_id);
-                        $output .= '<h3><a href="'.esc_url(get_the_permalink()).'">'.get_the_title().'</a></h3>';
-                        $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p>';
-                        $output .= pb_get_terms_list(get_the_ID(), $sort_by_taxonomy);
+                        $output = '<a href="'.esc_url(get_the_permalink()).'">'.pb_get_thumbnail($post->post_id);
+                        $output .= '<h3>'.get_the_title().'</h3>';
+                        $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p></a>';
+                        // $output .= pb_get_terms_list(get_the_ID(), $sort_by_taxonomy);
                         echo $output;
                     echo '</div>';
 

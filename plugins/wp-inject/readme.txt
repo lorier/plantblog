@@ -1,8 +1,8 @@
 ﻿=== ImageInject ===
 Contributors: thoefter, wp-scoop
 Tags: insert, imageinject, wpinject, pictures, flickr, api, images, editor, photos, photo, image, inject, creative commons, creative, commons, gallery, media, thumbnail, seo, pixabay, caption, vector, graphics
-Tested up to: 4.5
-Stable tag: 1.13
+Tested up to: 4.7
+Stable tag: 1.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,12 @@ Advanced users can head to the ImageInject settings page and fine tune the plugi
 ImageInject has also been implemented into [CMS Commander](http://cmscommander.com/ "Manage WordPress faster!"), my service that allows you to manage any number of WordPress blogs from a single dashboard.
 
 == Changelog ==  
+
+= 1.15 =
+- Fixed: Security improvements
+
+= 1.14 =
+- Fixed: Switched the attribution link setting for ImageInject to be off by default.
 
 = 1.13 =
 - Fixed: Bug that prevented Flickr SSL connection from working on certain servers

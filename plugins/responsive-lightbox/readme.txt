@@ -1,10 +1,10 @@
 === Responsive Lightbox by dFactory ===
 Contributors: dfactory
 Donate link: http://www.dfactory.eu/
-Tags: gallery, images, lightbox, links, photos, template, theme, photo, image, picture, slideshow, modal, overlay, YouTube, Vimeo, video, videos
+Tags: gallery, images, lightbox, photos, theme, photo, image, picture, slideshow, modal, overlay, video
 Requires at least: 4.0
-Tested up to: 4.5
-Stable tag: 1.6.8
+Tested up to: 4.7.2
+Stable tag: 1.6.12
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
 
@@ -18,7 +18,7 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 
 = Features include: =
 
-* Select from 6 responsive lightbox scripts (SwipeBox, prettyPhoto, FancyBox, Nivo Lightbox, Image Lightbox, Tos "R" Us)
+* Select from 7 responsive lightbox scripts (SwipeBox, prettyPhoto, FancyBox, Nivo Lightbox, Image Lightbox, Tos "R" Us, Featherlight)
 * Automatically add lightbox to WordPress image galleries
 * Automatically add lightbox to WordPress image links
 * Automatically add lightbox to WordPress video links (YouTube, Vimeo)
@@ -35,30 +35,15 @@ For more information, check out plugin page at [dFactory](http://www.dfactory.eu
 * Filter hook for embeddding different scripts based on any custom conditions (page, post, category, user id, etc.)
 * .pot file for translations included
 
-= Available Extensions: =
-
-* [Justified Gallery](https://www.dfactory.eu/products/justified-gallery/)
-* [Masonry Image Gallery](https://www.dfactory.eu/products/masonry-image-gallery/)
-* [Lightcase Lightbox](https://www.dfactory.eu/products/lightcase-lightbox/)
-* [Strip Lightbox](https://www.dfactory.eu/products/strip-lightbox/)
-
-= Translations: =
-
-* Czech - by Vaclav Hnilicka
-* Dutch - by [Sebas Blom](http://www.basbva.nl/)
-* Estonian - by Hugo Amtmann
-* French - by [Li-An](http://www.echodesplugins.li-an.fr/)
-* German - by [Andreas Reitberger](http://wdbase.de)
-* Hungarian - by [Zsolt Boda](http://cmfrt.net/)
-* Japanese - by stranger-jp
-* Persian - by [Ali Mirzaei](http://alimir.ir/)
-* Polish - by Bartosz Arendt
-* Romanian - by [Victor Chiritoiu](http://contacter.ro)
-* Russian - by [Konstantin](http://l-konstantin.ru)
-* Serbo-Croatian - by [Borisa Djuraskovic](http://www.webhostinghub.com/)
-* Slovak - by [Patrik Zec](http://patwist.com)
-* Spanish - by [Gaston](http://www.detodoynada.com.ar)
-
+> <strong>Premium Extensions:</strong>
+> [Photo & Art bundle](https://www.dfactory.eu/products/photo-art-bundle/)
+> [Justified Gallery](https://www.dfactory.eu/products/justified-gallery/)
+> [Masonry Image Gallery](https://www.dfactory.eu/products/masonry-image-gallery/)
+> [Slider Gallery](https://www.dfactory.eu/products/slider-gallery/)
+> [Lightcase Lightbox](https://www.dfactory.eu/products/lightcase-lightbox/)
+> [PhotoSwipe Lightbox](https://www.dfactory.eu/products/photoswipe-lightbox/)
+> [Lightgallery Lightbox](https://www.dfactory.eu/products/lightgallery-lightbox/)
+> [Strip Lightbox](https://www.dfactory.eu/products/strip-lightbox/)
 
 == Installation ==
 
@@ -76,6 +61,24 @@ No questions yet.
 2. screenshot-2.jpg
 
 == Changelog ==
+
+= 1.6.12 =
+* Fix: WooCommerce single product image lightbox
+
+= 1.6.11 =
+* Tweak: Added plugin documentation link
+* Tweak: Nivo lightbox update to 1.3.1
+
+= 1.6.10 =
+* New: Featherlight lightbox script
+* New: [Lightgallery Lightbox](https://www.dfactory.eu/products/lightgallery-lightbox/) premium extension
+* New: [Slider Gallery](https://www.dfactory.eu/products/slider-gallery/) premium extension
+
+= 1.6.9 =
+* New: [PhotoSwipe Lightbox](https://www.dfactory.eu/products/photoswipe-lightbox/) premium extension
+* Fix: data-rel attribute missing in multiline links
+* Tweak: Removed local translation files in favor of WP repository translations
+* Tweak: SwipeBox script updated to 1.4.4
 
 = 1.6.8 =
 * Tweak: Tos "R" Us script caption issue when empty link title
@@ -287,6 +290,5 @@ Initial release
 
 == Upgrade Notice ==
 
-= 1.6.8 =
-* Tweak: Tos "R" Us script caption issue when empty link title
-* Tweak: Undefined notice on extentions activation.
+= 1.6.12 =
+* Fix: WooCommerce single product image lightbox
