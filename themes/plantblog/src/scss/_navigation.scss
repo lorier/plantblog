@@ -16,8 +16,8 @@
 Site Header
 ---------------------------------------------------------------------------------------------------- */
 .site-header {
-	background: $green url(images/header.png) no-repeat center top;
-	height: 258px;
+	background: $green url(images/header.png) no-repeat center -20px;
+	height: 243px;
 	border-bottom: 10px solid $dark-gray;
 }
 .site-header {
@@ -30,7 +30,7 @@ Site Header
 
 .site-header > .wrap {
 	max-width: 1000px;
-	padding: 40px 0 40px;
+	padding: 30px 0 40px;
 }
 
 /* Title Area

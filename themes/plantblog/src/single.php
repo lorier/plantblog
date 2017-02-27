@@ -41,5 +41,4 @@ function pb_single_featured_post_image() {
 	    }
 	}
 }
-
 genesis();

@@ -33,8 +33,6 @@ function tw_setup_livereload(){
       wp_enqueue_script('livereload');
     }
 }
-// Make variable output pretty
-function rcms_print_pre($value) {
+function lr_print_pre($value) {
     echo "<pre>",print_r($value, true),"</pre>";
 }
-

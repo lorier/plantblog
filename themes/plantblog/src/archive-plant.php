@@ -31,8 +31,6 @@ function lr_taxonomy_title_description_closing_wrap() {
 
 
 //https://www.engagewp.com/retrieve-custom-post-type-archive-settings-genesis/
-
-// add_action( 'genesis_after_header', 'lr_cpt_archive_title_description' );
 function lr_cpt_archive_title_description() {
     /**
      *  Genesis stores the archive settings in an option (array) named genesis-cpt-archive-settings-{post_type}
@@ -42,10 +40,6 @@ function lr_cpt_archive_title_description() {
     echo '<div class="archive-title">'.$archive_settings['headline'].'</div>';
     echo '<div class="archive-description"><p>'.$archive_settings['intro_text'].'</p>'.do_shortcode('[wpdreams_ajaxsearchlite]').'</div>';
 }
-
-
-
-
 
 remove_action( 'genesis_loop', 'genesis_do_loop' );
 
@@ -91,7 +85,7 @@ function pb_sort_menu(){
     $light = array('sort-by' => 'light-requirement');
     $output = '<ul id="sorter" class="'.esc_attr($sorter_class).'">';
         $output .= '
-        <li id="sort-by">Sort By:</li>
+        
         <li class="plant-type-link"><a href="'.esc_url(add_query_arg($plant_type)).'">Plant Type</a></li>
         <li class="location-link"><a href="'.esc_url(add_query_arg($location)).'">Location</a></li>
         <li class="light-link"><a href="'.esc_url(add_query_arg($light)).'">Light Needs</a></li>
@@ -136,6 +130,7 @@ function list_posts_by_term( ) {
         )
     );
     echo '<main class="masonry pb-wrap">';
+
     //loop through each term, gathering all the posts for each term in chunks
     foreach ( $tax_terms as $term ) {
 
@@ -169,6 +164,8 @@ function list_posts_by_term( ) {
              );
             $args['tax_query'] = $tax_args;
 
+            // print_r($tax_args);
+
             //get all the posts for each term
             $query = new WP_Query( $args );
 
@@ -180,24 +177,32 @@ function list_posts_by_term( ) {
                 while ( $query->have_posts() ) {
                     
                     $query->the_post();
-
-                    do_action( 'genesis_before_entry' );
-                    
                     global $post;
-                    printf( '<div %s>', genesis_attr( 'entry' ) );
-                        $output = '<a href="'.esc_url(get_the_permalink()).'">'.pb_get_thumbnail($post->post_id);
-                        $output .= '<h3>'.get_the_title().'</h3>';
-                        $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p></a>';
-                        // $output .= pb_get_terms_list(get_the_ID(), $sort_by_taxonomy);
-                        echo $output;
-                    echo '</div>';
 
-                    do_action( 'genesis_after_post' );
+                    $thumb = lr_get_post_thumb($post);
 
-                    // do_action( 'genesis_after_entry' );
+                    //check our custom field value
+                    $is_dead = get_field('is_this_plant_dead', $post->id);
+                    $is_dead == 'Yes' ? true : false;
+
+                        //only output living plants
+                        if($is_dead){
+                            continue;
+                        }else {
+                            do_action( 'genesis_before_entry' );
+                            
+                            printf( '<div %s>', genesis_attr( 'entry' ) );
+                                // $output = '<a href="'.esc_url(get_the_permalink()).'">'.pb_get_thumbnail($post->post_id);
+                                $output = '<a href="'.esc_url(get_the_permalink()).'"><div class="plant-list-thumb"">'.$thumb.'</div>';
+                                $output .= '<h3>'.get_the_title().'</h3>';
+                                $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p></a>';
+                                // $output .= pb_get_terms_list(get_the_ID(), $sort_by_taxonomy);
+                                echo $output;
+                            echo '</div>';
+
+                            do_action( 'genesis_after_post' );
+                        }
                 }
-                // do_action( 'genesis_after_endwhile' );
-
             } else {
                 // no posts found
                 do_action( 'genesis_loop_else' );
@@ -207,6 +212,17 @@ function list_posts_by_term( ) {
     echo '</main>';
     // Restore original Post Data
     wp_reset_postdata();
+}
+function lr_get_post_thumb($post){
+    // $thumb_id = get_post_thumbnail_id($post);
+    // $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium', true);
+    // $thumb_url = $thumb_url_array[0];
+
+    if ( has_post_thumbnail($post) ) {
+        return get_the_post_thumbnail();
+    } else {
+            return '<img src="'.get_site_url().'/wp-content/uploads/2016/07/Untitled-1.png" class="size-post-thumbnail"/>';
+        }
 }
 
 genesis();

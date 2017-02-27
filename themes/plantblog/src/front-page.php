@@ -13,5 +13,8 @@ function pb_post_info_filter($post_info) {
 		$post_info = '[post_date]';
 		return $post_info;
 }
+remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_open', 5 );
+remove_action( 'genesis_entry_footer', 'genesis_post_meta' );
+remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_close', 15 );
 
 genesis();

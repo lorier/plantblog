@@ -20,11 +20,20 @@
 				$(this).find('#menu-main-navigation').css('margin-top','30px'); 
 				// $(this).find('.site-header').css('background-image', 'url(images/treebark.jpg), url(images/treeline.png)'); 
 				$(this).find('.wrap').css('padding', '40px 0 40px'); 
-				$(this).css('height', '258px');
+				$(this).css('height', '243px');
 
 			}
 		});
+	$('.accordion .inside').hide();
+	 $('h4:before').css('content','\\f0d7');   
+	$('.accordion .journal-title').click(function(e) {
+		e.preventDefault();
+    	$('.journal-title h4').toggleClass('open');
+	    $('.accordion > .inside').slideToggle('default');
+	    // return false;
+	  });
 	});
+
 }(jQuery));
 
 // ;(function($){

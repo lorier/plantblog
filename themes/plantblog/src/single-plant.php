@@ -11,6 +11,15 @@ add_action('genesis_sidebar', 'pb_single_plant_sidebar');
 remove_action( 'genesis_before_loop', 'genesis_do_breadcrumbs' );
 add_action( 'genesis_before_content', 'genesis_do_breadcrumbs' );
 
+function pb_the_content_filter($content) {
+  // otherwise returns the database content
+	$content_header = '<h4>Plant Information</h4>';
+  return $content_header . $content;
+}
+
+add_filter( 'the_content', 'pb_the_content_filter' );
+
+
 //add featured image to sidebar
 add_action( 'genesis_before_sidebar_widget_area', 'pb_featured_image_sidebar', 8 );
 function pb_featured_image_sidebar() {
@@ -35,13 +44,20 @@ function pb_featured_image_sidebar() {
 	    }
 }
 
-add_action('genesis_entry_header', 'pb_alt_names',12);
+add_action('genesis_entry_header', 'pb_alt_names',10);
 function pb_alt_names(){
 	global $post;
 	echo '<h4 class="latin">'.esc_textarea( pb_get_latin_name($post->ID) ).'</h4>';
 }
-add_action('genesis_entry_header', 'pb_add_latin_name',11);
-function pb_add_latin_name(){
+
+// add_action('genesis_entry_header', 'pb_notes',12);
+// function pb_alt_names(){
+// 	global $post;
+// 	echo '<h4 class="latin">'.esc_textarea( pb_notes($post->ID) ).'</h4>';
+// }
+
+add_action('genesis_entry_header', 'pb_add_common_name',11);
+function pb_add_common_name(){
 	global $post;
 	$output = '';
 	$loopcount = 0;
@@ -65,6 +81,26 @@ function pb_add_latin_name(){
 endif;
 	
 	
+}
+
+add_action('genesis_entry_header', 'pb_add_note',12);
+function pb_add_note(){
+	global $post;
+	$output = '';
+	if ( have_rows('journal_notes')):
+		$output = '<div class="notes accordion"><a class="journal-title" href=""><h4>Journal Notes</h4></a><div class="inside">';
+		while ( have_rows('journal_notes') ) : the_row();
+	        $output .= '<p><span class="date">'.get_sub_field('month_year').': </span>';
+	        $output .= get_sub_field('note').'</p>';
+	        $loopcount++;
+	        
+    	endwhile;
+    	$output .= '</div></div>';
+    echo $output;
+    else:
+
+    // no rows found
+endif;
 }
 
 function pb_single_plant_sidebar(){

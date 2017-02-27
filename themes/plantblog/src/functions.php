@@ -1,11 +1,21 @@
 <?php
-function lr_print_pre($value) {
-    echo "<pre>",print_r($value, true),"</pre>";
-}
+
 add_action( 'genesis_setup', 'pb_load_includes', 15 );
 function pb_load_includes() {
     foreach ( glob( dirname( __FILE__ ) . '/plantblog_inc/*.php' ) as $file ) { include $file; }
 }
+//add plant loop to dead plants page
+add_action('genesis_after_content', 'pb_add_plant_loop', 16);
+function pb_add_plant_loop(){
+	global $post;
+	if($post->ID == 20) {
+		pb_list_dead_plants();
+	}
+}
+
+
+
+
 
 // Start the engine
 include_once( get_template_directory() . '/lib/init.php' );
@@ -127,11 +137,16 @@ add_image_size( 'post_featured', 370, 250, true );
 add_image_size( 'post_medium', 400, 218, true );
 add_image_size( 'post_large', 573, 285, true );
 
+//Set content width for Jetpack tiled gallery
+if ( ! isset( $content_width ) ) {
+    $content_width = 750;
+}
+
 // Allow shortcodes in widgets
 add_filter( 'widget_text', 'do_shortcode' );
 
-add_filter( 'the_content_more_link', 'kickstart_read_more_link' );
 // Modify the WordPress read more link
+add_filter( 'the_content_more_link', 'kickstart_read_more_link' );
 function kickstart_read_more_link() {
 	return '<a class="more-link" href="' . get_permalink() . '">' . __( 'Read More', 'lean-kickstart' ) . '</a>';
 }
