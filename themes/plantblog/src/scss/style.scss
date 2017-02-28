@@ -42,12 +42,14 @@ Domain Path: #{metadata(theme-text-domain-path)}
 @import "sidebar";
 @import "typography";
 @import "content_areas";
-@import "pagebuilder_classes";
 @import "grid";
 @import "teasers";
 @import "plants";
+@import "dead_plants";
 @import "single_plant";
 @import "taxonomy";
+@import "before_after";
+@import "slick_slider";
 // Reset: eliminate default browser styling (optional; commented out by default)
 //@import "reset";
 

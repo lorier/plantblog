@@ -13,7 +13,7 @@ add_action( 'genesis_before_content', 'genesis_do_breadcrumbs' );
 
 function pb_the_content_filter($content) {
   // otherwise returns the database content
-	$content_header = '<h4>Plant Information</h4>';
+	// $content_header = '<h4>Plant Information</h4>';
   return $content_header . $content;
 }
 
@@ -62,7 +62,7 @@ function pb_add_common_name(){
 	$output = '';
 	$loopcount = 0;
 	if ( have_rows('alternate_common_names')):
-		$output = '<h5 class="alt-names">AKA: ';
+		$output = '<h4 class="alt-names">AKA: ';
 		while ( have_rows('alternate_common_names') ) : the_row();
 
 	        // Your loop code
@@ -73,7 +73,7 @@ function pb_add_common_name(){
 	        $loopcount++;
 	        
     	endwhile;
-    	$output .= '</h5>';
+    	$output .= '</h4>';
     echo $output;
     else:
 

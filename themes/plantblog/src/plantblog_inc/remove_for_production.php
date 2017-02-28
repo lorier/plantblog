@@ -33,6 +33,3 @@ function tw_setup_livereload(){
       wp_enqueue_script('livereload');
     }
 }
-function lr_print_pre($value) {
-    echo "<pre>",print_r($value, true),"</pre>";
-}

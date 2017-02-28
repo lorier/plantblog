@@ -1,21 +1,21 @@
 <?php
 
+function lr_print_pre($value) {
+    echo "<pre>",print_r($value, true),"</pre>";
+}
+
 add_action( 'genesis_setup', 'pb_load_includes', 15 );
 function pb_load_includes() {
     foreach ( glob( dirname( __FILE__ ) . '/plantblog_inc/*.php' ) as $file ) { include $file; }
 }
 //add plant loop to dead plants page
-add_action('genesis_after_content', 'pb_add_plant_loop', 16);
+add_action('genesis_after_content_sidebar_wrap', 'pb_add_plant_loop', 16);
 function pb_add_plant_loop(){
 	global $post;
 	if($post->ID == 20) {
 		pb_list_dead_plants();
 	}
 }
-
-
-
-
 
 // Start the engine
 include_once( get_template_directory() . '/lib/init.php' );
@@ -34,17 +34,14 @@ define( 'CHILD_THEME_VERSION', '0.0.1' );
 add_action( 'wp_enqueue_scripts', 'kickstart_fonts_scripts' );
 // Enqueue fonts
 function kickstart_fonts_scripts() {
-	wp_enqueue_style( 'sofia-font', get_stylesheet_directory_uri() . '/webfonts/sofia.css', array(), CHILD_THEME_VERSION );
 	wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', array(), '4.5.0' );
-	wp_enqueue_style( 'google-font-open-sans', '//fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic', array(), CHILD_THEME_VERSION );
-
-	wp_enqueue_style('google-font-merriweather-sans', '//fonts.googleapis.com/css?family=Merriweather+Sans:300,300italic,400,400italic,700,700italic', array(), CHILD_THEME_VERSION);
 	wp_enqueue_style('google-font-muli', '//fonts.googleapis.com/css?family=Muli:400,400italic,300italic,300', array(), CHILD_THEME_VERSION);
 	// wp_enqueue_style('google-font-lora', '//fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic', array(), CHILD_THEME_VERSION);
 	wp_enqueue_style('google-font-oswald', '//fonts.googleapis.com/css?family=Oswald:300,700,400', array(), CHILD_THEME_VERSION);
 	wp_enqueue_style('google-font-volkov', '//fonts.googleapis.com/css?family=Volkhov:400italic', array(), CHILD_THEME_VERSION);
-	wp_enqueue_style('google-font-playfair', '//fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic', array(), CHILD_THEME_VERSION);
 	wp_enqueue_style('google-font-lobster', '//fonts.googleapis.com/css?family=Lobster', array(), CHILD_THEME_VERSION);
+	// wp_enqueue_style('slick-js-stylesheet', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"', array(), CHILD_THEME_VERSION);
+
 
 	wp_enqueue_script( 'kickstart-responsive-menu', get_stylesheet_directory_uri() . '/js/responsivemenu.js', array( 'jquery' ), CHILD_THEME_VERSION, true );
 	$output = array(
@@ -55,11 +52,11 @@ function kickstart_fonts_scripts() {
 }
 
 
-add_action( 'wp_enqueue_scripts', 'rcms_enqueue_stickynav_script' );
-function rcms_enqueue_stickynav_script() {
+add_action( 'wp_enqueue_scripts', 'pb_enqueue_stickynav_script' );
+function pb_enqueue_stickynav_script() {
 	wp_enqueue_script( 'sample-sticky-menu', get_stylesheet_directory_uri() . '/js/stickynav.js', array( 'jquery' ), '1.0.0' );
 	wp_enqueue_script( 'core', get_stylesheet_directory_uri() . '/js/core.js', array( 'jquery' ), '1.0.0' );
-
+	wp_enqueue_script( 'slick','//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js', array( 'jquery' ), '1.7.2' );
 }
 
 add_action( 'wp_enqueue_scripts', 'kickstart_enqueue_backstretch_scripts' );

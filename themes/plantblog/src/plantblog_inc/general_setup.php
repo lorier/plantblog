@@ -11,6 +11,9 @@ function rcms_register_portal_menu() {
 	register_nav_menu( 'third-menu' ,__( 'Third Navigation Menu' ));
 }
 
+remove_action( 'genesis_site_description', 'genesis_seo_site_description' );
+
+
 // Customize the legal text
 remove_action( 'genesis_footer', 'genesis_do_footer' );
 add_action( 'genesis_footer', 'sp_custom_footer' );

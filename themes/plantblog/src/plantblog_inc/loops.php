@@ -3,7 +3,6 @@
 //Dead Plants Loop
 function pb_list_dead_plants() {
 
-   
     $args = array (
         'post_type'              => array( 'plant' ),
         'post_status'            => array( 'publish' ),
@@ -21,7 +20,6 @@ function pb_list_dead_plants() {
     //get all the posts for each term
     $query = new WP_Query( $args );
 
-
     if ( $query->have_posts() ) {
 
         do_action( 'genesis_before_while' );
@@ -32,7 +30,7 @@ function pb_list_dead_plants() {
             global $post;
 
             $thumb = lr_get_post_thumb($post);
-
+           
             //check our custom field value
             $is_dead = get_field('is_this_plant_dead', $post->id);
 
@@ -40,17 +38,21 @@ function pb_list_dead_plants() {
                 if($is_dead == 'No'){
                     continue;
                 }else {
+                    $plant_types = pb_get_terms($post->ID);
                     $reason = get_field('reason', $post->id);
+
+                    $plant_types = !empty($plant_types) ? $plant_types : '--';
                     $reason = !empty($reason) ? $reason : '--';
+
                     do_action( 'genesis_before_entry' );
                     
                     printf( '<div %s>', genesis_attr( 'entry' ) );
                         // $output = '<a href="'.esc_url(get_the_permalink()).'">'.pb_get_thumbnail($post->post_id);
                         $output = '<a href="'.esc_url(get_the_permalink()).'"><div class="plant-list-thumb"">'.$thumb.'</div>';
-                        $output .= '<h3>'.get_the_title().'</h3>';
+                        $output .= '<div class="pb_entry_content"><h3>'.get_the_title().'</h3>';
                         $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p></a>';
-                        $output .= '<p>'.$reason.'</p>';
-                        // $output .= pb_get_terms_list(get_the_ID(), $sort_by_taxonomy);
+                        $output .= '<p><span>Reason: </span>'.$reason.'</p>';
+                        $output .= '<p><span>Type: </span>'.$plant_types.'</p></div>';
                         echo $output;
                     echo '</div>';
 
@@ -65,6 +67,20 @@ function pb_list_dead_plants() {
     wp_reset_postdata();
 }
 
+//Get the plant type(s) for each entry
+function pb_get_terms($post_id){
+    $term_array = wp_get_post_terms( $post_id, 'plant-type' );
+    $terms = array();
+    if(is_array($term_array)){
+        foreach($term_array as $term_object){
+            // lr_print_pre($term_object);
+            $terms[] = $term_object->name;
+        }
+        $the_terms = implode(", ", $terms);
+    }
+    return $the_terms;
+}
+
 //Plant List Loop
 function pb_list_plants() {
     global $sort_by_taxonomy;
@@ -76,7 +92,8 @@ function pb_list_plants() {
         //default sort order
         $tax_terms = get_terms( 'plant-type', 'orderby=name');
         $sort_by_taxonomy = 'plant-type';
-    }   
+    }
+    
     $args = array (
         'post_type'              => array( 'plant' ),
         'post_status'            => array( 'publish' ),
@@ -144,20 +161,20 @@ function pb_list_plants() {
                 while ( $query->have_posts() ) {
                     
                     $query->the_post();
+                    
                     global $post;
 
                     $thumb = lr_get_post_thumb($post);
 
                     //check our custom field value
                     $is_dead = get_field('is_this_plant_dead', $post->id);
-                    $is_dead == 'Yes' ? true : false;
+                    $is_dead = $is_dead =='Yes' ? true : false;
 
                         //only output living plants
                         if($is_dead){
                             continue;
-                        }else {
+                        }else{
                             do_action( 'genesis_before_entry' );
-                            
                             printf( '<div %s>', genesis_attr( 'entry' ) );
                                 // $output = '<a href="'.esc_url(get_the_permalink()).'">'.pb_get_thumbnail($post->post_id);
                                 $output = '<a href="'.esc_url(get_the_permalink()).'"><div class="plant-list-thumb"">'.$thumb.'</div>';
