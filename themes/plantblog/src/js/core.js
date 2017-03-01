@@ -37,11 +37,11 @@
 	  // before and after carousels
 	$('.variable-width').slick({
 		// dots: true,
-		// infinite: false,
-		// speed: 300,
-		// arrows: true,
-		// slidesToShow: 2,
-		// centerMode: true,
+		infinite: true,
+		speed: 300,
+		arrows: true,
+		slidesToShow: 2,
+		centerMode: true,
 		variableWidth: true
 		});
 	});

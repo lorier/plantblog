@@ -10,9 +10,9 @@
 $slick-arrow-color: white !default;
 $slick-dot-color: black !default;
 $slick-dot-color-active: $slick-dot-color !default;
-$slick-prev-character: "\2190" !default;
-$slick-next-character: "\2192" !default;
-$slick-dot-character: "\2022" !default;
+$slick-prev-character: "\f053" !default;
+$slick-next-character: "\f054" !default;
+$slick-dot-character: "\xf111" !default;
 $slick-dot-size: 6px !default;
 $slick-opacity-default: 0.75 !default;
 $slick-opacity-on-hover: 1 !default;
@@ -31,22 +31,39 @@ $slick-opacity-not-active: 0.25 !default;
 
 .slick-prev,
 .slick-next {
+    // position: absolute;
+    // display: block;
+    // height: 20px;
+    // width: 20px;
+    // line-height: 0px;
+    // font-size: 0px;
+    // cursor: pointer;
+    // background: transparent;
+    // color: transparent;
+    // top: 50%;
+    // -webkit-transform: translate(0, -50%);
+    // -ms-transform: translate(0, -50%);
+    // transform: translate(0, -50%);
+    // padding: 0;
+    // border: none;
+    // outline: none;
+
     position: absolute;
-    display: block;
-    height: 20px;
-    width: 20px;
-    line-height: 0px;
-    font-size: 0px;
-    cursor: pointer;
-    background: transparent;
     color: transparent;
+    background-color: transparent;
+    display: block;
+    height: 100%;
+    width: 15px;
+    font-size: 7px;
+    cursor: pointer;
     top: 50%;
-    -webkit-transform: translate(0, -50%);
-    -ms-transform: translate(0, -50%);
-    transform: translate(0, -50%);
-    padding: 0;
+    -webkit-transform: translateY(-50%);
+    /* transform: translateY(-50%); */
+    adding: 0;
     border: none;
-    outline: none;
+    z-index: 1000;
+    /* opacity: .5; */
+
     &:hover, &:focus {
         outline: none;
         background: transparent;
@@ -60,7 +77,7 @@ $slick-opacity-not-active: 0.25 !default;
     }
     &:before {
         font-family: $font-awesome;
-        font-size: 20px;
+        font-size: 30px;
         line-height: 1;
         color: $slick-arrow-color;
         opacity: $slick-opacity-default;
@@ -70,10 +87,10 @@ $slick-opacity-not-active: 0.25 !default;
 }
 
 .slick-prev {
-    left: -25px;
+    left: -6px;
     [dir="rtl"] & {
         left: auto;
-        right: -25px;
+        right: -6px;
     }
     &:before {
         content: $slick-prev-character;
@@ -84,9 +101,9 @@ $slick-opacity-not-active: 0.25 !default;
 }
 
 .slick-next {
-    right: -25px;
+    right: 11px;
     [dir="rtl"] & {
-        left: -25px;
+        left: 11px;
         right: auto;
     }
     &:before {

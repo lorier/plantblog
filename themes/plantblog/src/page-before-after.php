@@ -42,27 +42,35 @@ function pb_add_before_after(){
 			$comment = get_sub_field('gallery_caption');
 
 			if( $images ){
-			    $output = '<div class="variable-width">'; //TODO add object buffering here for count
-				    $image_count=0;
+			    // $output = '<div class="variable-width">'; //TODO add object buffering here for count
+				   $image_count=0;
+			       $content = '';
 			       foreach( $images as $image ){
 				       	++$image_count;
-						$post = get_post($image);
-			            $output .= '<div class="slick-slide"><div class="image">';
-			            $output .= '<a data-rel="lightbox" href="';
-			            $output .= $image["url"];
-			            $output .= '"><img src="';
-			            $output .= $image["url"];
-			            $output .= '" alt="';
-			            $output .= $image["alt"].'"/></a></div>';
-						// $output .= '" /><p>';
-						// $output .= $image['caption'];
-						// $output .= '</p>
-						$output .= '</div>';
+
+			            $content .= '<div><div class="image">';
+			            $content .= '<a data-rel="lightbox" href="';
+			            $content .= $image["url"];
+			            $content .= '"><img src="';
+			            $content .= $image["url"];
+			            $content .= '" alt="';
+			            $content .= $image["alt"].'"/>';
+						$content .= '<div class="image-caption">';
+						$content .= $image['caption'];
+						$content .= '</div>';
+						$content .= '</a></div>';
+						$content .= '</div>';
 			       }
-			     $output .= '</div>';
-			     $output .= '<span class="count_'. $image_count .'"></span>';
+			     $content .= '</div>';
+
+			     //add a custom class that tells us the number of slides used
+			     $output = '<div class="gallery-container"><div class="variable-width count_'. $image_count.'">' . $content;
+			     $output .= '<div class="gallery-caption"><h5>'. $comment .'</h5></div>';
+			     $output .=  '</div>';
 			    }
-			 echo $output;
+			echo $output;
+			$output = '';
+
 		endwhile;
 	}
 }

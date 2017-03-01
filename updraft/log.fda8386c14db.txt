@@ -1,0 +1,85 @@
+0000.000 (0) Opened log file at time: Tue, 28 Feb 2017 21:44:08 +0000 on http://localhost/plantblog
+0000.001 (0) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.12.34 WP: 4.7.2 PHP: 7.0.12 (apache2handler, Darwin LORIEs-MacBook-Pro.local 15.6.0 Darwin Kernel Version 15.6.0: Thu Sep  1 15:01:16 PDT 2016; root:xnu-3248.60.11~2/RELEASE_X86_64 x86_64) MySQL: 5.6.33 WPLANG: en_US Server: Apache safe_mode: 0 max_execution_time: 900 memory_limit: 256M (used: 29.3M | 10M) multisite: N openssl: OpenSSL 1.0.2j  26 Sep 2016 mcrypt: Y LANG:  ZipArchive::addFile: Y
+0000.002 (0) Free space on disk containing Updraft's temporary directory: 188178.5 MB
+0000.011 (0) Tasks: Backup files: 0 (schedule: unset) Backup DB: 1 (schedule: unset)
+0000.022 (0) Requesting semaphore lock (d) (apparently not via scheduler)
+0000.025 (0) Set semaphore last lock (d) time to 2017-02-28 21:44:08
+0000.026 (0) Semaphore lock (d) complete
+0000.030 (0) Backup run: resumption=0, nonce=fda8386c14db, begun at=1488318248 (0s ago), job type=backup
+0000.032 (0) Scheduling a resumption (1) after 300 seconds (1488318548) in case this run gets aborted
+0000.067 (0) This backup run is not intended for files - skipping
+0000.068 (0) Beginning creation of database dump (WordPress DB)
+0000.106 (0) Table plantblog_options: Total expected rows (approximate): 211
+0000.135 (0) Table plantblog_options: Total rows added: 207 in 0.03 seconds
+0000.138 (0) Table plantblog_options: finishing file (backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_options.table.gz - 36 KB)
+0000.142 (0) Table plantblog_users: Total expected rows (approximate): 1
+0000.145 (0) Table plantblog_users: Total rows added: 1 in 0.00 seconds
+0000.151 (0) Table plantblog_users: finishing file (backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_users.table.gz - 0.5 KB)
+0000.155 (0) Table plantblog_usermeta: Total expected rows (approximate): 29
+0000.158 (0) Table plantblog_usermeta: Total rows added: 29 in 0.00 seconds
+0000.165 (0) Table plantblog_usermeta: finishing file (backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_usermeta.table.gz - 1.6 KB)
+0000.168 (0) Table plantblog_commentmeta: Total expected rows (approximate): 0
+0000.171 (0) Table plantblog_commentmeta: Total rows added: 0 in 0.00 seconds
+0000.178 (0) Table plantblog_commentmeta: finishing file (backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_commentmeta.table.gz - 0.3 KB)
+0000.188 (0) Table plantblog_comments: Total expected rows (approximate): 1
+0000.192 (0) Table plantblog_comments: Total rows added: 1 in 0.00 seconds
+0000.198 (0) Table plantblog_comments: finishing file (backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_comments.table.gz - 0.7 KB)
+0000.204 (0) Table plantblog_links: Total expected rows (approximate): 0
+0000.208 (0) Table plantblog_links: Total rows added: 0 in 0.00 seconds
+0000.214 (0) Table plantblog_links: finishing file (backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_links.table.gz - 0.4 KB)
+0000.218 (0) Table plantblog_postmeta: Total expected rows (approximate): 581
+0000.235 (0) Table plantblog_postmeta: Total rows added: 581 in 0.02 seconds
+0000.242 (0) Table plantblog_postmeta: finishing file (backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_postmeta.table.gz - 8.6 KB)
+0000.247 (0) Table plantblog_posts: Total expected rows (approximate): 144
+0000.271 (0) Table plantblog_posts: Total rows added: 144 in 0.02 seconds
+0000.277 (0) Table plantblog_posts: finishing file (backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_posts.table.gz - 13.3 KB)
+0000.284 (0) Table plantblog_term_relationships: Total expected rows (approximate): 49
+0000.288 (0) Table plantblog_term_relationships: Total rows added: 49 in 0.00 seconds
+0000.295 (0) Table plantblog_term_relationships: finishing file (backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_term_relationships.table.gz - 0.5 KB)
+0000.299 (0) Table plantblog_term_taxonomy: Total expected rows (approximate): 33
+0000.303 (0) Table plantblog_term_taxonomy: Total rows added: 33 in 0.00 seconds
+0000.309 (0) Table plantblog_term_taxonomy: finishing file (backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_term_taxonomy.table.gz - 0.9 KB)
+0000.313 (0) Table plantblog_termmeta: Total expected rows (approximate): 139
+0000.319 (0) Table plantblog_termmeta: Total rows added: 139 in 0.00 seconds
+0000.325 (0) Table plantblog_termmeta: finishing file (backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_termmeta.table.gz - 1.2 KB)
+0000.329 (0) Table plantblog_terms: Total expected rows (approximate): 33
+0000.333 (0) Table plantblog_terms: Total rows added: 33 in 0.00 seconds
+0000.340 (0) Table plantblog_terms: finishing file (backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_terms.table.gz - 0.8 KB)
+0000.343 (0) backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_options.table.gz (1/12): adding to final database dump
+0000.364 (0) backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_users.table.gz (2/12): adding to final database dump
+0000.366 (0) backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_usermeta.table.gz (3/12): adding to final database dump
+0000.367 (0) backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_commentmeta.table.gz (4/12): adding to final database dump
+0000.368 (0) backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_comments.table.gz (5/12): adding to final database dump
+0000.370 (0) backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_links.table.gz (6/12): adding to final database dump
+0000.371 (0) backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_postmeta.table.gz (7/12): adding to final database dump
+0000.378 (0) backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_posts.table.gz (8/12): adding to final database dump
+0000.387 (0) backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_term_relationships.table.gz (9/12): adding to final database dump
+0000.388 (0) backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_term_taxonomy.table.gz (10/12): adding to final database dump
+0000.389 (0) backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_termmeta.table.gz (11/12): adding to final database dump
+0000.391 (0) backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db-table-plantblog_terms.table.gz (12/12): adding to final database dump
+0000.392 (0) backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db.gz: finished writing out complete database file (48 KB)
+0000.397 (0) Total database tables backed up: 12 (backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db.gz, size: 64060, checksum (SHA1): e7b643dee9f923044b0b6868257b0209281e1ffe)
+0000.402 (0) backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db.gz: db: This file has not yet been successfully uploaded: will queue
+0000.402 (0) Saving backup history. Total backup size: 62.6 KB
+0000.406 (0) Requesting upload of the files that have not yet been successfully uploaded (1)
+0000.408 (0) Cloud backup selection (1/1): none (last)
+0000.409 (0) No remote despatch: user chose no remote backup service
+0000.411 (0) Recording as successfully uploaded: backup_2017-02-28-2144_A_Tree_Garden_fda8386c14db-db.gz (c5c217439e92637c01d91655195526c7)
+0000.416 (0) Retain: beginning examination of existing backup sets; user setting: retain_files=2, retain_db=2
+0000.417 (0) Number of backup sets in history: 2; groups (db): 1
+0000.418 (0) Examining (for databases) backup set with group_id=0, nonce=fda8386c14db, datestamp=1488318248 (Feb 28 2017 21:44:08)
+0000.419 (0) This backup set is the backup set just made, so will not be deleted.
+0000.419 (0) Examining (for databases) backup set with group_id=0, nonce=93ad5d70c5cb, datestamp=1488136333 (Feb 26 2017 19:12:13)
+0000.420 (0) This backup set remains non-empty (f=1/d=1); will retain in history
+0000.421 (0) Number of backup sets in history: 2; groups (files): 1
+0000.421 (0) Examining (for files) backup set with nonce=fda8386c14db, datestamp=1488318248 (Feb 28 2017 21:44:08)
+0000.422 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0000.423 (0) Examining (for files) backup set with nonce=93ad5d70c5cb, datestamp=1488136333 (Feb 26 2017 19:12:13)
+0000.423 (0) This backup set remains non-empty (f=1/d=1); will retain in history
+0000.424 (0) Retain: saving new backup history (sets now: 2) and finishing retain operation
+0000.426 (0) Resume backup (fda8386c14db, 0): finish run
+0000.428 (0) Decremented the semaphore (d) by 1
+0000.431 (0) Semaphore (d) unlocked
+0000.431 (0) There were no errors in the uploads, so the 'resume' event (1) is being unscheduled
+0000.434 (0) No email will/can be sent - the user has not configured an email address.
+0000.435 (0) The backup apparently succeeded and is now complete

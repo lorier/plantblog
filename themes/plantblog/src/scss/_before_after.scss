@@ -3,9 +3,48 @@
 /* Entries
 -----------------------------------------------*/
 .page-template-page-before-after  {
+	.site-inner {
+		max-width: 1800px; 
+	}
 	.variable-width{
+		.image {
+			padding: 1px;
+		}
+		a {
+			position: relative;
+		}
 		img {
-			max-height: 300px;
+			max-height: 500px;
+		}
+		.image-caption {
+		    font-family: Oswald,sans-serif;
+		    position: absolute;
+		    float: left;
+		    bottom: 8px;
+		    color: white;
+		    font-size: 25px;
+		    line-height: 21px;
+		    /* bottom: -2px; */
+		    padding: 0 0 0 8px;
+		    /* background-color: hsl(0, 0%, 100%); */
+		    // border-left: 10px solid #dbaf34;
+		    left: 0px;
+		}
+	}
+	.count_2 {
+		background-color: black;
+	}
+	.gallery-container {
+		width: 95%;
+		margin: 0 auto;
+		margin-bottom: 20px;
+	}
+	.gallery-caption {
+		background-color: #fff;
+		padding: 25px;
+		h5 {
+			margin: 0 auto;
+			max-width: 800px;
 		}
 	}
 }
