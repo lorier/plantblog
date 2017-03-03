@@ -38,8 +38,12 @@ function pb_add_before_after(){
 	if( have_rows('before_and_after') ){
 		while( have_rows('before_and_after')) : the_row();
 			// basic WP gallery
+			$title = get_sub_field('gallery_title');
+			$title = (!empty($title)) ? $title : '';
+
 			$images = get_sub_field('gallery');
 			$comment = get_sub_field('gallery_caption');
+
 
 			if( $images ){
 			    // $output = '<div class="variable-width">'; //TODO add object buffering here for count
@@ -48,10 +52,10 @@ function pb_add_before_after(){
 			       foreach( $images as $image ){
 				       	++$image_count;
 
-			            $content .= '<div><div class="image">';
+			            $content .= '<div class="slide-container"><div class="image">';
 			            $content .= '<a data-rel="lightbox" href="';
 			            $content .= $image["url"];
-			            $content .= '"><img src="';
+			            $content .= '"><img class="valign" src="';
 			            $content .= $image["url"];
 			            $content .= '" alt="';
 			            $content .= $image["alt"].'"/>';
@@ -63,10 +67,15 @@ function pb_add_before_after(){
 			       }
 			     $content .= '</div>';
 
-			     //add a custom class that tells us the number of slides used
-			     $output = '<div class="gallery-container"><div class="variable-width count_'. $image_count.'">' . $content;
-			     $output .= '<div class="gallery-caption"><h5>'. $comment .'</h5></div>';
-			     $output .=  '</div>';
+			     //class that helps us apply a carousel to more than two slides
+			     $num_images = $image_count >= 3 ? 'multiple-slides' : 'two-slides';
+
+			     $output = '<div class="gallery-container '.$num_images.'">';
+			     $output .= '<div class="gallery-caption one-third first">';
+			     $output .= '<h2 class="">'.$title.'</h2><h6 class="">'. $comment .'</h6><div class="clear-line"></div></div>';
+			     $output .= '<div class="variable-width two-thirds '. $num_images .'">' . $content;
+			     $output .=  '<div class="clear-both"></div>';
+			     $output .='</div>';
 			    }
 			echo $output;
 			$output = '';

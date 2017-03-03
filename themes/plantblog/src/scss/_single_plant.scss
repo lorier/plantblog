@@ -94,6 +94,17 @@
 		font-family: $italic-font;
 		font-size: 18px;
 	}
+	.shade-assessment {
+		padding: 20px 20px 20px 30px;
+		background-color: #c3d17e;
+		margin-bottom: 20px;
+		h5 {
+			margin: 0;
+		}
+		p {
+			margin: 10px 0 0;
+		}
+	}
 	.entry-footer {
 		border-bottom: none;
 		clear: both;

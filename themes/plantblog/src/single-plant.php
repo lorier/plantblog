@@ -62,7 +62,7 @@ function pb_add_common_name(){
 	$output = '';
 	$loopcount = 0;
 	if ( have_rows('alternate_common_names')):
-		$output = '<h4 class="alt-names">AKA: ';
+		$output = '<h5 class="alt-names">Alternate Common Names</h5><p> ';
 		while ( have_rows('alternate_common_names') ) : the_row();
 
 	        // Your loop code
@@ -73,7 +73,7 @@ function pb_add_common_name(){
 	        $loopcount++;
 	        
     	endwhile;
-    	$output .= '</h4>';
+    	$output .= '</p>';
     echo $output;
     else:
 
@@ -83,12 +83,12 @@ endif;
 	
 }
 
-add_action('genesis_entry_header', 'pb_add_note',12);
-function pb_add_note(){
+add_action('genesis_entry_header', 'pb_add_gardeners_log',10);
+function pb_add_gardeners_log(){
 	global $post;
 	$output = '';
 	if ( have_rows('journal_notes')):
-		$output = '<div class="notes accordion"><a class="journal-title" href=""><h4>Journal Notes</h4></a><div class="inside">';
+		$output = '<div class="notes accordion"><a class="journal-title" href=""><h4>Gardener\'s Log</h4></a><div class="inside">';
 		while ( have_rows('journal_notes') ) : the_row();
 	        $output .= '<p><span class="date">'.get_sub_field('month_year').': </span>';
 	        $output .= get_sub_field('note').'</p>';
@@ -102,6 +102,45 @@ function pb_add_note(){
     // no rows found
 endif;
 }
+
+add_action('genesis_entry_header', 'pb_add_shade_summary',12);
+function pb_add_shade_summary(){
+	global $post;
+	$output = '';
+	if ( get_field('shade_summary')):
+		$output = '<div class="shade-assessment"><h5>Shady Assessment</h5>';
+	    $output .= get_field('shade_summary').'</div>';	        
+    echo $output;
+endif;
+}
+
+add_action('genesis_entry_header', 'pb_add_atg_comment',13);
+function pb_add_atg_comment(){
+	global $post;
+	$output = '';
+	if ( get_field('atg_commentary')):
+		$output = '<div class="atg-commentary"><h5>How this plant has worked out for me</h5>';
+	    $output .= get_field('atg_commentary').'</div>';	        
+    echo $output;
+endif;
+}
+
+add_action('genesis_entry_header', 'pb_add_nursery_tag',14);
+function pb_add_nursery_tag(){
+	global $post;
+	$output = '';
+	if ( get_field('nursery_tag')):
+		$output = '<div class="atg-comment"><h5>The nursery tag says:</h5>';
+	    $output .= get_field('nursery_tag').'</div>';	        
+    echo $output;
+endif;
+}
+
+add_action('genesis_entry_header', 'pb_add_other_photo_headling',14);
+function pb_add_other_photo_headling(){
+	echo '<h5>Creative Commons Photos</h5>';
+}
+
 
 function pb_single_plant_sidebar(){
 	$output ='<h3>Plant Stats</h3>';

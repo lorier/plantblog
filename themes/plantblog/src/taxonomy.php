@@ -126,23 +126,23 @@ function pb_do_plant_loop() {
  
 }
 
-function pb_get_terms_list($id=null){
+// function pb_get_terms_list($id=null){
     
-    //get all the term objects
-    $post_terms = wp_get_post_terms($id, array('plant-type','location', 'light-requirement', 'year-planted'), array("fields" => "all"));
+//     //get all the term objects
+//     $post_terms = wp_get_post_terms($id, array('plant-type','location', 'light-requirement', 'year-planted'), array("fields" => "all"));
     
-    //loop through term objects and build an li for each term. Add the li to the term item array.
-    $term_items;
-    foreach($post_terms as $term_object) {
-        $term_items[] = '<li><a href="'.get_term_link( $term_object->term_id, $term_object->taxonomy ).'">'.$term_object->name.'</a></li>';
-    }
-    //build an unordered list from the contents of the term item array
-    ob_start();
-    $term_list = '<ul>';
-    $term_list .= implode('', $term_items);
-    $term_list .= '</ul>';
-    ob_clean(); 
-    // lr_print_pre($term_list);
-    return $term_list;
-}
+//     //loop through term objects and build an li for each term. Add the li to the term item array.
+//     $term_items;
+//     foreach($post_terms as $term_object) {
+//         $term_items[] = '<li><a href="'.get_term_link( $term_object->term_id, $term_object->taxonomy ).'">'.$term_object->name.'</a></li>';
+//     }
+//     //build an unordered list from the contents of the term item array
+//     ob_start();
+//     $term_list = '<ul>';
+//     $term_list .= implode('', $term_items);
+//     $term_list .= '</ul>';
+//     ob_clean(); 
+//     // lr_print_pre($term_list);
+//     return $term_list;
+// }
 genesis();

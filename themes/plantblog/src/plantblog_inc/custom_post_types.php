@@ -42,7 +42,9 @@ function pb_plant() {
 		'public'                => true,
 		'show_ui'               => true,
 		'show_in_menu'          => true,
+		'menu_icon'   			=> 'dashicons-carrot',
 		'menu_position'         => 5,
+
 		'show_in_admin_bar'     => true,
 		'show_in_nav_menus'     => true,
 		'can_export'            => true,
