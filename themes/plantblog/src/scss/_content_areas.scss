@@ -17,6 +17,10 @@ Content Area
     }
 }
 
+.content {
+	padding-top: 25px;
+}
+
 //site map
 .page-id-292 .entry-content {
 	max-width: 520px;
@@ -141,12 +145,9 @@ Content Area
 	border-bottom-style: none;
 }
 
-//remove white at bottom of For Clients page and Your Exam Page
-.page-id-11, .page-id-268, .page-id-10, .page-id-392 {
-	.site-inner {
-		padding-bottom: 0;
-	}
-	.content article.page {
-		margin-bottom: 0;
+/* captions */
+.wp-caption {
+	img {
+		width: 100%;
 	}
 }

@@ -1,0 +1,44 @@
+// ==== Garden Locations Page ==== //
+
+.page-template-page-locations {
+	.page-title-description{
+		background-color: $green;
+		padding: 20px 0;
+		.wrap {
+			display: flex;
+			align-items: center;
+		}
+		h1.page-title {
+			// float: left;
+			width: 45%;
+			align-self: flex-start;
+			font-family: $headline-sans-serif;
+			color: white;
+			font-weight: 400;
+			text-transform: uppercase;
+			font-size: 48px;
+			margin-bottom: 0;
+
+			// align-items: left;
+		}
+		.page-description {
+			float: left;
+			padding-left: 20px;
+			border-left: 1px solid gray;
+			text-align: center;
+		}
+	}
+	.locations.wrap {
+		background-color: #fff;
+		margin-bottom: 30px;
+		img.location-image {
+			float: left
+		}
+	}
+	.locations {
+		.two-thirds {
+			padding: 30px;
+			margin-left: 0;
+		}
+	}
+}

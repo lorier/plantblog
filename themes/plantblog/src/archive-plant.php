@@ -31,7 +31,7 @@ function lr_cpt_archive_title_description() {
      *  This example uses a custom post type called 'service'
      */
     $archive_settings = get_option( 'genesis-cpt-archive-settings-plant' );
-    echo '<div class="archive-title">'.$archive_settings['headline'].'</div>';
+    echo '<h1 class="archive-title">'.$archive_settings['headline'].'</h1>';
     echo '<div class="archive-description"><p>'.$archive_settings['intro_text'].'</p>'.do_shortcode('[wpdreams_ajaxsearchlite]').'</div>';
 }
 
@@ -60,7 +60,7 @@ function lr_add_custom_class( $attributes ) {
 
 $sort_by_taxonomy = sanitize_text_field($_GET['sort-by']);
 
-add_action('genesis_before_loop', 'pb_sort_menu', 10);
+add_action('genesis_after_header', 'pb_sort_menu', 10);
 function pb_sort_menu(){
     // global $plant_type;
     // global $location;

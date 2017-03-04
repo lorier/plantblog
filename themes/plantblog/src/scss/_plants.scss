@@ -1,5 +1,6 @@
 // ==== Plants Page ==== //
 
+
 /* Search 
 ----------------------------------*/
 .search_wrap {
@@ -15,6 +16,9 @@
 /* Entry Meta 
 -----------------------------------------------*/
 .post-type-archive-plant{
+	.content {
+		padding-top: 0;
+	}
 	h2 {
 		font-size: 37px;
 		color: $yellow;
@@ -33,18 +37,21 @@
 			display: flex;
 			align-items: center;
 		}
-		.archive-title {
+		h1.archive-title {
 			// float: left;
 			width: 25%;
 			align-self: flex-start;
+			
 			font-family: $headline-sans-serif;
 			color: white;
 			font-weight: 400;
 			text-transform: uppercase;
 			font-size: 48px;
+			margin-bottom: 0;
 
 			// align-items: left;
 		}
+		
 		.archive-description {
 			float: left;
 		padding-left: 20px;
