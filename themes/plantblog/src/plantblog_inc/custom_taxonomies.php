@@ -34,6 +34,7 @@ function pb_type_taxonomy() {
 		'show_ui'                    => true,
 		'show_admin_column'          => true,
 		'show_in_nav_menus'          => true,
+		'show_in_rest'      		 => true,		
 		'show_tagcloud'              => true,
 		'query_var'					 => true
 	);
@@ -81,6 +82,7 @@ function pb_light_requirement() {
 		'show_ui'                    => true,
 		'show_admin_column'          => true,
 		'show_in_nav_menus'          => true,
+		'show_in_rest'      		 => true,
 		'query_var'					 => true,
 		'show_tagcloud'              => true
 	);
@@ -172,6 +174,7 @@ function pb_location() {
 		'show_ui'                    => true,
 		'show_admin_column'          => true,
 		'show_in_nav_menus'          => true,
+		'show_in_rest'      		 => true,
 		'query_var'					 => true,
 		'show_tagcloud'              => true
 	);

@@ -36,6 +36,9 @@ gulp.task('scripts-bundle', function(){
   // Iterate through each bundle in the bundles array
   var tasks = bundles.map(function(bundle) {
     return gulp.src(bundle[1]) // bundle[1]: the list of source files
+    .pipe(plugins.babel({
+            presets: ['es2015']
+        }))
     .pipe(plugins.concat(config.namespace + bundle[0].replace(/_/g, '-') + '.js')) // bundle[0]: the nice name of the script; underscores are replaced with hyphens
     .pipe(gulp.dest(config.dest));
   });

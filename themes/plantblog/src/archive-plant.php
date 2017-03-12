@@ -57,14 +57,34 @@ function lr_add_custom_class( $attributes ) {
 
 //http://www.rlmseo.com/blog/passing-get-query-string-parameters-in-wordpress-url/
 //https://codepen.io/the_ruther4d/post/custom-query-string-vars-in-wordpress
+// add query args to the query for each link. 
+add_action('genesis_after_header', 'js_pb_sort_menu', 10);
+function js_pb_sort_menu(){
+   
+
+    //load the initial taxonomy. This is currently always 'plant-type' on first page load
+    // global $sort_by_taxonomy; //used and set by the custom loop
+    // $sorter_class = 'plant-type';
+    // if ($sort_by_taxonomy) $sorter_class = $sort_by_taxonomy;
+
+    // $plant_type = array('sort-by' => 'plant-type');
+    // $location = array('sort-by' => 'location');
+    // $light = array('sort-by' => 'light-requirement');
+    $output = '<ul id="sorter" class="'.esc_attr($sorter_class).'">';
+    $output .= '
+        <li class="plant-type-link"><a id="plant-type-" href="">Plant Type</a></li>
+        <li class="location-link"><a id="location-" href="">Location</a></li>
+        <li class="light-link"><a id="light-requirement-" href="">Light Needs</a></li>
+    </ul>';
+    echo $output;
+}
 
 $sort_by_taxonomy = sanitize_text_field($_GET['sort-by']);
 
-add_action('genesis_after_header', 'pb_sort_menu', 10);
+// add_action('genesis_after_header', 'pb_sort_menu', 10);
 function pb_sort_menu(){
-    // global $plant_type;
-    // global $location;
-    global $sort_by_taxonomy;
+     //load the initial taxonomy. This is currently always 'plant-type' on first page load
+    global $sort_by_taxonomy; //used and set by the custom loop
     $sorter_class = 'plant-type';
     if ($sort_by_taxonomy) $sorter_class = $sort_by_taxonomy;
 

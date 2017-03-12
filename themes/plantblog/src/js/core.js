@@ -34,7 +34,8 @@
 		    $('.accordion > .inside').slideToggle('default');
 		    // return false;
 		  });
-		  // before and after carousels
+		
+		// before and after carousels
 		$('.variable-width.multiple-slides').slick({
 			// dots: true,
 			infinite: true,
@@ -45,13 +46,105 @@
 			variableWidth: true
 			});
 
+		$('#sorter a').on('click', function(e){
+			e.preventDefault();
+			var id = e.target.getAttribute('id');
+			var allEntries = getPlantEntries(id)
+			var taxNames = getTaxonomyNames(allEntries, id);
+			getSortedEntries(allEntries,taxNames);
+
+			// console.log(allEntries);
+			// console.log(names);
+		})
+
 		$(window).resize(function(){
+			//TODO figure out resizing algorithm for this
 			// resizeImages();
 		});
+		
+		
 	}); //end doc ready
+
 	$(window).load(function(){
+		//resize images on the static before and after entries
   		resizeImages();
 	}); //end window load
+
+
+	function getSortedEntries(entries, taxNames){
+
+		var sectArray = [];
+		for (let name of taxNames){
+			sectArray.push(name);
+			console.log(name);
+			for (let item of entries){
+				var classList = item.className; //get all classes in one string
+				// console.log(classList);
+				if( classList.includes(name) ){
+					console.log(item + ' has the class '+ name);
+				}else{console.log('item does not contain ' + name)}
+			}
+		}
+	}
+
+	function getPlantEntries(id){
+		//selecting entries by regex not necessary. just get all the plants, then we filter them later.
+		// var selectClassRE = '[class*='+ id + ']'; //create regex
+    	// var selected = $(selectClassRE); //get the entry elements
+    	var selected = $('div.plant'); //get the entry elements
+    	return selected;
+	}
+
+	function getTaxonomyNames(entries, id){
+
+		var matches = [];
+
+		for (let item of entries) {
+		 	var classList = item.className.split(/\s+/); //get all classes on each entry
+		 	
+		 	//extract the taxonomy name from the class,
+		 	//add to an array  
+		 	for (let oneClass of classList) {
+		 		if (oneClass.includes(id)){
+		 			matches.push( oneClass.substring(id.length) );
+		 		};
+		 	}
+		}
+
+		//dedupe the array
+	 	matches = uniq(matches); // remove dupes
+	 	// console.log(matches);
+	 	return matches;
+	}
+
+
+
+		/*
+		1. create an array containing all the classes that start with light-requirement- from all nodes that contain light-requirement-
+		2. remove duplicates from array
+		3. strip light-requirement- from strings
+		4. return array containing the clean strings - these are our section titles.
+
+		for each clean string in array,
+			- print out string (h2 section header)
+			- select nodes in object where the class contains 'light-requirement-' + clean string
+			- output nodes
+		*/
+    	// var
+    	// for (let lightReq of selected){
+
+    	// }
+
+		//TODO use jquery.unique to sort out duplicate elements
+
+	// ES6
+	// http://stackoverflow.com/questions/9229645/remove-duplicates-from-javascript-array
+	function uniq(a) {
+	   return Array.from(new Set(a));
+	}
+
+
+
 
   function resizeImages(){
 	console.log("resized");

@@ -113,6 +113,7 @@ function pb_list_plants() {
                 )
         )
     );
+
     echo '<main class="masonry pb-wrap">';
 
     //loop through each term, gathering all the posts for each term in chunks
@@ -164,6 +165,8 @@ function pb_list_plants() {
                     
                     global $post;
 
+                    $tax_classes = pb_get_post_terms($post);
+
                     $thumb = lr_get_post_thumb($post);
 
                     //check our custom field value
@@ -175,7 +178,7 @@ function pb_list_plants() {
                             continue;
                         }else{
                             do_action( 'genesis_before_entry' );
-                            printf( '<div %s>', genesis_attr( 'entry' ) );
+                            printf( '<div class="plant '. $tax_classes.'" %s>', genesis_attr( 'entry' ) );
                                 // $output = '<a href="'.esc_url(get_the_permalink()).'">'.pb_get_thumbnail($post->post_id);
                                 $output = '<a href="'.esc_url(get_the_permalink()).'"><div class="plant-list-thumb"">'.$thumb.'</div>';
                                 $output .= '<h3>'.get_the_title().'</h3>';
@@ -197,4 +200,32 @@ function pb_list_plants() {
     // Restore original Post Data
     wp_reset_postdata();
 }
+
+/**
+ * Get taxonomies terms links.
+ *
+*/
+
+function pb_get_post_terms($post) {
+ 
+    // Get taxonomies on the post object. Returns array of taxonomy names.
+    $taxonomies = get_object_taxonomies( $post );
+
+    $output = array();
+ 
+    foreach ( $taxonomies as $taxonomy ){
+    
+        // Get the terms related to post.
+        $terms = get_the_terms( $post->ID, $taxonomy );
+
+        if ( ! empty( $terms ) ) {
+            foreach ( $terms as $term ) {
+                $output[] = $taxonomy . '-' . $term->slug;
+            }
+        }
+    }
+    // lr_print_pre($output);
+    return implode( ' ', $output );
+}
+
  
