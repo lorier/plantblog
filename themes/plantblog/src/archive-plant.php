@@ -72,9 +72,9 @@ function js_pb_sort_menu(){
     // $light = array('sort-by' => 'light-requirement');
     $output = '<ul id="sorter" class="'.esc_attr($sorter_class).'">';
     $output .= '
-        <li class="plant-type-link"><a id="plant-type-" href="">Plant Type</a></li>
-        <li class="location-link"><a id="location-" href="">Location</a></li>
-        <li class="light-link"><a id="light-requirement-" href="">Light Needs</a></li>
+        <li class="plant-type-link"><a id="plant-type" href="">Plant Type</a></li>
+        <li class="location-link"><a id="location" href="">Location</a></li>
+        <li class="light-link"><a id="light-requirement" href="">Light Needs</a></li>
     </ul>';
     echo $output;
 }

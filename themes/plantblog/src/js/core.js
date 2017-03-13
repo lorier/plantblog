@@ -48,10 +48,11 @@
 
 		$('#sorter a').on('click', function(e){
 			e.preventDefault();
-			var id = e.target.getAttribute('id');
-			var allEntries = getPlantEntries(id)
-			var taxNames = getTaxonomyNames(allEntries, id);
-			getSortedEntries(allEntries,taxNames);
+			var groupName = e.target.getAttribute('id');
+			var allEntries = getAllEntries(groupName)
+			var sorted = sortEntries(allEntries, groupName);
+			displayEntries(sorted);
+
 
 			// console.log(allEntries);
 			// console.log(names);
@@ -71,71 +72,64 @@
 	}); //end window load
 
 
-	function getSortedEntries(entries, taxNames){
-
-		var sectArray = [];
-		for (let name of taxNames){
-			sectArray.push(name);
-			console.log(name);
-			for (let item of entries){
-				var classList = item.className; //get all classes in one string
-				// console.log(classList);
-				if( classList.includes(name) ){
-					console.log(item + ' has the class '+ name);
-				}else{console.log('item does not contain ' + name)}
-			}
-		}
+	function displayEntries(sorted){
+		$('.masonry.pb-wrap').fadeOut( 200, function() {
+			$('.masonry.pb-wrap').empty();
+			$('.masonry.pb-wrap').append(sorted);
+			$('.masonry.pb-wrap').fadeIn( 200 );
+		 });
 	}
 
-	function getPlantEntries(id){
+	function getAllEntries(groupName){
 		//selecting entries by regex not necessary. just get all the plants, then we filter them later.
-		// var selectClassRE = '[class*='+ id + ']'; //create regex
+		// var selectClassRE = '[class*='+ groupName + ']'; //create regex
     	// var selected = $(selectClassRE); //get the entry elements
     	var selected = $('div.plant'); //get the entry elements
     	return selected;
 	}
 
-	function getTaxonomyNames(entries, id){
+	function sortEntries(entries, groupName){
 
-		var matches = [];
+	 	var sortedEntries = [];
+	 	// get the nested object for this view.
+	 	// the nested object contains key/value pairs 
+	 	// of all the taxonomy terms for this view
+ 		var filterView = taxonomy_data[groupName];
 
-		for (let item of entries) {
-		 	var classList = item.className.split(/\s+/); //get all classes on each entry
+ 		// loop through the taxonomies
+	 	for ( var i in filterView) {
+			
+			var matches = [];
+
+			// add the taxonomy term as a header
+			matches.push('<h2>' + filterView[i] + '</h2>');
+
+			for (let item of entries) {
+				
+				//create an array from the classes on the entry
+			 	var classList = item.className.split(/\s+/); //get all classes on each entry
 		 	
-		 	//extract the taxonomy name from the class,
-		 	//add to an array  
-		 	for (let oneClass of classList) {
-		 		if (oneClass.includes(id)){
-		 			matches.push( oneClass.substring(id.length) );
-		 		};
-		 	}
+			 		// if our taxonomy term exists in this entry
+			 		// add the entry to our array
+			 		if (classList.includes(i)){
+			 			matches.push( item );
+			 		};
+			 }
+			 // if any entries matched any tax terms, then push the matches array
+			 // to a holding array
+			 if (matches.length > 1 ){
+			 	sortedEntries.push(matches);
+			 }else {
+			 	matches = [];
+			 }
+
 		}
+		//flatten multidimensional array here
+		sortedEntries = [].concat.apply([], sortedEntries);
+		console.log(sortedEntries);
 
-		//dedupe the array
-	 	matches = uniq(matches); // remove dupes
-	 	// console.log(matches);
-	 	return matches;
+		return sortedEntries;
 	}
-
-
-
-		/*
-		1. create an array containing all the classes that start with light-requirement- from all nodes that contain light-requirement-
-		2. remove duplicates from array
-		3. strip light-requirement- from strings
-		4. return array containing the clean strings - these are our section titles.
-
-		for each clean string in array,
-			- print out string (h2 section header)
-			- select nodes in object where the class contains 'light-requirement-' + clean string
-			- output nodes
-		*/
-    	// var
-    	// for (let lightReq of selected){
-
-    	// }
-
-		//TODO use jquery.unique to sort out duplicate elements
 
 	// ES6
 	// http://stackoverflow.com/questions/9229645/remove-duplicates-from-javascript-array
@@ -143,11 +137,7 @@
 	   return Array.from(new Set(a));
 	}
 
-
-
-
   function resizeImages(){
-	console.log("resized");
 	//TODO make this work with window resize. Math isn't working right currently.
   	var iwidth,
 	    	iheight,

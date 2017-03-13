@@ -125,13 +125,15 @@ function pb_list_plants() {
         }
 
         //if a plural form of the term is available, use that
-        $plural = get_term_meta( $term->term_id, 'plural', true );
+        // $plural = get_term_meta( $term->term_id, 'plural', true );
         
-        if( !empty($plural) ){
-            $page_title = $plural;
-        }else {
-            $page_title = $term->name;
-        }
+        // if( !empty($plural) ){
+        //     $page_title = $plural;
+        // }else {
+        //     $page_title = $term->name;
+        // }
+        $page_title = $term->name;
+
 
         echo '<article class="item">';
         //add title before each grouping
@@ -179,7 +181,6 @@ function pb_list_plants() {
                         }else{
                             do_action( 'genesis_before_entry' );
                             printf( '<div class="plant '. $tax_classes.'" %s>', genesis_attr( 'entry' ) );
-                                // $output = '<a href="'.esc_url(get_the_permalink()).'">'.pb_get_thumbnail($post->post_id);
                                 $output = '<a href="'.esc_url(get_the_permalink()).'"><div class="plant-list-thumb"">'.$thumb.'</div>';
                                 $output .= '<h3>'.get_the_title().'</h3>';
                                 $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p></a>';
@@ -207,10 +208,11 @@ function pb_list_plants() {
 */
 
 function pb_get_post_terms($post) {
+
  
     // Get taxonomies on the post object. Returns array of taxonomy names.
     $taxonomies = get_object_taxonomies( $post );
-
+    
     $output = array();
  
     foreach ( $taxonomies as $taxonomy ){
@@ -218,9 +220,14 @@ function pb_get_post_terms($post) {
         // Get the terms related to post.
         $terms = get_the_terms( $post->ID, $taxonomy );
 
+        $output[] = $taxonomy;
+
         if ( ! empty( $terms ) ) {
             foreach ( $terms as $term ) {
-                $output[] = $taxonomy . '-' . $term->slug;
+
+                /* MAJOR EDIT HERE FOR JS *********************************************************/
+                $output[] .= $term->slug;
+                // $output[] = $taxonomy . '-' . $term->slug;
             }
         }
     }
