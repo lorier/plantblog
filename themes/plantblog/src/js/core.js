@@ -35,7 +35,7 @@
 		    // return false;
 		  });
 		
-		// before and after carousels
+		// Options for the before and after carousels
 		$('.variable-width.multiple-slides').slick({
 			// dots: true,
 			infinite: true,
@@ -46,16 +46,29 @@
 			variableWidth: true
 			});
 
+		//get all the entries from the Plant List page
+		if ( document.body.className.match('post-type-archive-plant') ){
+			var allEntries = getAllEntries();
+		}
+
+		// Hook up sorter functionality for Plant List page
 		$('#sorter a').on('click', function(e){
+
 			e.preventDefault();
 			var groupName = e.target.getAttribute('id');
-			var allEntries = getAllEntries(groupName)
-			var sorted = sortEntries(allEntries, groupName);
-			displayEntries(sorted);
 
+			//disable action for the active state
+			if(e.target.parentNode.classList.contains('active-link')){
+				return;
+			}else{
+				$('.masonry.pb-wrap').fadeTo( 200, '0', function() {
+					$('.masonry.pb-wrap').empty();
+					sortEntriesBySubcategory(allEntries, groupName);
+				});
+			}
 
-			// console.log(allEntries);
-			// console.log(names);
+			$('#sorter li').removeClass('active-link');
+			e.target.parentNode.classList.toggle('active-link');
 		})
 
 		$(window).resize(function(){
@@ -71,70 +84,118 @@
   		resizeImages();
 	}); //end window load
 
-
-	function displayEntries(sorted){
-		$('.masonry.pb-wrap').fadeOut( 200, function() {
-			$('.masonry.pb-wrap').empty();
-			$('.masonry.pb-wrap').append(sorted);
-			$('.masonry.pb-wrap').fadeIn( 200 );
-		 });
-	}
-
-	function getAllEntries(groupName){
-		//selecting entries by regex not necessary. just get all the plants, then we filter them later.
-		// var selectClassRE = '[class*='+ groupName + ']'; //create regex
-    	// var selected = $(selectClassRE); //get the entry elements
+	function getAllEntries(){
     	var selected = $('div.plant'); //get the entry elements
     	return selected;
 	}
 
-	function sortEntries(entries, groupName){
+	function buildArticleContainer(i,groupName,filterView){
+		// build the DOM elements for each section container
+		var article;
+		var anchor;
+		var headline;
+		var title;
+		
+		article = document.createElement("article");
+		article.className += " item entry-section";
+		anchor = document.createElement("a");
+
+		// //temporary for localhost
+			anchor.href = '/plantblog/' + groupName + '/' + i;
+		
+		headline = document.createElement("h2");
+		title = document.createTextNode(filterView[i]);
+		headline.append(title); 
+		anchor.append(headline);
+		article.insertBefore(anchor, null);
+
+		return article;
+	}
+
+	function sortEntriesBySubcategory(entries, groupName){
 
 	 	var sortedEntries = [];
+	 	
 	 	// get the nested object for this view.
 	 	// the nested object contains key/value pairs 
 	 	// of all the taxonomy terms for this view
  		var filterView = taxonomy_data[groupName];
 
+ 		//if we've marked items as clones in the previous sorting,
+ 		//remove them now.
+ 		// for (let item of entries){
+			// item['picked'] = false;
+			// if(item.hasOwnProperty('myClone')){
+			// 	console.log(item);
+			// 	item.remove();
+			// }
+		// }
+
  		// loop through the taxonomies
 	 	for ( var i in filterView) {
 			
-			var matches = [];
+			var article;
+			article = buildArticleContainer(i,groupName,filterView);
 
-			// add the taxonomy term as a header
-			matches.push('<h2>' + filterView[i] + '</h2>');
+			var tempContainer = [];
 
 			for (let item of entries) {
-				
 				//create an array from the classes on the entry
 			 	var classList = item.className.split(/\s+/); //get all classes on each entry
-		 	
-			 		// if our taxonomy term exists in this entry
-			 		// add the entry to our array
-			 		if (classList.includes(i)){
-			 			matches.push( item );
-			 		};
+		 		
+		 		// clone item if we've already placed it in another section
+			 	// if our taxonomy term exists in this entry
+		 		// add the entry to our array
+		 		// if(item.picked){
+			 	// 	item = item.cloneNode(true);
+			 	// 	console.log(item);
+			 	// 	item.myClone = true;
+			 	// 	item.className += ' cloned';
+		 		// }
+		 		if (classList.includes(i)){
+		 			// article.appendChild(item);
+		 			tempContainer.push(item);
+
+		 			//flag item so we know we've picked it
+		 			item['picked'] = true;
+		 		};
 			 }
-			 // if any entries matched any tax terms, then push the matches array
-			 // to a holding array
-			 if (matches.length > 1 ){
-			 	sortedEntries.push(matches);
+
+			if ( tempContainer.length > 0){
+
+			 	//sort the entries based on first alpha character (skip quote marks)
+			 	tempContainer.sort(function(a,b){
+			 		var aFirst = (a.textContent.match(/[a-zA-Z]/) || []).pop();
+			 		var bFirst = (b.textContent.match(/[a-zA-Z]/) || []).pop();
+			 		console.log(aFirst)
+			 		if (aFirst < bFirst) return -1;
+			 		if (aFirst > bFirst) return 1;
+
+			 		return 0;
+			 	});
+
+				// populate the article node with sorted entries;
+				for(var i = 0; i < tempContainer.length; i++ ) {
+					article.appendChild(tempContainer[i]);
+				}
+
+			 	sortedEntries.push(article);
 			 }else {
-			 	matches = [];
+			 	article = null;
 			 }
-
 		}
+		//reset picked property for next round
+		
 		//flatten multidimensional array here
-		sortedEntries = [].concat.apply([], sortedEntries);
-		console.log(sortedEntries);
+		// sortedEntries = [].concat.apply([], sortedEntries);
+		displayEntries(sortedEntries);
+		// console.log(sortedEntries);
 
-		return sortedEntries;
 	}
-
-	// ES6
-	// http://stackoverflow.com/questions/9229645/remove-duplicates-from-javascript-array
-	function uniq(a) {
-	   return Array.from(new Set(a));
+	function displayEntries(sorted){
+		$('.masonry.pb-wrap').css('opacity', '0');
+		$('.masonry.pb-wrap').append(sorted);
+		$('.masonry.pb-wrap').fadeTo( 200, '1' );
 	}
 
   function resizeImages(){

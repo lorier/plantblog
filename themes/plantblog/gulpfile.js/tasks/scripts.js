@@ -51,8 +51,8 @@ gulp.task('scripts-bundle', function(){
 gulp.task('scripts-minify', ['scripts-bundle'], function(){
   return gulp.src(config.minify.src)
   .pipe(plugins.sourcemaps.init())
-  .pipe(plugins.uglify(config.minify.uglify))
-  .pipe(gulp.dest(config.minify.dest))
+  // .pipe(plugins.uglify(config.minify.uglify))
+  // .pipe(gulp.dest(config.minify.dest))
   .pipe(plugins.sourcemaps.write('./'));
 });
 

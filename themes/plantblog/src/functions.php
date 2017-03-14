@@ -72,7 +72,11 @@ function pb_enqueue_corejs(){
 	    foreach ($plant_terms as $plant_term){
 	        $name = $plant_term->name;
 	        $slug = $plant_term->slug;
-	        $data[$slug]=$name;
+	        if($slug=='evergreen'){
+	        	continue;
+	        }else {
+		        $data[$slug]=$name;
+	        }
 	    }
 	    $taxon_list[$taxon] = $data;
 	}
