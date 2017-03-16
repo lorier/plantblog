@@ -11,7 +11,7 @@ function rcms_register_portal_menu() {
 	register_nav_menu( 'third-menu' ,__( 'Third Navigation Menu' ));
 }
 
-remove_action( 'genesis_site_description', 'genesis_seo_site_description' );
+// remove_action( 'genesis_site_description', 'genesis_seo_site_description' );
 
 
 // Customize the legal text
@@ -105,25 +105,3 @@ function pb_move_featured_image(){
 	}
 }
 
-
-//////////////////////////////////////
-// Template selection
-//////////////////////////////////////
-
-// @param string, default template path
-// @return string, modified template path
-
-// add_filter( 'template_include', 'lr_template_redirect' );
-function lr_template_redirect( $template ) {
-	// echo get_query_var( 'post_type');
- //    if ( is_post_type_archive('plant')){
- //        echo '<h1>this is the plant archive</h1>';
- //        // $template = locate_template( array('page-plants.php'), false ); 
- //        return $template;
- //    }else 
-    // if ( is_tax( array('plant-type','location','year-planted','light-requirement') ) {
-    // 	// echo 'is tax';
-    //     $template = get_query_template( 'page-plants' );    
-    // }
-    // return $template;
-}

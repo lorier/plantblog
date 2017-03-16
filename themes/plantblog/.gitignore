@@ -3,4 +3,4 @@ build/
 dist/
 .DS_store
 ../../debug.log
-
+debug.log
