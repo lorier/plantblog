@@ -42,8 +42,8 @@ function kickstart_fonts_scripts() {
 
 	wp_enqueue_script( 'kickstart-responsive-menu', get_stylesheet_directory_uri() . '/js/responsivemenu.js', array( 'jquery' ), CHILD_THEME_VERSION, true );
 	$output = array(
-		'mainMenu' => __( 'Menu', 'no-sidebar' ),
-		'subMenu'  => __( 'Menu', 'no-sidebar' ),
+		'mainMenu' => __( '', 'no-sidebar' ),
+		'subMenu'  => __( '', 'no-sidebar' ),
 	);
 	wp_localize_script( 'kickstart-responsive-menu', 'KickstartL10n', $output );
 }
@@ -132,7 +132,7 @@ add_theme_support( 'genesis-responsive-viewport' );
 // Move menu to Header Right and remove the wrap div
 remove_action( 'genesis_after_header','genesis_do_nav' ) ;
 add_action( 'genesis_header_right','genesis_do_nav' );
-add_theme_support( 'genesis-structural-wraps', array( 'header', 'footer-widgets', 'footer' ) );
+add_theme_support( 'genesis-structural-wraps', array(  'footer-widgets', 'footer' ) );
 
 // Unregister alternate layouts
 genesis_unregister_layout( 'content-sidebar-sidebar' );
@@ -157,7 +157,7 @@ add_theme_support( 'post-formats', array( 'quote' ) );
 add_post_type_support( 'page', 'excerpt' );
 
 // Image sizes
-add_image_size( 'post_featured', 370, 250, true );
+add_image_size( 'post_featured', 460, 311, true );
 add_image_size( 'post_medium', 400, 218, true );
 add_image_size( 'post_large', 573, 285, true );
 
