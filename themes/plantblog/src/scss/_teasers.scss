@@ -4,6 +4,7 @@
 		background-color: #fff;
 		border: $gray-rule;
 		height: 500px;
+		max-width: 460px;
 		overflow: hidden;
 		position: relative;
 	}
@@ -38,10 +39,10 @@
 	    	width: 100%;
 	    }
 	}
-	@media only screen and (min-width: 828px){
-		.one-half {
-			// width: inherit;
-
+	@media only screen and (max-width: $mobile-nav-down){
+		.teaser {
+			float: none;
+			margin: 0 auto;
 		}
 	}
 }

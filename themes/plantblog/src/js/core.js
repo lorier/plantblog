@@ -53,8 +53,8 @@
 
 		// Hook up sorter functionality for Plant List page
 		$('#sorter a').on('click', function(e){
-
 			e.preventDefault();
+
 			var groupName = e.target.getAttribute('id');
 
 			//disable action for the active state
@@ -121,16 +121,6 @@
 	 	// of all the taxonomy terms for this view
  		var filterView = taxonomy_data[groupName];
 
- 		//if we've marked items as clones in the previous sorting,
- 		//remove them now.
- 		// for (let item of entries){
-			// item['picked'] = false;
-			// if(item.hasOwnProperty('myClone')){
-			// 	console.log(item);
-			// 	item.remove();
-			// }
-		// }
-
  		// loop through the taxonomies
 	 	for ( var i in filterView) {
 			
@@ -143,15 +133,6 @@
 				//create an array from the classes on the entry
 			 	var classList = item.className.split(/\s+/); //get all classes on each entry
 		 		
-		 		// clone item if we've already placed it in another section
-			 	// if our taxonomy term exists in this entry
-		 		// add the entry to our array
-		 		// if(item.picked){
-			 	// 	item = item.cloneNode(true);
-			 	// 	console.log(item);
-			 	// 	item.myClone = true;
-			 	// 	item.className += ' cloned';
-		 		// }
 		 		if (classList.includes(i)){
 		 			// article.appendChild(item);
 		 			tempContainer.push(item);
@@ -189,9 +170,8 @@
 		//flatten multidimensional array here
 		// sortedEntries = [].concat.apply([], sortedEntries);
 		displayEntries(sortedEntries);
-		// console.log(sortedEntries);
-
 	}
+
 	function displayEntries(sorted){
 		$('.masonry.pb-wrap').css('opacity', '0');
 		$('.masonry.pb-wrap').append(sorted);
