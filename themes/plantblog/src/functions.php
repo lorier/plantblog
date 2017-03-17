@@ -251,30 +251,29 @@ function kickstart_single_next_prev() {
 		next_post_link( '<div class="pagination-next alignright">%link</div>', $nextpost_text );
 	echo '</div>';
 }
+
 //Include MCN-specific Function files
 // add_action('wp_head', 'rcms_favicons' );
 function rcms_favicons(){
 	$blog_url = esc_url( get_stylesheet_directory_uri() ); 
 	echo 
 <<<EOT
-	<link rel="apple-touch-icon" sizes="57x57" href="$blog_url/images/apple-touch-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="$blog_url/images/apple-touch-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="$blog_url/images/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="$blog_url/images/apple-touch-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="$blog_url/images/apple-touch-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="$blog_url/images/apple-touch-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="$blog_url/images/apple-touch-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="$blog_url/images/apple-touch-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="$blog_url/images/apple-touch-icon-180x180.png">
-	<link rel="icon" type="image/png" href="$blog_url/images/favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="$blog_url/images/favicon-194x194.png" sizes="194x194">
-	<link rel="icon" type="image/png" href="$blog_url/images/favicon-96x96.png" sizes="96x96">
-	<link rel="icon" type="image/png" href="$blog_url/images/android-chrome-192x192.png" sizes="192x192">
-	<link rel="icon" type="image/png" href="$blog_url/images/favicon-16x16.png" sizes="16x16">
-	<link rel="manifest" href="$blog_url/images/manifest.json">
-	<link rel="mask-icon" href="$blog_url/images/safari-pinned-tab.svg" color="#4a0c70">
-	<meta name="msapplication-TileColor" content="#da532c">
-	<meta name="msapplication-TileImage" content="images/mstile-144x144.png">
-	<meta name="theme-color" content="#ffffff">
+<link rel="apple-touch-icon" sizes="57x57" href="$blog_url/images/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="$blog_url/images/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="$blog_url/images/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="$blog_url/images/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="$blog_url/images/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="$blog_url/images/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="$blog_url/images/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="$blog_url/images/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="$blog_url/images/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="$blog_url/images/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="$blog_url/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="$blog_url/images/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="$blog_url/images/favicon-16x16.png">
+<link rel="manifest" href="$blog_url/images/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="$blog_url/images/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
 EOT;
 }
