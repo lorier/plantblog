@@ -62,7 +62,7 @@ module.exports = {
   scripts: {
     bundles: { // Bundles are defined by a name and an array of chunks (below) to concatenate; warning: this method offers no dependency management!
       core: ['core']
-    , pageloader: ['pageloader', 'core']
+    , pageloader: ['pageloader']
     , responsivemenu: ['responsivemenu']
     , stickynav: ['stickynav']
     }

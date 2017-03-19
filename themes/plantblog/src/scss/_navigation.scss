@@ -65,8 +65,8 @@ p.site-title {
 
 .site-title a:hover {
 	// background-color: #efefef;
-	color: #999;
-}
+	color: lighten($dark-gray, 20%);
+	}
 
 .site-description {
 	font-family: $body-font;
@@ -196,6 +196,8 @@ body .genesis-nav-menu {
 		font-size: 14px;
 		color: $dark-gray;
 		padding: 12px 20px;
+		text-transform: none;
+		letter-spacing: 0;
     }
     .sub-menu a span {
     	text-decoration: none;
@@ -579,14 +581,18 @@ body .genesis-nav-menu {
 }
 
 .footer-widgets {
+	-webkit-font-smoothing: antialiased;
+
 	background-color: $brown;
 	//logo & pinterest
 	.footer-widgets-1 {
 		width: 28%;
 		h3{
 			font-family: lobster;
-		    font-size: 40px;
-		    margin-bottom: 7px
+		    margin-bottom: 7px;
+		    a {
+			    font-size: 40px;
+		    }
 		}
 		a.social {
 			font-size: 20px;
@@ -605,7 +611,7 @@ body .genesis-nav-menu {
 		width: 14%;
 	}
 	.footer-widgets-4 {
-		width: 34%;
+		width: 32%;
 	}
 
 	.footer-widgets-1, 
@@ -659,6 +665,18 @@ body .genesis-nav-menu {
 	.widget_nav_menu a {
 		color: white;
 	}
+	.mc4wp-form-fields {
+		p {
+			margin: 10px 0;
+		}
+		input[type='submit'] {
+			font-size: 14px;
+		    padding: 11px 15px;
+		    width: auto;
+		    font-weight: bold;
+		}
+		
+	}
 }
 @media screen and (max-width: 700px){
 	.footer-widgets, .widget-area, .wrap {
@@ -698,32 +716,21 @@ body .genesis-nav-menu {
 }
 
 .site-footer {
+	font-size: 10px;
 	:focus {
 		outline: none;	
 	}
-	color: $dark-gray;
+	color: $light-gray;
 	background-color: $brown;
 	padding: 10px;
-	ul {
-		list-style-type: none;
-	}
-	li {
-		display: inline-block;
-		color: $dark-gray;
-	}
-	li:first-child:after {
-		content: '|';
-		display: inline;
-		position: relative;
-		right: -2px;
-	}
-	li a {
-		color: $dark-gray;
+
+	a {
+		color: $light-gray;
 		display: inline-block;
 		padding: 5px;
 		text-decoration: underline;
 		&:hover {
-			color: $dark-gray;
+			color: $yellow;
 		}
 		&:focus {
 			outline: none;

@@ -253,8 +253,8 @@ function kickstart_single_next_prev() {
 }
 
 //Include MCN-specific Function files
-// add_action('wp_head', 'rcms_favicons' );
-function rcms_favicons(){
+add_action('wp_head', 'pb_favicons' );
+function pb_favicons(){
 	$blog_url = esc_url( get_stylesheet_directory_uri() ); 
 	echo 
 <<<EOT

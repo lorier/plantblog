@@ -20,18 +20,17 @@ add_action( 'genesis_footer', 'sp_custom_footer' );
 function sp_custom_footer() {
 	$output = '<p> &copy; Copyright ';
 	$output .= date('Y');
-	$output .= ' Lorie Ransom. All rights reserved.';
+	$output .= ' Lorie Ransom. All rights reserved. ';
+	$output .= '<a href="'.get_page_link(1006 ).'">Privacy Policy</a> ';
+	$output .= '<a href="'.get_page_link(1012 ).'">Terms of Service</a> ';
 	echo $output;
 }
 
 // Hacky fix for Scroll-to-Fixed issue
-add_action('genesis_before_header', 'add_blank_div', 10);
-function add_blank_div(){
-	echo '<div class="decorative-bar"></div>';
-}
-// Disable auto paragraph tags in TinyMCE
-// remove_filter ('the_content',  'wpautop');
-// remove_filter ('comment_text', 'wpautop');
+// add_action('genesis_before_header', 'add_blank_div', 10);
+// function add_blank_div(){
+// 	echo '<div class="decorative-bar"></div>';
+// }
 
 // Enable shortcode use in widgets
 add_filter('widget_text', 'do_shortcode');
@@ -82,20 +81,10 @@ function rcms_favicon_filter( $favicon_url ) {
 	return  esc_url($base) . 'images/favicon.ico';
 }
 
-// add_action( 'loop_start', 'remove_titles_all_single_posts' );
-// function remove_titles_all_single_posts() {
-//     if ( is_front_page() ) {
-//         // remove_action( 'genesis_entry_content', 'genesis_do_post_content' );
-// 		remove_action( 'genesis_entry_footer', 'genesis_post_meta' );
-// 		remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_open', 5 );
-// 		remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_close', 15 );
-//     }
-// }
-
-
+// blog and archive - move featured image to top
 add_action( 'genesis_before', 'pb_move_featured_image' );
 function pb_move_featured_image(){
-	if( is_front_page()){
+	if( is_front_page() || is_archive() ){
 		remove_action( 'genesis_entry_content', 'genesis_do_post_image', 8);
 		remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
 		
@@ -103,5 +92,11 @@ function pb_move_featured_image(){
 		add_action( 'genesis_entry_header', 'genesis_do_post_title', 13);
 
 	}
+}
+// back to top
+add_action( 'genesis_before_footer', 'pb_add_backtotop', 5 );
+function pb_add_backtotop(){
+	echo '<a class="back-to-top off" href="#"><i class="fa fa-angle-up" aria-hidden="true"></i>
+</a>';
 }
 

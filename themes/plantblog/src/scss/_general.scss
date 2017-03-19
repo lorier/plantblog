@@ -33,8 +33,8 @@ $lightest-gray: #f1f1f1;
 // $lightest-purple: #8a7189;
 $forms-gray: #c6c8a6;
 // $off-white: #eef3db;
-$off-white: #f4f5e7;
-$off-white: #eeefe8;
+// $off-white: #f4f5e7;
+$off-white: #eef1e0;
 
 $site-description: #dbaf34;
 
@@ -50,7 +50,6 @@ $font-awesome: 'FontAwesome', sans-serif;
 body {
 	background-color: $off-white;
 }
-
 
 // Helper Classes
 .desktop-hidden {
@@ -71,4 +70,36 @@ body {
  //    width: 300%;
  //    margin-left: -1000px;
  //    margin-right: 1000px;
+}
+.back-to-top.off {
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.5s ease;
+
+}
+
+.back-to-top{
+	opacity: 1;
+	visibility: visible;
+
+	position: fixed;
+	z-index: 100;
+	bottom: 30px;
+	right: 30px;
+
+	width: 40px;
+	height: 40px;
+	background-color: $yellow;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	transition: opacity 0.5s ease;
+
+    &:hover {
+    	background-color: darken($yellow, 10%);
+    	transition: background-color 0.5s ease;
+    }
+	i {
+		color: white;
+	}
 }

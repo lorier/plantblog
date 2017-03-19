@@ -1,5 +1,6 @@
 // ==== Grid teasers ==== //
-.blog {
+.blog,
+.category {
 	.teaser {
 		background-color: #fff;
 		border: $gray-rule;
@@ -42,7 +43,9 @@
 	@media only screen and (max-width: $mobile-nav-down){
 		.teaser {
 			float: none;
-			margin: 0 auto;
+			margin: 20px auto;
+			width: 100%;
+			
 		}
 	}
 }

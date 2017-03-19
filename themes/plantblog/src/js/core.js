@@ -4,26 +4,30 @@
 // A simple wrapper for all your custom jQuery; everything in this file will be run on every page
 ;(function($){
   $(document).ready(function() {
-		// $('.site-header').scrollToFixed({
-		// 	preFixed: function() { 
-		// 		$(this).find('.site-description').css('display', 'none'); 
-		// 		// $(this).find('.site-title').css('font-size', '40px'); 
-		// 		$(this).find('#menu-main-navigation').css('margin-top', '10px'); 
-		// 		// $(this).find('.site-header').css('background-image', ''); 
-		// 		$(this).find('.wrap').css('padding', '10px 0 20px'); 
-		// 		$(this).css('height', '120px');
+		
 
-		// 	},
-		// 	postFixed: function() { 
-		// 		$(this).find('.site-description').css('display', 'inline-block'); 
-		// 		// $(this).find('.site-title').css('font-size', '68px'); 
-		// 		$(this).find('#menu-main-navigation').css('margin-top','30px'); 
-		// 		// $(this).find('.site-header').css('background-image', 'url(images/treebark.jpg), url(images/treeline.png)'); 
-		// 		$(this).find('.wrap').css('padding', '40px 0 40px'); 
-		// 		$(this).css('height', '243px');
+  		//scroll button
+  		$('.back-to-top').on('click', function(e){
+  			e.target.preventDefault;
+  			$('body').animate({'scrollTop': '0px'}, 700);
+  		})
+  		$(window).scroll(function(){
+	  		// console.log('button scrolled: ' + ofst.top );
+	  		// console.log('window y: ' + window.scrollY);
+			var opcty = $('.back-to-top').css('opacity');
 
-		// 	}
-		// });
+	  		if(window.scrollY > 1000 && opcty === '0'){
+	  			// console.log('make visible');
+	  			// $('.back-to-top').css({'opacity': '1', 'transition': 'opacity 0.5s ease' });
+	  			$('.back-to-top').toggleClass('off');
+	  		}
+	  		if(window.scrollY < 1000 && opcty === '1'){
+	  			// console.log('make invisible');
+	  			$('.back-to-top').toggleClass('off');
+
+	  			// $('.back-to-top').css({'opacity': '0', 'transition': 'opacity 0.5s ease' });
+	  		}
+  		})
 
 		// journal notes accordion
 		$('.accordion .inside').hide();
