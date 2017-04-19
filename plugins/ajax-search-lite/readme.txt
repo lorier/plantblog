@@ -4,7 +4,7 @@ Donate link: http://wp-dreams.com
 Tags: search, better wordpress search, search plugin, relevance search, widget, Post, ajax search, search filter, wp ajax search, custom fields search, better search, ajax search plugin, wp search, wp search plugin, filter, relevant search plugin, wordpress search, Live Search, shortcode, google, autocomplete, suggest, woocommerce, woocommerce search, product, product search, custom search, ajax, suggest, autosuggest, search autocomplete, live, plugin, sidebar, product tag search, products, woocommerce tag search, WooCommerce Plugin, shop, search by sku, relevant search, highlight, term, image, custom search, ecommerce, Predictive Search, search product, shop, typehead, suggest, instant-search
 Requires at least: 3.5
 Tested up to: 4.7
-Stable tag: 4.7.2
+Stable tag: 4.7.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,7 +48,7 @@ Homepage: [wp-dreams.com](http://wp-dreams.com)
 
 Pro version Demo:  [Ajax Search Pro](http://demo.wp-dreams.com/?product=ajax_search_pro)
 
-**Pro version fetures v4.9.8 (2016.11.04):**
+**Pro version fetures v4.10.3 (2017.03.15):**
 
 * Frontend Demo: [Ajax Search Pro](http://demo.wp-dreams.com/?product=ajax_search_pro)
 * The search now can affect the default WordPress search results
@@ -105,6 +105,15 @@ and will let you know what to do.
 2. Administrator area - nice and smooth
 
 == Changelog ==
+
+= 4.7.3 =
+* Better context finder
+* Custom field options updated to ajax, to prevent issues
+* Results page orderby and order query variables respect
+* WooCommerce results page price filter and ordering respect
+* Mobile device related fixes
+* Ajax page loading related fixes
+* Custom field based filtering optimizations
 
 = 4.7.2 =
 * Featured image source size is adjustable

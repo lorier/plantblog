@@ -22,7 +22,7 @@ function pb_single_post_meta_filter($post_meta){
 }
 
 //add featured image to posts
-add_action( 'genesis_before_entry_content', 'pb_single_featured_post_image', 8 );
+// add_action( 'genesis_before_entry_content', 'pb_single_featured_post_image', 8 );
 function pb_single_featured_post_image() {
 	$thumb_id = get_post_thumbnail_id();
 	$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'large', true);

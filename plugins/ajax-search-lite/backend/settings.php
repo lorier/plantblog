@@ -4,7 +4,6 @@ $messages = "";
 
 $inst = wd_asl()->instances->get(0);
 $sd = &$inst['data'];
-//var_dump($_sd);
 $_def = get_option('asl_defaults');
 $_dk = 'asl_defaults';
 ?>

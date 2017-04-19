@@ -25,8 +25,15 @@ window.ASL.initialized = false;
 // Call this function if you need to initialize an instance that is printed after an AJAX call
 // Calling without an argument initializes all instances found.
 window.ASL.initialize = function(id) {
+    // this here is either window.ASL or window._ASL
+    var _this = this;
+
+    // Some weird ajax loader problem prevention
+    if ( typeof _this.getScope == 'undefined' )
+        return false;
+
     // Yeah I could use $ or jQuery as the scope variable, but I like to avoid magical errors..
-    var scope = window.ASL.getScope();
+    var scope = _this.getScope();
     var selector = ".asl_init_data";
 
     if ((typeof ASL_INSTANCES != "undefined") && Object.keys(ASL_INSTANCES).length > 0) {
@@ -128,7 +135,7 @@ window.ASL.initialize = function(id) {
         });
     }
 
-    window.ASL.initialized = true;
+    _this.initialized = true;
 };
 
 window.ASL.ready = function() {
@@ -143,7 +150,7 @@ window.ASL.ready = function() {
     // Redundancy for safety
     scope(window).load(function () {
         // It should be initialized at this point, but you never know..
-        if ( !window.ASL.initialized ) {
+        if ( !_this.initialized ) {
             _this.initialize();
             console.log("ASL initialized via window.load");
         }

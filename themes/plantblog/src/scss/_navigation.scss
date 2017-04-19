@@ -149,6 +149,10 @@ body .genesis-nav-menu {
     margin: 8px 0;
 }
 
+.blog .nav-primary .menu-item.current-menu-parent > a {
+		color: $yellow;
+	}
+
 .nav-primary .menu-item {
     // background-color: transparent;
     display: inline-block;
@@ -220,7 +224,7 @@ body .genesis-nav-menu {
 		font-weight: 300 !important;
 	}
 	.current-menu-item a:hover {
-		background-color: white !important;
+		// background-color: white !important;
 	}		
 }
 //////////
@@ -277,7 +281,7 @@ body .genesis-nav-menu {
 .genesis-nav-menu .sub-menu a:hover,
 .genesis-nav-menu .sub-menu .current-menu-item > a:hover {
 	background-color: $yellow;
-	color: #fff;
+	// color: #fff;
 }
 
 .genesis-nav-menu .sub-menu .sub-menu {
@@ -490,6 +494,7 @@ body .genesis-nav-menu {
 	.nav-primary ul {
 		border-top: 1px solid $gray-rule;
 	}
+	
 	.nav-primary .menu-item.current-menu-item {
 		border-bottom: 1px solid $gray-rule;		
 	}

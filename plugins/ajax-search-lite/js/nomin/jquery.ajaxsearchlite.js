@@ -58,6 +58,9 @@
             $this.currentPage = 1;
             $this.isotopic = null;
 
+            $this.lastSuccesfulPhrase = ''; // Holding the last phrase that returned results
+            $this.lastSearchData = {};      // Store the last search information
+
             $this.animation = "bounceIn";
             switch ($this.o.resultstype) {
                 case "vertical":
@@ -186,9 +189,17 @@
         initEvents: function () {
             var $this = this;
 
+            // Some kind of crazy rev-slider fix
+            $this.n.text.click(function(e){
+                $(this).focus();
+            });
+
             $($this.n.text.parent()).submit(function (e) {
                 e.preventDefault();
-                $this.n.text.keyup();
+                if ( isMobile() ) {
+                    $this.search();
+                    document.activeElement.blur();
+                }
             });
             $this.n.text.click(function () {
                 if ($this.firstClick) {
@@ -399,9 +410,17 @@
                 
                 if ($this.post != null) $this.post.abort();
                 clearTimeout(t);
+                $this.hideLoader();
                 t = setTimeout(function () {
-                    $this.search();
-                }, 300);
+                    // If the user types and deletes, while the last results are open
+                    if ($this.n.text.val() != $this.lastSuccesfulPhrase) {
+                        $this.search();
+                    } else {
+                        $this.n.proclose.css('display', 'block');
+                        if ( !$this.resultsOpened )
+                            $this.showResults();
+                    }
+                }, 250);
             });
         },
 
@@ -514,6 +533,14 @@
                 asid: $this.o.id,
                 options: $('form', $this.n.searchsettings).serialize()
             };
+
+            if ( JSON.stringify(data) === JSON.stringify($this.lastSearchData) ) {
+                if ( !$this.resultsOpened )
+                    $this.showResults();
+                $this.hideLoader();
+                return false;
+            }
+
             $this.analytics($this.n.text.val());
 
             // New method without JSON
@@ -545,8 +572,11 @@
                     return false;
                 }
 
+                $this.hideLoader();
                 $this.showResults();
                 $this.scrollToResults();
+                $this.lastSuccesfulPhrase = $this.n.text.val();
+                $this.lastSearchData = data;
 
                 if ($this.n.items.length == 0) {
                     if ($this.n.showmore != null) {

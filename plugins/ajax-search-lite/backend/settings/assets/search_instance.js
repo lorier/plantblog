@@ -75,4 +75,17 @@ jQuery(function ($) {
     }
 
     check_redirect_url();
+
+    // Primary and Secondary fields for custom fields
+    $.each(['titlefield', 'descriptionfield'],
+        function(i, v){
+            $("select[name='"+v+"']").change(function(){
+                if ( $(this).val() != 'c__f' ) {
+                    $("input[name='"+v+"_cf']").parent().css("display", "none");
+                } else {
+                    $("input[name='"+v+"_cf']").parent().css("display", "");
+                }
+            });
+            $("select[name='"+v+"']").change();
+        });
 });

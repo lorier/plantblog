@@ -141,7 +141,6 @@ function pb_add_other_photo_headling(){
 	echo '<h5>Creative Commons Photos</h5>';
 }
 
-
 function pb_single_plant_sidebar(){
 	$output ='<h3>Plant Stats</h3>';
 	

@@ -7,3 +7,4 @@ uploads/
 .DS_Store
 ai1wm-backups/
 backup-db/
+*.gz

@@ -60,7 +60,6 @@ if (!class_exists("WD_ASL_Search_Handler")) {
 
             /* Clear output buffer, possible warnings */
             print "!!ASLSTART!!";
-            //var_dump($results);die();
             print_r($html_results);
             print "!!ASLEND!!";
             die();

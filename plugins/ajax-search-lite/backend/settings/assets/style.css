@@ -90,7 +90,7 @@ Generic classes
 }
 
 #wpdreams .hiddend {
-  display: none;
+  display: none !important;
 }
 
 .wpd-text-right {
@@ -100,6 +100,15 @@ Generic classes
 #wpdreams a:focus {
   outline: none;
   box-shadow: none;
+}
+
+#wpdreams .loading-small {
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+  background: transparent url("icons/load24x24.gif") no-repeat center center;
+  vertical-align: middle;
+  display: inline-block;
 }
 
 .wd_col_20,
@@ -445,13 +454,15 @@ Generic classes
   background: url("icons/b-stat.png") no-repeat scroll 5px 5px transparent;
 }
 
-#wpdreams .sortablecontainer .ui-left {
+#wpdreams .sortablecontainer .ui-left,
+#wpdreams .draggablecontainer .ui-left {
   text-align: left;
   background: none repeat scroll 0 0 #FFFFFF !important;
   border: 1px dotted #D3D3D3 !important;
 }
 
-#wpdreams .sortablecontainer input[type="text"] {
+#wpdreams .sortablecontainer input[type="text"]:not(.wd_tts_all_text),
+#wpdreams .draggablecontainer input[type="text"] {
   background: url("icons/pen.png") no-repeat scroll 7px 7px #FCFCFC;
   border: 1px solid #EAEAEA;
   border-radius: 0 3px 3px 3px;
@@ -468,7 +479,8 @@ Generic classes
   width: auto;
 }
 
-#wpdreams .sortablecontainer label {
+#wpdreams .sortablecontainer label,
+#wpdreams .draggablecontainer label {
   background: none repeat scroll 0 0 #EAEAEA;
   border-radius: 3px 3px 0 0;
   border-top: 1px solid #EAEAEA;
@@ -1067,6 +1079,42 @@ Generic classes
   color: #c00;
 }
 
+#wpdreams .wd_cf_search {
+  text-align: left;
+}
+
+#wpdreams div.wd_cf_search {
+  position: relative;
+}
+
+#wpdreams div.wd_cf_search .wd_cf_search_res {
+  position: absolute;
+  display: none;
+  background: white;
+  border: solid 1px #DDDDDD;
+  box-shadow: rgba(0,0,0,0.1) 0px 0px 8px;
+  padding: 0;
+  text-align: left;
+  z-index: 1;
+  margin: 0 0 0 5px;
+}
+
+#wpdreams div.wd_cf_search .wd_cf_search_res li {
+  padding: 4px 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#wpdreams div.wd_cf_search .wd_cf_search_res p {
+  padding: 5px 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+#wpdreams div.wd_cf_search .wd_cf_search_res li:hover {
+  background: #efefef;
+}
+
 #wpdreams .wpdreamsYesNoSt {
   display: inline-block;
 }
@@ -1160,7 +1208,8 @@ Generic classes
   width: 32px;
 }
 
-#wpdreams .sortablecontainer {
+#wpdreams .sortablecontainer,
+#wpdreams .draggablecontainer {
   width: 40%;
   margin: 15px 30px;
   float: left;
@@ -1169,11 +1218,13 @@ Generic classes
   position: relative;
 }
 
-#wpdreams .sortablecontainer p {
+#wpdreams .sortablecontainer p,
+#wpdreams .draggablecontainer p {
   margin: 0 0 10px;
 }
 
-#wpdreams .sortablecontainer ul {
+#wpdreams .sortablecontainer ul,
+#wpdreams .draggablecontainer ul {
   height: 220px;
   overflow: auto;
   padding: 10px;
@@ -1181,36 +1232,43 @@ Generic classes
   border: 1px solid #DBDBDB;
 }
 
-#wpdreams .sortablecontainer ul li {
+#wpdreams .sortablecontainer ul li,
+#wpdreams .draggablecontainer ul li {
   padding: 6px;
   cursor: move;
   margin: 0 0 4px;
   background: #fefefe;
 }
 
-#wpdreams .sortablecontainer ul li.termlevel-1 {
+#wpdreams .sortablecontainer ul li.termlevel-1,
+#wpdreams .draggablecontainer ul li.termlevel-1{
   width: 87%;
   margin-left: 8%;
 }
 
-#wpdreams .sortablecontainer ul li.termlevel-2 {
+#wpdreams .sortablecontainer ul li.termlevel-2,
+#wpdreams .draggablecontainer ul li.termlevel-2 {
   width: 80%;
   margin-left: 15%;
 }
 
-#wpdreams .sortablecontainer ul li.termlevel-3 {
+#wpdreams .sortablecontainer ul li.termlevel-3,
+#wpdreams .draggablecontainer ul li.termlevel-3 {
   width: 70%;
   margin-left: 25%;
 }
 
-#wpdreams .sortablecontainer ul li.termlevel-4 {
+#wpdreams .sortablecontainer ul li.termlevel-4,
+#wpdreams .draggablecontainer ul li.termlevel-4 {
   width: 60%;
   margin-left: 35%;
 }
 
 
 #wpdreams .sortablecontainer .arrow-all-left,
-#wpdreams .sortablecontainer .arrow-all-right {
+#wpdreams .sortablecontainer .arrow-all-right,
+#wpdreams .draggablecontainer .arrow-all-left,
+#wpdreams .draggablecontainer .arrow-all-right {
   position: absolute;
   width: 20px;
   height: 20px;
@@ -1223,7 +1281,8 @@ Generic classes
   cursor: pointer;
 }
 
-#wpdreams .sortablecontainer .arrow-all-right {
+#wpdreams .sortablecontainer .arrow-all-right,
+#wpdreams .draggablecontainer .arrow-all-right{
   background: transparent url("icons/arrow-all-right.png") no-repeat 6px 5px;
   margin-top: 15px;
 }
@@ -1454,12 +1513,14 @@ Generic classes
   color: #444;
 }
 
-#wpdreams .wpdreamsCustomContent .sortablecontainer {
+#wpdreams .wpdreamsCustomContent .sortablecontainer,
+#wpdreams .wpdreamsCustomContent .draggablecontainer {
   width: 100%;
   margin: 0;
 }
 
-#wpdreams .wpdreamsCustomContent .sortablecontainer:after {
+#wpdreams .wpdreamsCustomContent .sortablecontainer:after,
+#wpdreams .wpdreamsCustomContent .draggablecontainer:after {
   clear: both;
 }
 
@@ -1845,6 +1906,54 @@ div#wpd_loading_msg {
   font-size: 32px;
   margin-top: 200px;
 }
+
+#wpdreams .wpdreamsCustomFields .sortablecontainer li,
+#wpdreams .customFieldsSortable .sortablecontainer li,
+#wpdreams .wd_TaxonomyTermSelect .sortablecontainer li,
+#wpdreams .wd_userselect .sortablecontainer li,
+#wpdreams .wd_cpt_select .sortablecontainer li {
+  position: relative;
+}
+
+#wpdreams .wpdreamsCustomFields .sortablecontainer li:hover a,
+#wpdreams .customFieldsSortable .sortablecontainer li:hover a,
+#wpdreams .wd_TaxonomyTermSelect .sortablecontainer li:hover a,
+#wpdreams .wd_userselect .sortablecontainer li:hover a,
+#wpdreams .wd_cpt_select .sortablecontainer li:hover a {
+  opacity: 1;
+}
+
+#wpdreams .wpdreamsCustomFields .deleteIcon,
+#wpdreams .wpdreamsCustomFields .editIcon,
+#wpdreams .customFieldsSortable .deleteIcon,
+#wpdreams .customFieldsSortable .editIcon,
+#wpdreams .wd_userselect .deleteIcon,
+#wpdreams .wd_userselect .editIcon,
+#wpdreams .wd_cpt_select .deleteIcon,
+#wpdreams .wd_cpt_select .editIcon,
+#wpdreams .wd_TaxonomyTermSelect .deleteIcon,
+#wpdreams .wd_TaxonomyTermSelect .editIcon {
+  position: absolute;
+  top: 3px;
+  right: 30px;
+  opacity: 0;
+  transition: all 0.2s linear 0s;
+}
+
+#wpdreams .draggablecontainer .deleteIcon,
+#wpdreams .draggablecontainer .editIcon {
+  display: none;
+}
+
+#wpdreams .wpdreamsCustomFields .deleteIcon,
+#wpdreams .wpdreamsCustomFields .editIcon,
+#wpdreams .customFieldsSortable .deleteIcon,
+#wpdreams .wd_TaxonomyTermSelect .deleteIcon,
+#wpdreams .wd_userselect .deleteIcon,
+#wpdreams .wd_cpt_select .deleteIcon {
+  right: 3px;
+}
+
 
 #wpdreams .customFieldsSortable .sortablecontainer li {
   position: relative;

@@ -33,6 +33,7 @@ include('class/textarea.class.php');
 include('class/textarea-isparam.class.php');
 include('class/upload.class.php');
 include('class/yesno.class.php');
+include('class/wd_cf_search_callback.class.php');
 
 add_action('admin_print_styles', 'admin_stylesV04');
 add_action('admin_enqueue_scripts', 'admin_scriptsV04');;
@@ -66,6 +67,11 @@ if (!function_exists("admin_scriptsV04")) {
             'thickbox'
         ), ASL_CURR_VER_STRING, true);
         wp_enqueue_script('wpdreams-upload');
+
+        wp_register_script('wpdreams-misc', ASL_URL . 'backend/settings/assets/misc.js', array(
+            'jquery'
+        ), ASL_CURR_VER_STRING, true);
+        wp_enqueue_script('wpdreams-misc');
 
         wp_register_script('wpdreams-spectrum', plugin_dir_url(__FILE__) . '/assets/js/spectrum/spectrum.js', array(
             'jquery'

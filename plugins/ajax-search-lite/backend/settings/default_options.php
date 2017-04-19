@@ -206,19 +206,11 @@ function asl_do_init_options() {
         'stripshortcode' => 0,
         'pageswithcategories' => 0,
 
-        'titlefield_def' => array(
-            array('option' => 'Post Title', 'value' => 0),
-            array('option' => 'Post Excerpt', 'value' => 1)
-        ),
+
         'titlefield' => 0,
-
-        'descriptionfield_def' => array(
-            array('option' => 'Post Description', 'value' => 0),
-            array('option' => 'Post Excerpt', 'value' => 1),
-            array('option' => 'Post Title', 'value' => 2)
-        ),
+        'titlefield_cf' => '',
         'descriptionfield' => 0,
-
+        'descriptionfield_cf' => '',
 
         'excludecategories' => '',
         'excludeposts' => '',

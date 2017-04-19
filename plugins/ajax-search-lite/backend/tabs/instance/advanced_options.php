@@ -13,20 +13,45 @@
         <?php echo __("Removing shortcode is usually much faster, especially if you have many of them within posts.", "ajax-search-lite"); ?>
     </p>
 </div>
-<div class="item">
+<div class="item item-flex-nogrow" style="flex-wrap: wrap;">
     <?php
-    $o = new wpdreamsCustomFSelect("titlefield", __("Title Field", "ajax-search-lite"), array(
-        'selects'=>$sd['titlefield_def'],
+    $o = new wpdreamsCustomSelect("titlefield",  __("Title Field", "ajax-search-lite"), array(
+        'selects'=>array(
+            array('option' => 'Post Title', 'value' => 0),
+            array('option' => 'Post Excerpt', 'value' => 1),
+            array('option' => 'Custom Field', 'value' => 'c__f')
+        ),
         'value'=>$sd['titlefield']
+    ));
+    $params[$o->getName()] = $o->getData();
+    $o = new wd_CFSearchCallBack('titlefield_cf', '', array(
+        'value'=>$sd['titlefield_cf'],
+        'args'=> array(
+            'controls_position' => 'left',
+            'class'=>'wpd-text-right'
+        )
     ));
     $params[$o->getName()] = $o->getData();
     ?>
 </div>
-<div class="item">
+<div class="item item-flex-nogrow" style="flex-wrap: wrap;">
     <?php
-    $o = new wpdreamsCustomFSelect("descriptionfield", __("Description Field", "ajax-search-lite"), array(
-        'selects'=>$sd['descriptionfield_def'],
+    $o = new wpdreamsCustomSelect("descriptionfield",  __("Description Field", "ajax-search-lite"), array(
+        'selects'=>array(
+            array('option' => 'Post Content', 'value' => 0),
+            array('option' => 'Post Excerpt', 'value' => 1),
+            array('option' => 'Post Title', 'value' => 2),
+            array('option' => 'Custom Field', 'value' => 'c__f')
+        ),
         'value'=>$sd['descriptionfield']
+    ));
+    $params[$o->getName()] = $o->getData();
+    $o = new wd_CFSearchCallBack('descriptionfield_cf', '', array(
+        'value'=>$sd['descriptionfield_cf'],
+        'args'=> array(
+            'controls_position' => 'left',
+            'class'=>'wpd-text-right'
+        )
     ));
     $params[$o->getName()] = $o->getData();
     ?>

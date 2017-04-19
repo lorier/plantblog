@@ -29,6 +29,7 @@ class WD_ASL_Init {
         WD_ASL_DBMan::getInstance()->create();
 
         $this->chmod();
+        $this->backwards_compatibility_fixes();
 
         /**
          * Store the version number after everything is done. This is going to help distinguishing
@@ -48,9 +49,44 @@ class WD_ASL_Init {
         // Run the re-activation actions if this is actually a newer version
         if ($curr_stored_ver != ASL_CURRENT_VERSION) {
             $this->activate();
-            //asl_generate_the_css();
         }
     }
+
+    /**
+     * Fix known backwards incompatibilities
+     */
+    public function backwards_compatibility_fixes() {
+        /*
+         * - Get instances
+         * - Check options
+         * - Transition to new options based on old ones
+         * - Save instances
+         */
+
+        foreach (wd_asl()->instances->get() as $si) {
+            $sd = $si['data'];
+
+            // ------------------------- 4.7.3 -----------------------------
+            // Primary and secondary fields
+            $values = array('-1', '0', '1', '2', 'c__f');
+            $adv_fields = array(
+                'titlefield',
+                'descriptionfield'
+            );
+            foreach($adv_fields as $field) {
+                // Force string conversion for proper comparision
+                if ( !in_array($sd[$field].'', $values) ) {
+                    // Custom field value is selected
+                    $sd[$field.'_cf'] = $sd[$field];
+                    $sd[$field] = 'c__f';
+                }
+            }
+
+            // At the end, update
+            wd_asl()->instances->update(0, $sd);
+        }
+    }
+
 
     /**
      * Extra styles if needed..

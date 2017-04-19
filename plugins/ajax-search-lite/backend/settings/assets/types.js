@@ -987,45 +987,87 @@ jQuery(function($){
     /**
      * Custom field selectors
      */
+    window.wd_cf_ajax_callback = function(r, $node, o, parent) {
+        var $cf_parent = $node.closest('.wpdreamsCustomFields');
+        var $drg = $(".draggablecontainer ul", $cf_parent);
+        var id = $cf_parent.attr('id').match(/^wpdreamsCustomFields-(.*)/)[1];
+        var html = '';
+        var drag_opts = {
+            connectToSortable: "#sortable_conn" + id,
+            update: function (event, ui) {},
+            cancel: ".ui-state-disabled",
+            helper: "clone",
+            items: "> li"
+        };
+        if ( r.length > 0 ) {
+            $.each(r, function(i, v) {
+                html += '<li class="ui-state-default" cf_name="'+v.meta_key+'">'+v.meta_key+'<a class="deleteIcon"></a></li>';
+            });
+            $drg.html(html);
+            $("#sortable" + id + " li").draggable(drag_opts).disableSelection();
+            $("#sortable" + id + " li").trigger('sortupdate');
+            $("#sortable_conn" + id).trigger('sortupdate');
+        } else {
+            $drg.html('No results for this phrase.');
+        }
+    }
     $('div.wpdreamsCustomFields').each(function(){
         var id = $(this).attr('id').match(/^wpdreamsCustomFields-(.*)/)[1];
-        var selector = "#sortable" + id +", #sortable_conn" + id;
         var name = $('input[isparam=1]', this).attr('name');
+        var parent = $(this);
+        var hidden = $('input[isparam=1]', this);
 
-        $(selector).sortable({
-            connectWith: ".connectedSortable"
-        }, {
-            update: function (event, ui) {
-            }
-        }).disableSelection();
+        function list_update() {
+            $("#sortable" + id + " li").removeClass("ui-state-disabled");
+            $('ul[id*=sortable_conn] li', parent).each(function (i, v) {
+                $("#sortable" + id + " li[cf_name='"+$(this).attr('cf_name')+"']").addClass("ui-state-disabled");
+            });
+        }
 
-        $(selector).on('sortupdate', function(event, ui) {
-            if (typeof(ui)!='undefined')
-                var parent = $(ui.item).parent();
-            else
-                var parent = $(event.target);
-            while (!parent.hasClass('wpdreamsCustomFields')) {
-                parent = $(parent).parent();
-            }
-            var items = $('ul[id*=sortable_conn] li', parent);
-            var hidden = $('input[name=' + name + ']', parent);
+        function data_update() {
+            var items = $("#sortable_conn" + id + " li")
             var val = "";
             items.each(function () {
-                val += "|" + $(this).html();
+                val += "|" + $(this).attr('cf_name');
             });
             val = val.substring(1);
             hidden.val(val);
+        }
+
+        $("#sortable_conn" + id).sortable({
+            update: function (event, ui) {
+                var $item = $(ui.item);
+                $item.css({
+                    "width": "",
+                    "height": ""
+                });
+                list_update();
+                data_update();
+            },
+            items: "> li",
+            cancel: ".ui-state-disabled",
+            remove: function(event, ui) {}
+        }).disableSelection();
+
+        $("#sortable_conn" + id).on('sortupdate', function(event, ui) {
+            list_update();
+            data_update();
         });
 
-        $("#sortablecontainer" + id + " .arrow-all-left").click(function(){
-            $("#sortable_conn" + id + " li")
-                .detach().appendTo("#sortable" + id + "");
-            $(selector).trigger("sortupdate");
+        $("#sortable_conn" + id).on( "click", "li a.deleteIcon", function(e){
+            e.preventDefault();
+            $(this).parent().detach();
+            list_update();
+            data_update();
         });
-        $("#sortablecontainer" + id + " .arrow-all-right").click(function(){
-            $("#sortable" + id + " li:not(.hiddend)")
-                .detach().appendTo("#sortable_conn" + id);
-            $(selector).trigger("sortupdate");
+
+        $("#draggablecontainer" + id + " .arrow-all-left").click(function(){
+            $("#sortable_conn" + id + " li").detach();
+            $("#sortable_conn" + id).trigger('sortupdate');
+        });
+        $("#draggablecontainer" + id + " .arrow-all-right").click(function(){
+            $("#sortable" + id + " li:not(.hiddend):not(.ui-state-disabled)").clone().appendTo("#sortable_conn" + id);
+            $("#sortable_conn" + id).trigger('sortupdate');
         });
     });
 
@@ -1235,6 +1277,92 @@ jQuery(function($){
             tt_s_update( parent );
         })
     });
+
+    $('div.wd_cf_search').each(function() {
+        var timeout = null;
+        var parent = this;
+        var id = $(this).attr('id').match(/^wd_cf_search-(.*)/)[1];
+        $("input.wd_cf_search", parent).keyup(function () {
+            var $this = $(this);
+            clearTimeout(timeout);
+            if ( $this.val() == '' ) {
+                $('.wd_ts_close', parent).addClass("hiddend");
+                $('.loading-small', parent).addClass("hiddend");
+                return;
+            }
+            timeout = setTimeout(function () {
+                $('.loading-small', parent).removeClass("hiddend");
+                $('.wd_ts_close', parent).addClass("hiddend");
+                var data = {
+                    'action': 'wd_search_cf',
+                    'wd_phrase': $this.val(),
+                    'wd_required': 1,
+                    'wd_args': $("input.wd_args", parent).val()
+                };
+                $.post(ajaxurl, data, function (response) {
+                    var o = JSON.parse(Base64.decode($("input.wd_args", parent).val()));
+                    var reg = new RegExp(o.delimiter +'(.*[\s\S]*)'+ o.delimiter);
+                    var data_r = response.match(reg);
+                    data_r = JSON.parse(data_r[1]);
+                    if ( typeof o.callback != 'undefined' && o.callback != '' ) {
+                        if ( typeof window[o.callback] != 'undefined' )
+                            window[o.callback].apply(null, [data_r, $this, o, parent, id]);
+                    } else {
+                        var html = '';
+                        $.each(data_r, function(i, v){
+                            html += '<li key="' + v.meta_key + '">' + v.meta_key + '</li>';
+                        });
+                        if ( html != '')
+                            $('.wd_cf_search_res', parent).html('<ul>' + html + '</ul>');
+                        else
+                            $('.wd_cf_search_res', parent).html('<p>No results :(</p>');
+                        $('.wd_cf_search_res', parent).css({
+                            left: $this.position().left,
+                            top: $this.position().top + $this.outerHeight(true) + 10,
+                            display: 'block',
+                            minWidth: $this.width()
+                        });
+                        $('.wd_cf_search_res li', parent).on('click', function(e){
+                            $this.val($(this).attr('key'));
+                            $('.wd_cf_search_res', parent).css({display: 'none'});
+                        });
+                    }
+                    $('.loading-small', parent).addClass("hiddend");
+                    $('.wd_ts_close', parent).removeClass("hiddend");
+                }, "text");
+            }, 350);
+        });
+        $('.wd_ts_close', parent).click(function(){
+            $("input.wd_cf_search", parent).val('');
+            $(this).addClass("hiddend");
+            $('.wd_cf_search_res', parent).css({
+                display: 'none'
+            });
+        });
+        $("input.wd_cf_search", parent).click(function () {
+            $('.wd_cf_search_res', parent).css({
+                left: $(this).position().left,
+                top: $(this).position().top + $(this).outerHeight(true) + 10,
+                display: 'block'
+            });
+        });
+        $("input.wd_cf_search", parent).on('blur', function () {
+            $(this).val($(this).val().trim());
+        });
+        $(parent).click("click", function (e) {
+            e.stopImmediatePropagation();
+        });
+        $(document).click(function(){
+            $('.wd_ts_close', parent).addClass("hiddend");
+            $('.wd_cf_search_res', parent).css({display: 'none'});
+        });
+    });
+    /**
+     * EXAMPLE HANDLER
+     window.my_js_function_name = function(r, $node, o) {
+        //console.log(r, $node, o);
+    };
+     */
 
 
     // ----------------------- THEME RELATED ---------------------

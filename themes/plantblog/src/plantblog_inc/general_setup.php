@@ -62,13 +62,13 @@ if ( !is_page() ) {
 	return $post_meta;
 }}
 
-add_filter('get_the_archive_title', 'rcms_add_tag_leader_text');
-function rcms_add_tag_leader_text($title){
-	echo 'filter called';
+add_filter('get_the_archive_title', 'pb_add_tag_leader_text');
+function pb_add_tag_leader_text($title){
+	// echo 'filter called';
 	$prefix = '';
-	if ( is_tag() ) {
+	if ( is_category() ) {
 		// $prefix = '<p>Viewing posts tagged:</p>';
-		$title = single_tag_title( '<p>Viewing posts tagged:</p>', false );
+		$title = single_tag_title( 'Category: ', false );
 	}
 	return $title;
 }

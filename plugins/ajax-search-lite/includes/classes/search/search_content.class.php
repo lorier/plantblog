@@ -80,7 +80,6 @@ if ( ! class_exists( 'wpdreams_searchContent' ) ) {
 			/*---------------------------------------------------------------*/
 
 			/*----------------------- Gather Types --------------------------*/
-			//var_dump($options);
 			if ($options['set_inposts'] == 1)
 				$types[] = "post";
 			if ($options['set_inpages'])
@@ -330,22 +329,17 @@ if ( ! class_exists( 'wpdreams_searchContent' ) ) {
 				}
 			}
 
-
-			/*------------ ttids in the main SELECT, we might not need it ---------*/
-			// ttid is only used if grouping by category or filtering by category is active
-			// LITE VERSION DOESNT NEED THESE
-			// ---------------------------------------------------------------------
-
 			/*------------------- WooCommerce Visibility --------------------*/
 			$woo_visibility_query = '';
 			if ( class_exists( 'WooCommerce' ) ) {
-				$woo_visibility_query = "
-				AND ( ( (
-	                SELECT COUNT(*) FROM $wpdb->postmeta WHERE
-	                    $wpdb->postmeta.post_id = $wpdb->posts.ID
-	                AND ($wpdb->postmeta.meta_key='_visibility')
-	                AND ($wpdb->postmeta.meta_value IN ('visible', 'search') )
-                ) >= 1 ) OR NOT EXISTS( SELECT 1 FROM $wpdb->postmeta as pm WHERE post_id = $wpdb->posts.ID AND meta_key = '_visibility' ) )";
+				$qry = "( $wpdb->postmeta.meta_value IN ('visible', 'search') )";
+				$woo_visibility_query .= "
+				AND ((
+				  SELECT IF(meta_key IS NULL, 1, IF($qry, COUNT(post_id), 0))
+				  FROM $wpdb->postmeta
+				  WHERE $wpdb->postmeta.post_id = $wpdb->posts.ID AND $wpdb->postmeta.meta_key='_visibility'
+				) >= 1)
+				";
 			}
 			/*---------------------------------------------------------------*/
 
@@ -472,24 +466,26 @@ if ( ! class_exists( 'wpdreams_searchContent' ) ) {
             /*---------------------------------------------------------------*/
 
 			$querystr = "
-    		SELECT 
-          $wpdb->posts.post_title as title,
-          $wpdb->posts.ID as id,
-          $wpdb->posts.post_date as date,               
-          $select_content as content,
-          $select_excerpt as excerpt,
-          'pagepost' as content_type,
-	        (SELECT
-	            $wpdb->users.display_name as author
-	            FROM $wpdb->users
-	            WHERE $wpdb->users.ID = $wpdb->posts.post_author
-	        ) as author,
-          '' as ttid,
-          $wpdb->posts.post_type as post_type,
-          $relevance as relevance
-    		FROM $wpdb->posts
-        $postmeta_join
-        $term_join
+    	SELECT
+			{args_fields}
+			$wpdb->posts.post_title as title,
+			$wpdb->posts.ID as id,
+			$wpdb->posts.post_date as date,
+			$select_content as content,
+			$select_excerpt as excerpt,
+			'pagepost' as content_type,
+			(SELECT
+				$wpdb->users.display_name as author
+				FROM $wpdb->users
+				WHERE $wpdb->users.ID = $wpdb->posts.post_author
+			) as author,
+			'' as ttid,
+			$wpdb->posts.post_type as post_type,
+			$relevance as relevance
+    	FROM $wpdb->posts
+			$postmeta_join
+			$term_join
+			{args_join}
     	WHERE
                 $post_types
                 $woo_visibility_query
@@ -499,11 +495,35 @@ if ( ! class_exists( 'wpdreams_searchContent' ) ) {
             AND $exclude_posts
             AND ( $wpml_query )
             $polylang_query
+            {args_where}
         GROUP BY
-          $wpdb->posts.ID
+          	{args_groupby} $wpdb->posts.ID
         ORDER BY
-        	".$sd['orderby_primary'].", ".$sd['orderby_secondary'].", id DESC
+        	{args_orderby} ".$sd['orderby_primary'].", ".$sd['orderby_secondary'].", id DESC
         LIMIT " . $this->remaining_limit;
+
+			$_qargs = array(
+				'fields' => '',
+				'join' => '',
+				'where' => '',
+				'orderby' => '',
+				'groupby' => ''
+			);
+			$_qargs = apply_filters('asl_query_add_args', $_qargs, $sd, $options);
+			// Place the argument query fields
+			if ( is_array($_qargs) ) {
+				$querystr = str_replace(
+						array('{args_fields}', '{args_join}', '{args_where}', '{args_orderby}', '{args_groupby}'),
+						array($_qargs['fields'], $_qargs['join'], $_qargs['where'], $_qargs['orderby'], $_qargs['groupby']),
+						$querystr
+				);
+			} else {
+				$querystr = str_replace(
+						array('{args_fields}', '{args_join}', '{args_where}', '{args_orderby}', '{args_groupby}'),
+						'',
+						$querystr
+				);
+			}
 
 			$pageposts = $wpdb->get_results( $querystr, OBJECT );
 
@@ -516,9 +536,6 @@ if ( ! class_exists( 'wpdreams_searchContent' ) ) {
                 ),
                 "queries", false, true, false, 5
             );
-
-			//var_dump($querystr);die("!!");
-			//var_dump($pageposts);die("!!");
 
 			$this->results = $pageposts;
 			return $pageposts;
@@ -567,11 +584,17 @@ if ( ! class_exists( 'wpdreams_searchContent' ) ) {
 				$r->author  = apply_filters( 'asl_result_author_before_prostproc', $r->author, $r->id );
 				$r->date    = apply_filters( 'asl_result_date_before_prostproc', $r->date, $r->id );
 
-				$r->link = get_permalink( $v->id );
+				// -------------------------- Woocommerce Fixes -----------------------------
+				// ---- URL FIX for WooCommerce product variations
+				if ( $r->post_type == 'product_variation' && class_exists( 'WC_Product_Variation' ) ) {
+					$wc_prod_var_o = new WC_Product_Variation( $r->id );
+					$r->link       = $wc_prod_var_o->get_permalink();
+				} else {
+					$r->link = get_permalink( $v->id );
+				}
+				// --------------------------------------------------------------------------
 
 				$image_settings = $sd['image_options'];
-
-
 				if ( $image_settings['show_images'] != 0 ) {
 
 					$im = $this->getBFIimage( $r );
@@ -596,49 +619,88 @@ if ( ! class_exists( 'wpdreams_searchContent' ) ) {
 					}
 				}
 
-
-				if ( ! isset( $sd['titlefield'] ) || $sd['titlefield'] == "0" || is_array( $sd['titlefield'] ) ) {
-					$r->title = get_the_title( $r->id );
-				} else {
-					if ( $sd['titlefield'] == "1" ) {
-						if ( strlen( $r->excerpt ) >= 200 ) {
+				switch($sd['titlefield']) {
+					case '0':
+						if ( isset($wc_prod_var_o) ) {
+							$r->title = $wc_prod_var_o->get_title();
+						} else {
+							$r->title = get_the_title($r->id);
+						}
+						break;
+					case '1':
+						if ( ASL_mb::strlen( $r->excerpt ) >= 200 ) {
 							$r->title = wd_substr_at_word( $r->excerpt, 200 );
 						} else {
 							$r->title = $r->excerpt;
 						}
-					} else {
-						$mykey_values = get_post_custom_values( $sd['titlefield'], $r->id );
-						if ( isset( $mykey_values[0] ) ) {
-							$r->title = $mykey_values[0];
-						} else {
+						break;
+					case 'c__f':
+						if ( $sd['titlefield_cf'] == '' ) {
 							$r->title = get_the_title( $r->id );
+						} else {
+							$mykey_values = get_post_custom_values( $sd['titlefield_cf'], $r->id );
+							if ( isset( $mykey_values[0] ) ) {
+								$r->title = $mykey_values[0];
+							} else {
+								$r->title = get_the_title( $r->id );
+							}
 						}
-					}
+						break;
+					default:
+						if ( isset($wc_prod_var_o) ) {
+							$r->title = $wc_prod_var_o->get_title();
+						} else {
+							$r->title = get_the_title($r->id);
+						}
 				}
 
 				if ( ! isset( $sd['striptagsexclude'] ) ) {
 					$sd['striptagsexclude'] = "<a><span>";
 				}
 
-				if ( ! isset( $sd['descriptionfield'] ) || $sd['descriptionfield'] == "0" || is_array( $sd['descriptionfield'] ) ) {
-					if ( function_exists( 'qtrans_getLanguage' ) ) {
-						$r->content = apply_filters( 'the_content', $r->content );
-					}
-					$_content = strip_tags($r->content);
-				} else {
-					if ( $sd['descriptionfield'] == "1" ) {
-						$_content = strip_tags( $r->excerpt );
-					} else if ( $sd['descriptionfield'] == "2" ) {
-						$_content = strip_tags( get_the_title( $r->id ) );
-					} else {
-						$mykey_values = get_post_custom_values( $sd['descriptionfield'], $r->id );
-						if ( isset( $mykey_values[0] ) ) {
-							$_content = strip_tags( $mykey_values[0] );
-						} else {
-							$_content = strip_tags( $r->content );
+				switch ($sd['descriptionfield']) {
+					case '1':
+						if ( function_exists( 'qtranxf_use' ) ) {
+							global $q_config;
+							$r->excerpt = qtranxf_use($q_config['default_language'], $r->excerpt, false);
 						}
-					}
+						$_content = strip_tags( $r->excerpt, $sd['striptagsexclude'] );
+						break;
+					case '2':
+						$_content = strip_tags( get_the_title( $r->id ), $sd['striptagsexclude'] );
+						break;
+					case 'c__f':
+						if ( $sd['descriptionfield_cf'] == '' ) {
+							$_content = '';
+						} else {
+							$mykey_values = get_post_custom_values($sd['descriptionfield_cf'], $r->id);
+							if (isset($mykey_values[0])) {
+								$_content = strip_tags($mykey_values[0], $sd['striptagsexclude']);
+							} else {
+								$_content = '';
+							}
+						}
+						break;
+					default: //including option '0', alias content
+						if ( function_exists( 'qtranxf_use' ) ) {
+							global $q_config;
+							$r->content = qtranxf_use($q_config['default_language'], $r->content, false);
+						}
+						// For product variations, do something special
+						if ( isset($wc_prod_var_o) ) {
+							$r->content = $wc_prod_var_o->get_variation_description();
+							if ( $r->content == '' && isset(
+											$wc_prod_var_o->parent,
+											$wc_prod_var_o->parent->post,
+											$wc_prod_var_o->parent->post->post_content
+									)) {
+								$r->content = $wc_prod_var_o->parent->post->post_content;
+							}
+						}
+						$_content = strip_tags( $r->content, $sd['striptagsexclude'] );
+						break;
 				}
+
 				if ( $_content == "" && $r->content != '') {
 					$_content = $r->content;
 				}
@@ -651,7 +713,7 @@ if ( ! class_exists( 'wpdreams_searchContent' ) ) {
 					}
 				} else {
 					if ( $_content != "" ) {
-						$_content = apply_filters( 'the_content', $_content, $searchId );
+						$_content = apply_filters( 'the_content', $_content );
 					}
 				}
 
@@ -664,24 +726,32 @@ if ( ! class_exists( 'wpdreams_searchContent' ) ) {
 				$_content = strip_tags( $_content );
 
                 // Get the words from around the search phrase, or just the description
-                if ( w_isset_def($sd['description_context'], 1) == 1 && count( $_s ) > 0 )
-                    $_content = $this->context_find( $_content, $_s[0], floor($sd['descriptionlength'] / 6), $sd['descriptionlength'] );
-                else if ( $_content != '' && ( strlen( $_content ) > $sd['descriptionlength'] ) )
-                    $_content = wd_substr_at_word( $_content, $sd['descriptionlength'] ) . "...";
+                if ( w_isset_def($sd['description_context'], 1) == 1 && count( $_s ) > 0 ) {
+					// Try for an exact match
+					$_ex_content = $this->context_find(
+							$_content, $s,
+							floor($sd['descriptionlength'] / 6),
+							$sd['descriptionlength'],
+							50000,
+							true
+					);
+					if ( $_ex_content === false ) {
+						// No exact match, go with the first keyword
+						$_content = $this->context_find(
+								$_content, $_s[0],
+								floor($sd['descriptionlength'] / 6),
+								$sd['descriptionlength'],
+								50000
+						);
+					} else {
+						$_content = $_ex_content;
+					}
+				} else if ( $_content != '' && ( strlen( $_content ) > $sd['descriptionlength'] ) ) {
+					$_content = wd_substr_at_word($_content, $sd['descriptionlength']) . "...";
+				}
 
 				$_content   = wd_closetags( $_content );
 				$r->content = $_content;
-
-				// -------------------------- Woocommerce Fixes -----------------------------
-				// A trick to fix the url
-				if ( $r->post_type == 'product_variation' &&
-				     class_exists( 'WC_Product_Variation' )
-				) {
-					$r->title = preg_replace( "/(Variation) \#(\d+) (of)/si", '', $r->title );
-					$wc_prod_var_o = new WC_Product_Variation( $r->id );
-					$r->link       = $wc_prod_var_o->get_permalink();
-				}
-				// --------------------------------------------------------------------------
 
 				$r->title   = apply_filters( 'asl_result_title_after_prostproc', $r->title, $r->id );
 				$r->content = apply_filters( 'asl_result_content_after_prostproc', $r->content, $r->id );
@@ -691,7 +761,6 @@ if ( ! class_exists( 'wpdreams_searchContent' ) ) {
 
 			}
 			/* !Images, title, desc */
-			//var_dump($pageposts); die();
 			$this->results = $pageposts;
 
 			return $pageposts;
@@ -781,20 +850,21 @@ if ( ! class_exists( 'wpdreams_searchContent' ) ) {
 		}
 
 		/**
-		 * Returns the context of a phrase within a text (max 1800 characters).
+		 * Returns the context of a phrase within a text.
 		 * Uses preg_split method to iterate through strings.
 		 *
 		 * @param $str string context
 		 * @param $needle string context
 		 * @param $context int length of the context
 		 * @param $maxlength int maximum length of the string in characters
+		 * @param $str_length_limit source string maximum length
 		 * @return string
 		 */
-		function context_find($str, $needle, $context, $maxlength) {
+		public function context_find($str, $needle, $context, $maxlength, $str_length_limit = 25000, $false_on_no_match = false) {
 			$haystack = ' '.trim($str).' ';
 
 			// To prevent memory overflow, we need to limit the hay to relatively low count
-			$haystack = wd_substr_at_word(ASL_mb::strtolower($haystack), 1800);
+			$haystack = wd_substr_at_word(ASL_mb::strtolower($haystack), $str_length_limit);
 			$needle = ASL_mb::strtolower($needle);
 
 			if ( $needle == "" ) return $str;
@@ -803,7 +873,7 @@ if ( ! class_exists( 'wpdreams_searchContent' ) ) {
 			 * This is an interesting issue. Turns out mb_substr($hay, $start, 1) is very ineffective.
 			 * the preg_split(..) method is far more efficient in terms of speed, however it needs much more
 			 * memory. In our case speed is the top priority. However to prevent memory overflow, the haystack
-			 * is reduced to 1800 characters (roughly 300 words) first.
+			 * is reduced to 10000 characters (roughly 1500 words) first.
 			 *
 			 * Reference ticket: https://wp-dreams.com/forums/topic/search-speed/
 			 * Speed tests: http://stackoverflow.com/questions/3666306/how-to-iterate-utf-8-string-in-php
@@ -840,7 +910,7 @@ if ( ! class_exists( 'wpdreams_searchContent' ) ) {
 				$str_start = ($start - 1) < 0 ? 0 : ($start -1);
 				$str_end = ($end - 1) < 0 ? 0 : ($end -1);
 
-				$result = trim(ASL_mb::substr($str, $str_start, ($str_end - $str_start)));
+				$result = trim( ASL_mb::substr($str, $str_start, ($str_end - $str_start)) );
 
 				// Somewhere inbetween..
 				if ( $start != 0 && $end < $hay_length )
@@ -862,6 +932,9 @@ if ( ! class_exists( 'wpdreams_searchContent' ) ) {
 				return $result;
 
 			} else {
+				if ( $false_on_no_match )
+					return false;
+
 				// If it is too long, strip it
 				if ( ASL_mb::strlen($str) > $maxlength)
 					return wd_substr_at_word( $str, $maxlength ) . "...";

@@ -33,7 +33,6 @@ if (!class_exists("wpdreamsFour")) {
         }
 
         function processData() {
-            //var_dump($this->data);
             $this->desc = $this->data['desc'];
             $this->data = str_replace("\n", "", $this->data['value']);
             preg_match("/\|\|(.*?)\|\|(.*?)\|\|(.*?)\|\|(.*?)\|\|/", $this->data, $matches);
