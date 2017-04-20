@@ -81,7 +81,7 @@
 		}
 		p {
 			margin: 0;
-			padding: 5px 0 10px 20px;
+			padding: 0px 10px 10px 20px;
 			// font-family: Volkhov,cursive;
 		    font-weight: normal;
 		    font-size: 14px;
@@ -100,6 +100,9 @@
 		font-family: $italic-font;
 		font-size: 18px;
 	}
+	.alt-names {
+			margin-bottom: 10px;
+		}
 	.atg-commentary {
 		margin-top: 20px;
 	}
@@ -107,6 +110,13 @@
 		padding: 10px 20px 20px;
 		background-color: #c3d17e;
 		margin: 20px 0 30px;
+		div {
+		    display: flex;
+		    flex-direction: column;
+		    justify-content: center;
+		    min-height: 50px;
+		}
+
 		h5 {
 			    font-family: Muli,sans-serif;
 		    text-transform: uppercase;
@@ -146,19 +156,30 @@
 	.taxonomy a {
 		color: $yellow;
 	}
-	.cc-image img {
-		margin-bottom: 3px;
+	.cc-image {
+		display: inline-block;
+		img {
+			margin-bottom: 3px;
+		}
+	}
+	.wp-caption-text {
+		background-color: transparent;
+		padding: 0;
+		line-height: auto;
 	}
 	.cc-caption {
 		color: #a7a6a6;
 		float: left;
 		font-size: 10px;
 		font-weight: 300;
-
+		a:nth-of-type(2n) {
+			float:left;
+		}
 		a img {
 			width: 14px;
 			height: 14px;
-			display: none;
+			// display: none;
+			// float: left;
 		}
 	}
 }

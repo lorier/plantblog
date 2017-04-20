@@ -3,8 +3,11 @@
 add_filter('genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content');
 
 remove_action( 'genesis_sidebar', 'genesis_do_sidebar' );
-
 remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
+remove_action( 'genesis_entry_footer', 'genesis_post_meta' );
+remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_open', 5 );
+remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_close', 15 );
+
 
 add_action('genesis_sidebar', 'pb_single_plant_sidebar');
 
@@ -44,7 +47,7 @@ function pb_featured_image_sidebar() {
 	    }
 }
 
-add_action('genesis_entry_header', 'pb_alt_names',10);
+add_action('genesis_entry_header', 'pb_alt_names',11);
 function pb_alt_names(){
 	global $post;
 	echo '<h4 class="latin">'.esc_textarea( pb_get_latin_name($post->ID) ).'</h4>';
@@ -56,13 +59,13 @@ function pb_alt_names(){
 // 	echo '<h4 class="latin">'.esc_textarea( pb_notes($post->ID) ).'</h4>';
 // }
 
-add_action('genesis_entry_header', 'pb_add_common_name',11);
+add_action('genesis_entry_header', 'pb_add_common_name',10);
 function pb_add_common_name(){
 	global $post;
 	$output = '';
 	$loopcount = 0;
 	if ( have_rows('alternate_common_names')):
-		$output = '<h5 class="alt-names">Alternate Common Names</h5><p> ';
+		$output = '<p class="alt-names"><strong>AKA: </strong>';
 		while ( have_rows('alternate_common_names') ) : the_row();
 
 	        // Your loop code
@@ -83,7 +86,7 @@ endif;
 	
 }
 
-add_action('genesis_entry_header', 'pb_add_gardeners_log',11);
+add_action('genesis_entry_header', 'pb_add_gardeners_log',13);
 function pb_add_gardeners_log(){
 	global $post;
 	$output = '';
@@ -103,7 +106,7 @@ function pb_add_gardeners_log(){
 endif;
 }
 
-add_action('genesis_entry_header', 'pb_add_nursery_tag',12);
+add_action('genesis_entry_header', 'pb_add_nursery_tag',14);
 function pb_add_nursery_tag(){
 	global $post;
 	$output = '';
@@ -113,7 +116,7 @@ function pb_add_nursery_tag(){
     echo $output;
 endif;
 }
-add_action('genesis_entry_header', 'pb_add_shade_rating',13);
+add_action('genesis_entry_header', 'pb_add_shade_rating',15);
 function pb_add_shade_rating(){
 	global $post;
 	$output = '';
@@ -137,7 +140,7 @@ endif;
 // endif;
 // }
 
-add_action('genesis_entry_header', 'pb_add_atg_comment',10);
+add_action('genesis_entry_header', 'pb_add_atg_comment',12);
 function pb_add_atg_comment(){
 	global $post;
 	$output = '';
@@ -149,7 +152,7 @@ endif;
 }
 
 
-add_action('genesis_entry_header', 'pb_add_other_photo_headling',14);
+add_action('genesis_entry_header', 'pb_add_other_photo_headling',16);
 function pb_add_other_photo_headling(){
 	echo '<h5>More Photos</h5>';
 }

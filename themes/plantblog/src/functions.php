@@ -235,11 +235,11 @@ function kickstart_search_button_text( $text ) {
 	return $searchbutton_text;
 }
 
-add_action( 'genesis_after_entry', 'kickstart_single_next_prev', 5 );
+add_action( 'genesis_after_entry', 'pb_single_next_prev', 5 );
 // Next / previous post links
-function kickstart_single_next_prev() {
-	// Only show on single pages
-	if( !is_single() ) {
+function pb_single_next_prev() {
+	// Only show on single post pages (not plants)
+	if( !is_singular('post') ) {
 		return;
 	}
 
@@ -252,7 +252,7 @@ function kickstart_single_next_prev() {
 	echo '</div>';
 }
 
-//Include MCN-specific Function files
+
 add_action('wp_head', 'pb_favicons' );
 function pb_favicons(){
 	$blog_url = esc_url( get_stylesheet_directory_uri() ); 

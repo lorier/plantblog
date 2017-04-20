@@ -12,6 +12,11 @@
 // Remove custom headline and / or description from category / tag / taxonomy archive pages
 remove_action( 'genesis_before_loop', 'genesis_do_cpt_archive_title_description');
 
+// Remove breadcrumb. It is selected in the admin to appear on all archive pages.
+remove_action( 'genesis_before_loop', 'genesis_do_breadcrumbs' );
+
+
+
 // Add custom headline and / or description on category / tag / taxonomy archive pages
 add_action( 'genesis_after_header', 'lr_taxonomy_title_description_opening_wrap' );
 // add_action( 'genesis_after_header', 'genesis_do_cpt_archive_title_description' );
