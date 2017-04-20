@@ -50,10 +50,10 @@ $slick-opacity-not-active: 0.25 !default;
 
     position: absolute;
     color: transparent;
-    background-color: $dark-gray;
+    background-color: $green;
     display: block;
     height: 100%;
-    width: 30px;
+    width: 37px;
     font-size: 7px;
     cursor: pointer;
     top: 50%;
@@ -74,6 +74,9 @@ $slick-opacity-not-active: 0.25 !default;
     &:hover {
         background-color: $green;
 
+    }
+    &.slick-disabled {
+        background-color: #cecdc2;
     }
     &.slick-disabled:before {
         opacity: $slick-opacity-not-active;
@@ -102,7 +105,7 @@ $slick-opacity-not-active: 0.25 !default;
         -moz-osx-font-smoothing: grayscale;
 
         position: absolute;
-        right: 3px;
+        right: 10px;
     }
 }
 
@@ -128,7 +131,7 @@ $slick-opacity-not-active: 0.25 !default;
         -moz-osx-font-smoothing: grayscale;
         
         position: absolute;
-        left: 3px;
+        left: 10px;
 
     }
 }

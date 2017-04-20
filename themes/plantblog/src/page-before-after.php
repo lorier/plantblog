@@ -67,15 +67,16 @@ function pb_add_before_after(){
 			       }
 			     $content .= '</div>';
 
-			     //class that helps us apply a carousel to more than two slides
-			     $num_images = $image_count >= 3 ? 'multiple-slides' : 'two-slides';
+			     //class that helps us apply a carousel to more than one slide
+			     $num_images = $image_count > 1 ? 'multiple-slides' : 'one-slide';
 
 			     $output = '<div class="gallery-container '.$num_images.'">';
 			     $output .= '<div class="gallery-caption one-third first">';
 			     $output .= '<h2 class="">'.$title.'</h2><h6 class="">'. $comment .'</h6><div class="clear-line"></div></div>';
-			     $output .= '<div class="variable-width two-thirds '. $num_images .'">' . $content;
-			     $output .=  '<div class="clear-both"></div>';
-			     $output .='</div>';
+			     $output .= '<div class="two-thirds"><div class="variable-width '. $num_images .'">' . $content;
+			     $output .= '</div><div class="clear-both"></div>';
+			     $output .= '</div>';
+			     $num_images = 0;
 			    }
 			echo $output;
 			$output = '';

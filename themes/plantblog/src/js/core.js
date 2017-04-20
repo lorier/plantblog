@@ -29,25 +29,36 @@
 	  		}
   		})
 
+  		//REFACTOR
 		// journal notes accordion
-		$('.accordion .inside').hide();
+		$('.accordion-1 .inside').hide();
 		$('h4:before').css('content','\\f0d7');   
-		$('.accordion .journal-title').click(function(e) {
+		$('.accordion-1 .accordion-title').click(function(e) {
 			e.preventDefault();
-	    	$('.journal-title h4').toggleClass('open');
-		    $('.accordion > .inside').slideToggle('default');
+	    	$('.accordion-1 .accordion-title h4').toggleClass('open');
+		    $('.accordion-1 > .inside').slideToggle('default');
+		    // return false;
+		  });
+
+		$('.accordion-2 .inside').hide();
+		$('h4:before').css('content','\\f0d7');   
+		$('.accordion-2 .accordion-title').click(function(e) {
+			e.preventDefault();
+	    	$('.accordion-2 .accordion-title h4').toggleClass('open');
+		    $('.accordion-2 > .inside').slideToggle('default');
 		    // return false;
 		  });
 		
 		// Options for the before and after carousels
 		$('.variable-width.multiple-slides').slick({
 			// dots: true,
-			infinite: true,
+			infinite: false,
 			speed: 300,
 			arrows: true,
-			slidesToShow: 2,
-			// centerMode: true,
-			variableWidth: true
+			slidesToShow: 1,
+			centerMode: false,
+			variableWidth: false,
+			adaptiveHeight: true
 			});
 
 		//get all the entries from the Plant List page

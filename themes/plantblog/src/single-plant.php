@@ -83,12 +83,12 @@ endif;
 	
 }
 
-add_action('genesis_entry_header', 'pb_add_gardeners_log',10);
+add_action('genesis_entry_header', 'pb_add_gardeners_log',11);
 function pb_add_gardeners_log(){
 	global $post;
 	$output = '';
 	if ( have_rows('journal_notes')):
-		$output = '<div class="notes accordion"><a class="journal-title" href=""><h4>Gardener\'s Log</h4></a><div class="inside">';
+		$output = '<div class="notes accordion-1"><a class="accordion-title" href=""><h4>Gardener\'s Log</h4></a><div class="inside">';
 		while ( have_rows('journal_notes') ) : the_row();
 	        $output .= '<p><span class="date">'.get_sub_field('month_year').': </span>';
 	        $output .= get_sub_field('note').'</p>';
@@ -103,46 +103,59 @@ function pb_add_gardeners_log(){
 endif;
 }
 
-add_action('genesis_entry_header', 'pb_add_shade_summary',12);
-function pb_add_shade_summary(){
+add_action('genesis_entry_header', 'pb_add_nursery_tag',12);
+function pb_add_nursery_tag(){
 	global $post;
 	$output = '';
-	if ( get_field('shade_summary')):
-		$output = '<div class="shade-assessment"><h5>Shady Assessment</h5>';
-	    $output .= get_field('shade_summary').'</div>';	        
+	if ( get_field('nursery_tag')):
+		$output = '<div class="notes accordion-2"><a class="accordion-title" href=""><h4>Plant Details</h4></a><div class="inside">';
+	    $output .= get_field('nursery_tag').'</div></div>';	        
+    echo $output;
+endif;
+}
+add_action('genesis_entry_header', 'pb_add_shade_rating',13);
+function pb_add_shade_rating(){
+	global $post;
+	$output = '';
+
+	if ( get_field('shade_summary') && get_field('shade_rating') ):
+		$output = '<div class="shade-assessment wrap"><h5>Shady Assessment</h5>';
+		$output .= '<div class="one-sixth first"><p class="grade">'.get_field('shade_rating').'</p></div>';
+	    $output .= '<div class="five-sixths summary">'.get_field('shade_summary').'</div></div>';	        
     echo $output;
 endif;
 }
 
-add_action('genesis_entry_header', 'pb_add_atg_comment',13);
+// add_action('genesis_entry_header', 'pb_add_shade_summary',13);
+// function pb_add_shade_summary(){
+// 	global $post;
+// 	$output = '';
+// 	if ( get_field('shade_summary')):
+// 		$output = '<div class="shade-assessment"><h5>Shady Assessment</h5>';
+// 	    $output .= get_field('shade_summary').'</div>';	        
+//     echo $output;
+// endif;
+// }
+
+add_action('genesis_entry_header', 'pb_add_atg_comment',10);
 function pb_add_atg_comment(){
 	global $post;
 	$output = '';
 	if ( get_field('atg_commentary')):
-		$output = '<div class="atg-commentary"><h5>How this plant has worked out for me</h5>';
+		$output = '<div class="atg-commentary">';
 	    $output .= get_field('atg_commentary').'</div>';	        
     echo $output;
 endif;
 }
 
-add_action('genesis_entry_header', 'pb_add_nursery_tag',14);
-function pb_add_nursery_tag(){
-	global $post;
-	$output = '';
-	if ( get_field('nursery_tag')):
-		$output = '<div class="atg-comment"><h5>The nursery tag says:</h5>';
-	    $output .= get_field('nursery_tag').'</div>';	        
-    echo $output;
-endif;
-}
 
 add_action('genesis_entry_header', 'pb_add_other_photo_headling',14);
 function pb_add_other_photo_headling(){
-	echo '<h5>Creative Commons Photos</h5>';
+	echo '<h5>More Photos</h5>';
 }
 
 function pb_single_plant_sidebar(){
-	$output ='<h3>Plant Stats</h3>';
+	$output ='<h3>Tree Garden Stats</h3>';
 	
 	global $post;
 	//get all term objects. $terms = array of terms
