@@ -8,3 +8,4 @@ uploads/
 ai1wm-backups/
 backup-db/
 *.gz
+debug.log
