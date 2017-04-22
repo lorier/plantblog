@@ -2,6 +2,16 @@
 
 define('TAXONOMIES', "['plant-type','location','year-planted','light-requirement']");
 
+//remove ability to comment on single images in jetpack gallery
+function pb_tweakjp_rm_comments_att( $open, $post_id ) {
+    $post = get_post( $post_id );
+    if( $post->post_type == 'attachment' ) {
+        return false;
+    }
+    return $open;
+}
+add_filter( 'comments_open', 'pb_tweakjp_rm_comments_att', 10 , 2 );
+
 // Reposition the secondary navigation menu
 remove_action( 'genesis_after_header', 'genesis_do_subnav' );
 

@@ -45,15 +45,12 @@ function pb_add_before_after_gallery(){
 
 			$images = get_sub_field('gallery');
 
-
 			if( $images ){
-				echo '<div class="wrap">
+				echo '<div class="wrap entry-container">
 						<div class="one-fourth first">'.$title.'</div>
 						<div class="three-fourths">';
-					echo 		'<div class="one-half first">
-									<a data-rel="lightbox" href="'.$hero.'">
+					echo 		'<div class="hero one-half first">
 										<img src="'.$hero.'">
-									</a>
 								</div>';
 
 					echo 		'<div class="one-half">'.$images.'</div>
