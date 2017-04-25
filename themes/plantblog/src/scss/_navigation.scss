@@ -146,7 +146,7 @@ body .genesis-nav-menu {
     font-weight: 400;
     line-height: 1;
     width: 100%;
-    margin: 8px 0;
+    // margin: 8px 0;
 }
 
 .blog .nav-primary .menu-item.current-menu-parent > a {
@@ -164,7 +164,7 @@ body .genesis-nav-menu {
     a {
 	    color: $brown;
 	    font-size: 14px;
-	    padding: 5px 0;
+	    padding: 12px 12px;
 	    text-transform: uppercase;
 	    letter-spacing: .06em;
     }
@@ -412,15 +412,16 @@ body .genesis-nav-menu {
 	
 	.title-area {
 		float: left;
-		margin-left: 40px;
+		margin-left: 10px;
 		height: auto;
+		padding-top: 0;
 	}
 	.site-header {
 		background-color: white;
 		background-image: none;
 		height: auto;
 	}
-	.site-title {
+	p.site-title {
 		font-size: 40px;
 	}
 	.site-description {
@@ -587,14 +588,14 @@ body .genesis-nav-menu {
 
 .footer-widgets {
 	-webkit-font-smoothing: antialiased;
-
+	padding: 40px 20px 16px;	
 	background-color: $brown;
 	//logo & pinterest
 	.footer-widgets-1 {
 		width: 28%;
 		h3{
-			font-family: lobster;
-		    margin-bottom: 7px;
+			font-family: 'Lobster', Georgia, serif;
+		    margin-bottom: 16px;
 		    a {
 			    font-size: 40px;
 		    }
@@ -623,13 +624,20 @@ body .genesis-nav-menu {
 	.footer-widgets-2,
 	.footer-widgets-3,
 	.footer-widgets-4 {
-		padding: 1%;
+		// padding: 1%;
+		@media screen and (max-width: 425px)
+		{
+			width: 100%;
+		}
 	}
 
 	.footer-widgets-1,
 	.footer-widgets-2,
 	.footer-widgets-3 {
 	 float: left;
+	}
+	.footer-widgets-3 {
+		margin-right: 10px;
 	}
 
 	.footer-widgets-4 {

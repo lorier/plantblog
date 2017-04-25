@@ -48,6 +48,8 @@ select {
 input:focus,
 textarea:focus {
 	outline: none;
+	color: $dark-gray;
+	font-size: 16px;
 }
 
 ::-moz-placeholder {

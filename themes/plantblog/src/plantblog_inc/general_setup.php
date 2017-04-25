@@ -45,14 +45,6 @@ function sp_custom_footer() {
 // Enable shortcode use in widgets
 add_filter('widget_text', 'do_shortcode');
 
-// Add "now viewing" to tag pages 
-add_action('genesis_before_loop', 'rcms_add_tag_title');
-
-function rcms_add_tag_title(){
-	if (is_tag()){
-		echo '<p class="tag-title">Viewing items tagged:</p>';
-	}
-}
 // Change pagination button text 
 add_filter( 'genesis_prev_link_text', 'rcms_review_prev_link_text' );
 function rcms_review_prev_link_text() {
@@ -71,7 +63,7 @@ if ( !is_page() ) {
 	$post_meta = '[post_tags before="Tagged: "] [post_comments] [post_edit]';
 	return $post_meta;
 }}
-
+// 
 add_filter('get_the_archive_title', 'pb_add_tag_leader_text');
 function pb_add_tag_leader_text($title){
 	// echo 'filter called';
@@ -80,6 +72,10 @@ function pb_add_tag_leader_text($title){
 		// $prefix = '<p>Viewing posts tagged:</p>';
 		$title = single_tag_title( 'Category: ', false );
 	}
+	if ( is_tag() ) {
+		// $prefix = '<p>Viewing posts tagged:</p>';
+		$title = single_tag_title( 'Viewing items tagged: ', false );
+	}	
 	return $title;
 }
 // remove genesis favicon

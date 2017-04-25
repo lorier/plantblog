@@ -263,7 +263,7 @@ img.alignright,
 	line-height: 1.5;
 	list-style-type: none;
 	margin-bottom: 7px;
-	padding: 0 0 6px 0;
+	padding: 6px 0 6px;
 	text-transform: uppercase;
 }
 
@@ -776,7 +776,7 @@ Templates
 
 .archive .entry,
 .page-template-page_blog-php .entry {
-	margin-bottom: 114px;
+	// margin-bottom: 114px;
 }
 
 // .archive .entry-title,

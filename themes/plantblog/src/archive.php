@@ -13,7 +13,7 @@ function pb_post_info_filter($post_info) {
 }
 remove_action( 'genesis_before_loop', 'genesis_do_taxonomy_title_description', 15 );
 
-// add_action('genesis_before_loop','pb_add_archive_title');
+add_action('genesis_before_loop','pb_add_archive_title');
 function pb_add_archive_title(){
 	$output = '<div class="archive-description taxonomy-archive-description taxonomy-description">';
 	$output .= '<h1 class="archive-title">';

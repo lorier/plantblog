@@ -105,6 +105,10 @@ function pb_sort_menu(){
     echo $output;
 }
 
+add_action( 'genesis_before_content_sidebar_wrap', 'pb_add_light_needs_qualifier' );
+function pb_add_light_needs_qualifier(){
+    echo '<div class="note">Note: A plant may show up on more than one light needs category.</div>';
+}
 
 // For a list of given taxonomy terms, output the posts for each term, then move on to the next term
 // https://gist.github.com/jaredkc/6191133

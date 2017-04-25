@@ -48,12 +48,12 @@ function kickstart_fonts_scripts() {
 	wp_localize_script( 'kickstart-responsive-menu', 'KickstartL10n', $output );
 }
 
-add_action( 'wp_enqueue_scripts', 'pb_enqueue_stickynav_script' );
-function pb_enqueue_stickynav_script() {
+// add_action( 'wp_enqueue_scripts', 'pb_enqueue_stickynav_script' );
+// function pb_enqueue_stickynav_script() {
 
-	wp_enqueue_script( 'sample-sticky-menu', get_stylesheet_directory_uri() . '/js/stickynav.js', array( 'jquery' ), '1.0.0' );
-	wp_enqueue_script( 'slick','//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js', array( 'jquery' ), '1.7.2' );
-}
+// 	wp_enqueue_script( 'sample-sticky-menu', get_stylesheet_directory_uri() . '/js/stickynav.js', array( 'jquery' ), '1.0.0' );
+// 	wp_enqueue_script( 'slick','//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js', array( 'jquery' ), '1.7.2' );
+// }
 
 
 add_action( 'wp_enqueue_scripts', 'pb_enqueue_corejs');
@@ -64,6 +64,8 @@ function pb_enqueue_corejs(){
 	//pass plant terms to browser
 	$taxa = array('plant-type','light-requirement','location');
     $taxon_list = array();
+
+
 
 	foreach($taxa as $taxon){
 	    $data = array();
@@ -80,7 +82,7 @@ function pb_enqueue_corejs(){
 	    }
 	    $taxon_list[$taxon] = $data;
 	}
-
+	//send nested array of taxonomies. Each nested array contains a list of terms associated with a taxonomy name
     wp_localize_script( 'core', 'taxonomy_data', $taxon_list );
 
 	wp_enqueue_script( 'core', get_stylesheet_directory_uri() . '/js/core.js', array( 'jquery' ), '1.0.0' );

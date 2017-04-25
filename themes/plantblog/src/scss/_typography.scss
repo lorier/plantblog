@@ -34,7 +34,7 @@ a {
 }
 
 a img {
-	margin-bottom: -4px;
+	// margin-bottom: -4px;
 }
 
 a:hover {
@@ -151,6 +151,7 @@ h5 {
 h6 {
 	font-size: 18px;
 	font-family: $body-font, sans-serif;
+	font-weight: 400;
 
 	// text-transform: uppercase;
 }
@@ -166,6 +167,9 @@ video,
 .wp-caption {
 	max-width: 100%;
 	display: block;
+}
+.wp-caption.alignleft, img.alignleft {
+    margin: 0 30px 24px 0;
 }
 
 img {
@@ -216,7 +220,7 @@ img {
 .archive-title {
 	color: $dark-gray;
 	font-size: 34px;
-	margin-bottom: 0;
+	// margin-bottom: 0;
 }
 /* Captions
 --------------------------------------------- */
