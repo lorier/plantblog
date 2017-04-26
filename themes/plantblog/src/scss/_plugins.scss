@@ -1,0 +1,50 @@
+// ==== Plugin edtis ==== //
+
+/* Jetpack
+--------------------------------------------- */
+
+//Sharing
+.content { 
+	div.sharedaddy h3.sd-title  {
+		font-size: 19px;
+		font-weight: 300;
+	}
+	.sd-content ul li{
+		margin:0 8px 5px 0;
+	}
+	.sd-social-icon .sd-content ul li a.sd-button, 
+	.sd-social-text .sd-content ul li a.sd-button, 
+	.sd-content ul li a.sd-button, 
+	.sd-content ul li .option a.share-ustom, 
+	.sd-content ul li.preview-item div.option.option-smart-off a, 
+	.sd-content ul li.advanced a.share-more, 
+	.sd-social-icon-text .sd-content ul li a.sd-button, 
+	.sd-social-official .sd-content>ul>li>a.sd-button, 
+	#sharing_email .sharing_send, 
+	.sd-social-official .sd-content>ul>li .digg_button >a,
+	.sd-social-icon .sd-content ul li a.sd-button,
+	.sd-social-icon .sd-content ul li a.sd-button:hover, 
+	.sd-social-icon .sd-content ul li a.sd-button:active, 
+	.sd-social-text .sd-content ul li a.sd-button:hover, 
+	.sd-social-text .sd-content ul li a.sd-button:active, 
+	.sd-social-icon-text .sd-content ul li a.sd-button:hover, 
+	.sd-social-icon-text .sd-content ul li a.sd-button:active, 
+	.sd-social-official .sd-content>ul>li>a.sd-button:hover, 
+	.sd-social-official .sd-content>ul>li>a.sd-button:active, 
+	.sd-social-official .sd-content>ul>li .digg_button>a:hover, 
+	.sd-social-official .sd-content>ul>li .digg_button>a:active {
+		background-color: white;
+		border-radius: 0;
+		border: 0;
+		box-shadow: unset;
+	}
+}
+
+//remove 'loading comments' blip in gallery
+#jp-carousel-comments-loading {
+	display:none !important;
+}
+//remove caption from gallery thumbnails 
+.gallery .gallery-caption {
+	display: none;
+}

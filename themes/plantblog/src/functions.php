@@ -245,8 +245,8 @@ function pb_single_next_prev() {
 		return;
 	}
 
-	$previouspost_text =  __( 'Previous Post', 'lean-kickstart' );
-	$nextpost_text     =  __( 'Next Post', 'lean-kickstart' );
+	$previouspost_text =  __( 'Older Posts', 'lean-kickstart' );
+	$nextpost_text     =  __( 'Newer Posts', 'lean-kickstart' );
 
 	echo '<div class="archive-pagination pagination">';
 		previous_post_link( '<div class="pagination-previous alignleft">%link</div>', $previouspost_text );

@@ -49,8 +49,9 @@ Domain Path: #{metadata(theme-text-domain-path)}
 @import "single_plant";
 @import "taxonomy";
 @import "before_after";
-@import "slick_slider";
+// @import "slick_slider";
 @import "garden_locations";
+@import "plugins"
 // Reset: eliminate default browser styling (optional; commented out by default)
 //@import "reset";
 

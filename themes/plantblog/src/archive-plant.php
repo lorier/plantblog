@@ -36,7 +36,7 @@ function lr_cpt_archive_title_description() {
      *  This example uses a custom post type called 'service'
      */
     $archive_settings = get_option( 'genesis-cpt-archive-settings-plant' );
-    echo '<h1 class="archive-title">'.$archive_settings['headline'].'</h1>';
+    echo '<div class="archive-title-container"><h1 class="archive-title">'.$archive_settings['headline'].'</h1></div>';
     echo '<div class="archive-description"><p>'.$archive_settings['intro_text'].'</p>'.do_shortcode('[wpdreams_ajaxsearchlite]').'</div>';
 }
 

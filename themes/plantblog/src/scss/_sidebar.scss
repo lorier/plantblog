@@ -1,5 +1,32 @@
 // ==== SIDEBAR ==== //
 
+/* Categories
+--------------------------------------------- */
+
+.sidebar .widget_categories ul {
+	margin-left: 6px;
+}
+
+.sidebar .widget_categories ul li {
+	border-bottom: 1px solid $gray-rule;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1.5;
+	list-style-type: none;
+	// margin-bottom: 7px;
+	padding: 6px 0 6px;
+	text-transform: uppercase;
+}
+
+.sidebar .widget_categories ul li:before {
+	color: $yellow;
+	content: "\f105";
+	font-family: FontAwesome;
+	font-size: 14px;
+	padding-right: 12px;
+}
+/*--------------*/
+
 .widget ul {
   list-style-type: none;
   margin: 0;
@@ -29,7 +56,7 @@
 	margin-bottom: 0;
 }
 .sidebar li {
-	line-height: 22px;
+	line-height: 20px;
 	list-style-type: none;
 		margin-bottom: 0px;
 		word-wrap: break-word;

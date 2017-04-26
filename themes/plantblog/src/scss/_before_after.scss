@@ -21,10 +21,6 @@
 			border:2px solid #cfcfcf;
 		}
 	}
-	//removed 'loading comments' blip in gallery
-	#jp-carousel-comments-loading {
-		display:none !important;
-	}
 	@media screen and (max-width: $mobile-nav-down){
 		.one-half {
 			margin-top: 20px;
