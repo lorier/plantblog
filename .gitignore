@@ -1,7 +1,8 @@
-themes/plantblog/node_modules/
-themes/plantblog/build/
-themes/plantblog/dist/
+themes/plantblogdev/node_modules/
+themes/plantblogdev/build/
+themes/plantblogdev/dist/
 themes/twentysixteen/
+themes/atreegarden/
 plugins/
 uploads/
 .DS_Store
