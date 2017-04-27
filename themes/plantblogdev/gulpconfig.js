@@ -45,7 +45,7 @@ module.exports = {
     , dest: build
     }
   , dist: {
-      src: [dist+'**/*(*.png|*.jpg|*.jpeg|*.gif|*.svg)', '!'+dist+'screenshot.png'] // The source is actually `dist` since we are minifying images in place
+      src: [dist+'**/*(*.png|*.jpg|*.jpeg|*.gif|*.svg)'] // The source is actually `dist` since we are minifying images in place
     , imagemin: {
         optimizationLevel: 7
       , progressive: true
@@ -64,7 +64,6 @@ module.exports = {
       core: ['core']
     , pageloader: ['pageloader']
     , responsivemenu: ['responsivemenu']
-    , stickynav: ['stickynav']
     }
   , chunks: { // Chunks are arrays of paths or globs matching a set of source files; this way you can organize a bunch of scripts that go together into pieces that can then be bundled (above)
       // The core chunk is loaded no matter what; put essential scripts that you want loaded by your theme in here
@@ -84,9 +83,6 @@ module.exports = {
       ]
     , responsivemenu: [
       src+'js/responsive-menu.js'
-    ]
-    , stickynav: [
-      src+'js/sticky-nav.js'
     ]
     }
   , dest: build+'js/' // Where the scripts end up in your theme
@@ -137,6 +133,7 @@ module.exports = {
   utils: {
     clean: [build+'**/.DS_Store'] // A glob pattern matching junk files to clean out of `build`; feel free to add to this array
   , wipe: [dist] // Clean this out before creating a new distribution copy
+  , force: {force: true} //Force remove existing directory because it's outside the working directory
   , dist: {
       // src: [build+'**/*', '!'+build+'**/*.map']
       src: [build+'**/*']
