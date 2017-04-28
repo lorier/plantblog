@@ -30,9 +30,15 @@
 			align-items: center;
 			padding: 0 20px;
 			max-width: 940px;
+			@media screen and(max-width: $mobile-nav-down){
+				display: block;
+			}
 		}
 		.archive-title-container{
 			width: 25%;
+			@media screen and(max-width: $mobile-nav-down){
+				width: 100%
+			}
 		}
 		h1.archive-title {
 			// float: left;
@@ -44,25 +50,30 @@
 			font-size: 48px;
 			margin-bottom: 0;
 
-			// align-items: left;
 		}
 		
 		.archive-description {
 			float: left;
-		padding-left: 20px;
-		border-left: 1px solid gray;
-		text-align: center;
-		width: 74%;
-		p {
-			margin: 0 0 10px;
-		}
+			padding-left: 20px;
+			border-left: 1px solid gray;
+			text-align: center;
+			width: 74%;
+			@media screen and(max-width: $mobile-nav-down){
+				float:none;
+				width: 100%;
+				padding-left:0;
+				border: none;
+			}
+			p {
+				margin: 0 0 10px;
+			}
 		}
 	}
 	.note {
 		opacity: 0;
 		// transition: opacity .1s ease-in-out;
 		font-size: 14px;
-		margin-bottom: 10px;
+		margin: 0 20px 10px;
 
 	}
 	.show-light-needs-note {

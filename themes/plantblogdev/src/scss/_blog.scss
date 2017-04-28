@@ -3,6 +3,7 @@
 
 .single .entry-title {
 	font-size: 48px;
+	line-height: 50px;
 	margin-bottom: 25px;
 }
 .single h1 {
@@ -89,16 +90,17 @@
 .entry-pagination {
 	font-size: 14px;
 	margin: 40px 0;
-	font-family: $italic-font;
+	font-family: $body-font;
 }
 .archive-pagination a,
 .entry-pagination a {
-	color: $brown;
-	border: 1px solid $gray-rule;
+	color: white;
+	background-color: $yellow;
+	// border: 1px solid $gray-rule;
 	padding: 11px 20px 10px 20px;
 	&:hover {
-		background-color: $yellow;
-		border-color: $yellow;
+		background-color: darken($yellow,8%);
+		// border-color: $yellow;
 		color: white;
 	}
 }

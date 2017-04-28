@@ -255,6 +255,20 @@ function pb_single_next_prev() {
 }
 
 
+//images in RSS
+//// display featured post thumbnails in WordPress feeds
+///http://wpcodesnippet.com/display-featured-post-thumbnails-wordpress-feeds/
+add_filter( 'the_excerpt_rss', 'pb_post_thumbnails_in_feeds' );
+add_filter( 'the_content_feed', 'pb_post_thumbnails_in_feeds' );
+
+function pb_post_thumbnails_in_feeds( $content ) {
+    global $post;
+    if( has_post_thumbnail( $post->ID ) ) {
+        $content = '<p>' . get_the_post_thumbnail( $post->ID ) . '</p>' . $content;
+    }
+    return $content;
+}
+
 add_action('wp_head', 'pb_favicons' );
 function pb_favicons(){
 	$blog_url = esc_url( get_stylesheet_directory_uri() ); 
