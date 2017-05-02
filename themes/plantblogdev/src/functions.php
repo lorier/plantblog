@@ -35,10 +35,7 @@ add_action( 'wp_enqueue_scripts', 'kickstart_fonts_scripts' );
 // Enqueue fonts
 function kickstart_fonts_scripts() {
 	wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', array(), '4.5.0' );
-	wp_enqueue_style('google-font-muli', '//fonts.googleapis.com/css?family=Muli:400,400italic,300italic,300', array(), CHILD_THEME_VERSION);
-	wp_enqueue_style('google-font-oswald', '//fonts.googleapis.com/css?family=Oswald:300,700,400', array(), CHILD_THEME_VERSION);
-	wp_enqueue_style('google-font-volkov', '//fonts.googleapis.com/css?family=Volkhov:400italic', array(), CHILD_THEME_VERSION);
-	wp_enqueue_style('google-font-lobster', '//fonts.googleapis.com/css?family=Lobster', array(), CHILD_THEME_VERSION);
+	wp_enqueue_style('google-fonts', '//fonts.googleapis.com/css?family=Lobster|Muli:300,300i,400,400i|Oswald:300,400,700', array(), CHILD_THEME_VERSION);
 
 	wp_enqueue_script( 'kickstart-responsive-menu', get_stylesheet_directory_uri() . '/js/responsivemenu.js', array( 'jquery' ), CHILD_THEME_VERSION, true );
 	$output = array(
