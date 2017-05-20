@@ -694,19 +694,19 @@ body .genesis-nav-menu {
 		
 	}
 }
-@media screen and (max-width: 700px){
+@media screen and (max-width: 800px){
 	.footer-widgets, .widget-area, .wrap {
 		padding: 0;
 	}
 
-	.footer-widgets-2{
+	.footer-widgets .footer-widgets-2{ 
 		width: 100%;
 		text-align: center;
 	}
 	.widget-title {
 		display: none;
 	}
-	.footer-widgets-1 {
+	.footer-widgets .footer-widgets-1 {
 		width: 100%;
 		text-align: center;
 		padding-top: 20px;
@@ -725,9 +725,12 @@ body .genesis-nav-menu {
 			content: '';
 		}
 	}
-	.footer-widgets-3,
-	.footer-widgets-4 {
-		display: none;
+	.footer-widgets .footer-widgets-3,
+	.footer-widgets .footer-widgets-4 {
+		width: 45%;
+		padding: 10px;
+		float: none;
+		// display: none;
 	}
 }
 

@@ -38,7 +38,6 @@ function pb_featured_image_sidebar() {
 	        printf( '<a data-rel="lightbox" href="%1$s" alt="%2$s">%3$s</a>',
 	            esc_url( $large_image_url[0] ),
 	            esc_attr( $thumb_url ),
-	            // get_the_post_thumbnail( $post_id, 'thumbnail', array( 'class' => 'alignleft' ) )
 	            get_the_post_thumbnail()
 	        );
 	    }
@@ -120,11 +119,19 @@ add_action('genesis_entry_header', 'pb_add_shade_rating',15);
 function pb_add_shade_rating(){
 	global $post;
 	$output = '';
+	
+	//helper function in loops.php
+	$shade_score = pb_get_first_term_name($post, 'shade-grade');
 
-	if ( get_field('shade_summary') && get_field('shade_rating') ):
+	//set default grade
+	if ( $shade_score == ''){
+		$shade_score = 'TBD';
+	}
+
+	if ( !empty($shade_score) && get_field('shade_rating') ):
 		$output = '<div class="shade-assessment wrap"><h5>Shady Assessment</h5>';
-		$output .= '<div class="one-sixth first"><p class="grade">'.get_field('shade_rating').'</p></div>';
-	    $output .= '<div class="five-sixths summary">'.get_field('shade_summary').'</div></div>';	        
+		$output .= '<div class="one-sixth first"><p class="grade">'.$shade_score.'</p></div>';
+	    $output .= '<div class="five-sixths summary">'.get_field('shade_summary').'</div></div>';
     echo $output;
 endif;
 }

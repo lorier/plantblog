@@ -80,6 +80,7 @@ function js_pb_sort_menu(){
         <li class="plant-type-link active-link"><a id="plant-type" href="">Plant Type</a></li>
         <li class="location-link"><a id="location" href="">Location</a></li>
         <li class="light-link"><a id="light-requirement" href="">Light Needs</a></li>
+        <li class="light-link"><a id="shade-grade" href="">Shade Grade</a></li>
     </ul>';
     echo $output;
 }
@@ -87,23 +88,26 @@ function js_pb_sort_menu(){
 $sort_by_taxonomy = sanitize_text_field($_GET['sort-by']);
 
 // add_action('genesis_after_header', 'pb_sort_menu', 10);
-function pb_sort_menu(){
-     //load the initial taxonomy. This is currently always 'plant-type' on first page load
-    global $sort_by_taxonomy; //used and set by the custom loop
-    $sorter_class = 'plant-type';
-    if ($sort_by_taxonomy) $sorter_class = $sort_by_taxonomy;
+// function pb_sort_menu(){
+//      //load the initial taxonomy. This is currently always 'plant-type' on first page load
+//     global $sort_by_taxonomy; //used and set by the custom loop
+//     $sorter_class = 'plant-type';
+//     if ($sort_by_taxonomy) $sorter_class = $sort_by_taxonomy;
 
-    $plant_type = array('sort-by' => 'plant-type');
-    $location = array('sort-by' => 'location');
-    $light = array('sort-by' => 'light-requirement');
-    $output = '<ul id="sorter" class="'.esc_attr($sorter_class).'">';
-    $output .= '
-        <li class="plant-type-link"><a href="'.esc_url(add_query_arg($plant_type)).'">Plant Type</a></li>
-        <li class="location-link"><a href="'.esc_url(add_query_arg($location)).'">Location</a></li>
-        <li class="light-link"><a href="'.esc_url(add_query_arg($light)).'">Light Needs</a></li>
-    </ul>';
-    echo $output;
-}
+//     $plant_type = array('sort-by' => 'plant-type');
+//     $location = array('sort-by' => 'location');
+//     $light = array('sort-by' => 'light-requirement');
+//     $grade = array('sort-by' => 'shade-grade');
+
+//     $output = '<ul id="sorter" class="'.esc_attr($sorter_class).'">';
+//     $output .= '
+//         <li class="plant-type-link"><a href="'.esc_url(add_query_arg($plant_type)).'">Plant Type</a></li>
+//         <li class="location-link"><a href="'.esc_url(add_query_arg($location)).'">Location</a></li>
+//         <li class="light-link"><a href="'.esc_url(add_query_arg($light)).'">Light Needs</a></li>
+//         <li class="grade-link"><a href="'.esc_url(add_query_arg($grade)).'">Shade Grade</a></li>
+//     </ul>';
+//     echo $output;
+// }
 
 add_action( 'genesis_before_content_sidebar_wrap', 'pb_add_light_needs_qualifier' );
 function pb_add_light_needs_qualifier(){

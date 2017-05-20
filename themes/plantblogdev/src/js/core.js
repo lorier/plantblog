@@ -4,8 +4,6 @@
 // A simple wrapper for all your custom jQuery; everything in this file will be run on every page
 ;(function($){
   $(document).ready(function() {
-		
-
   		//scroll button
   		$('.back-to-top').on('click', function(e){
   			e.target.preventDefault;
@@ -49,17 +47,6 @@
 		    // return false;
 		  });
 		
-		// // Options for the before and after carousels
-		// $('.variable-width.multiple-slides').slick({
-		// 	// dots: true,
-		// 	infinite: false,
-		// 	speed: 300,
-		// 	arrows: true,
-		// 	slidesToShow: 1,
-		// 	centerMode: false,
-		// 	variableWidth: false,
-		// 	adaptiveHeight: true
-		// 	});
 
 		
 		// Hook up sorter functionality for Plant List page
@@ -88,10 +75,6 @@
 			e.target.parentNode.classList.toggle('active-link');
 		})
 
-		// $(window).resize(function(){
-		// 	//TODO figure out resizing algorithm for this
-		// 	// resizeImages();
-		// });
 		
 		//Plant List: On page load, get all the entries from the Plant List page. 
 		if ( document.body.className.match('post-type-archive-plant') ){
@@ -101,18 +84,6 @@
 
 
 	}); //end doc ready
-
-	// $(window).load(function(){
-	// 	//resize images on the static before and after entries
- //  		resizeImages();
-	// }); //end window load
-
-	//Plant List: called once on page load to get the initial list
-	// function getAllEntries(){
- //    	var selected = $('div.plant'); //get the entry elements
- //    	return selected;
-	// }
-
 	
 
 	function sortEntriesBySubcategory(entries, groupName){
@@ -125,6 +96,7 @@
 	 	//taxonomy_data is localized via functions.php
 	 	//filterview = array off terms associated with a taxonomy (eg location)
  		var filterView = taxonomy_data[groupName];
+ 		console.log(filterView);
 
  		// loop through the taxonomies
 		var cloned = null;
@@ -213,59 +185,5 @@
 		$('.masonry.pb-wrap').fadeTo( 200, '1' );
 	}
 
-//   function resizeImages(){
-// 	//TODO make this work with window resize. Math isn't working right currently.
-//   	var iwidth,
-// 	    	iheight,
-// 	    	cwidth,
-// 	    	cheight,
-// 	    	wdiff,
-// 	    	hdiff,
-// 	    	proportion;
-
-// 		var images = $(".two-slides .valign").toArray();
-// 	  	// alert(verticalign.toString());
-
-// 	    for (var i = 0; i < images.length; i++) {
-// 	    	// console.log("IMAGE" + i);
-// 			iwidth = $(images[i]).width();
-// 	    	iheight = $(images[i]).height();
-
-// 	    	proportion = iwidth/iheight;
-
-//     		if ( (iwidth <= iheight) ) {
-//     			$(images[i]).css("width", "100%");
-//     			//get new width
-//     			iheight = $(images[i]).height();
-// 				iwidth = $(images[i]).width();
-// 		    	// console.log("height: " + iheight);
-// 		    	// console.log("width: " + iwidth);
-
-//     		} else {
-//     			$(images[i]).css("height", "100%");
-
-//     			//get new height
-//     			iheight = $(images[i]).height();
-
-//     			//fix width to match original image proportions
-//     			var iwidth =  iheight*proportion;
-//     			$(images[i]).css("width", iwidth);
-//     		}
-//     		//https://github.com/devasaur/vlign.js/blob/master/vlign.js
-// 			vmartop = parseInt(iheight/2);
-// 			vmarleft = parseInt(iwidth/2);
-			
-// 			$(images[i]).css("position","relative");
-// 	        $(images[i]).css("top","50%");
-// 			$(images[i]).css("left","50%");
-// 			$(images[i]).css("margin-top","-"+vmartop+"px");
-// 			$(images[i]).css("margin-left","-"+vmarleft+"px");
-// 	    }
-// }
 }(jQuery));
 
-// ;(function($){
-//   $(document).ready(function() {
-// 		$('.site-header').scrollToFixed();
-// 	});
-// }(jQuery));

@@ -59,10 +59,8 @@ function pb_enqueue_corejs(){
 	wp_register_script( 'core', get_stylesheet_directory_uri() . '/js/core.js', array( 'jquery' ), '1.0.0'  );
 
 	//pass plant terms to browser
-	$taxa = array('plant-type','light-requirement','location');
+	$taxa = array('plant-type','light-requirement','location','shade-grade');
     $taxon_list = array();
-
-
 
 	foreach($taxa as $taxon){
 	    $data = array();
@@ -250,7 +248,6 @@ function pb_single_next_prev() {
 		next_post_link( '<div class="pagination-next alignright">%link</div>', $nextpost_text );
 	echo '</div>';
 }
-
 
 //images in RSS
 //// display featured post thumbnails in WordPress feeds

@@ -67,18 +67,34 @@ function pb_list_dead_plants() {
     wp_reset_postdata();
 }
 
+// //Get the plant type(s) for each entry
+// function pb_get_terms($post_id, $term){
+//     $term_array = wp_get_post_terms( $post_id, $term );
+//     $terms = array();
+//     if(is_array($term_array)){
+//         foreach($term_array as $term_object){
+//             // lr_print_pre($term_object);
+//             $terms[] = $term_object->name;
+//         }
+//         $the_terms = implode(", ", $terms);
+//     }
+//     return $the_terms;
+// }
 //Get the plant type(s) for each entry
-function pb_get_terms($post_id){
-    $term_array = wp_get_post_terms( $post_id, 'plant-type' );
-    $terms = array();
-    if(is_array($term_array)){
-        foreach($term_array as $term_object){
-            // lr_print_pre($term_object);
-            $terms[] = $term_object->name;
-        }
-        $the_terms = implode(", ", $terms);
+
+function pb_get_first_term_name($post, $taxonomy){
+
+    $term = ''; //fallback value if score isn't set
+    
+    $terms = get_the_terms( $post, $taxonomy );
+    // lr_print_pre( $terms );
+    
+    if ( !empty( $terms) ){
+        //get only the first recorded term object
+        $term_obj = reset($terms);
+        $term = $term_obj->name;
     }
-    return $the_terms;
+    return $term;
 }
 
 //Plant List Loop
@@ -124,18 +140,11 @@ function pb_list_plants() {
             continue;
         }
 
-        //if a plural form of the term is available, use that
-        // $plural = get_term_meta( $term->term_id, 'plural', true );
-        
-        // if( !empty($plural) ){
-        //     $page_title = $plural;
-        // }else {
-        //     $page_title = $term->name;
-        // }
         $page_title = $term->name;
 
 
         echo '<article class="item">';
+        
         //add title before each grouping
         echo '<a href="'.esc_url(get_term_link($term->term_id)).'"><h2>' . ucfirst($page_title) . '</h2></a>';
         $desc = term_description($term) ? : '';
@@ -167,6 +176,13 @@ function pb_list_plants() {
                     
                     global $post;
 
+                    $shade_score = pb_get_first_term_name($post, 'shade-grade');
+
+                    //set default grade
+                    if ( empty($shade_score) ){
+                        $shade_score = 'TBD';
+                    }
+
                     $tax_classes = pb_get_post_terms($post);
 
                     $thumb = lr_get_post_thumb($post);
@@ -182,9 +198,9 @@ function pb_list_plants() {
                             do_action( 'genesis_before_entry' );
                             printf( '<div class="plant '. $tax_classes.'" %s>', genesis_attr( 'entry' ) );
                                 $output = '<a href="'.esc_url(get_the_permalink()).'"><div class="plant-list-thumb"">'.$thumb.'</div>';
-                                $output .= '<h3>'.get_the_title().'</h3>';
-                                $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p></a>';
-                                // $output .= pb_get_terms_list(get_the_ID(), $sort_by_taxonomy);
+                                $output .= '<div class="text"><h3>'.get_the_title().'</h3>';
+                                $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p></div></a>';
+                                $output .= '<div class="grade"><span>'. $shade_score . '</span></div>';
                                 echo $output;
                             echo '</div>';
 
