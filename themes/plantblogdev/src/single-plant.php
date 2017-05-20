@@ -129,17 +129,6 @@ function pb_add_shade_rating(){
 endif;
 }
 
-// add_action('genesis_entry_header', 'pb_add_shade_summary',13);
-// function pb_add_shade_summary(){
-// 	global $post;
-// 	$output = '';
-// 	if ( get_field('shade_summary')):
-// 		$output = '<div class="shade-assessment"><h5>Shady Assessment</h5>';
-// 	    $output .= get_field('shade_summary').'</div>';	        
-//     echo $output;
-// endif;
-// }
-
 add_action('genesis_entry_header', 'pb_add_atg_comment',12);
 function pb_add_atg_comment(){
 	global $post;
@@ -152,10 +141,6 @@ endif;
 }
 
 
-add_action('genesis_entry_header', 'pb_add_other_photo_headling',16);
-function pb_add_other_photo_headling(){
-	echo '<h5>More Photos</h5>';
-}
 
 function pb_single_plant_sidebar(){
 	$output ='<h3>Tree Garden Stats</h3>';
