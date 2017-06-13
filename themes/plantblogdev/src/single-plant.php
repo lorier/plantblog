@@ -9,7 +9,7 @@ remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_open', 5 );
 remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_close', 15 );
 
 
-add_action('genesis_sidebar', 'pb_single_plant_sidebar');
+add_action('genesis_sidebar', 'pb_add_shade_rating');
 
 remove_action( 'genesis_before_loop', 'genesis_do_breadcrumbs' );
 add_action( 'genesis_before_content', 'genesis_do_breadcrumbs' );
@@ -81,12 +81,12 @@ endif;
 	
 }
 
-add_action('genesis_entry_header', 'pb_add_gardeners_log',14);
+add_action('genesis_entry_header', 'pb_add_gardeners_log',15);
 function pb_add_gardeners_log(){
 	global $post;
 	$output = '';
 	if ( have_rows('journal_notes')):
-		$output = '<div class="notes accordion-1"><a class="accordion-title" href=""><h4>Gardener\'s Log</h4></a><div class="inside">';
+		$output = '<div class="notes accordion-1"><a class="accordion-title" href=""><h3>Gardener\'s Log</h3></a><div class="inside">';
 		while ( have_rows('journal_notes') ) : the_row();
 	        $output .= '<p><span class="date">'.get_sub_field('month_year').': </span>';
 	        $output .= get_sub_field('note').'</p>';
@@ -101,7 +101,7 @@ function pb_add_gardeners_log(){
 endif;
 }
 
-add_action('genesis_entry_header', 'pb_add_shade_rating',12);
+// add_action('genesis_entry_header', 'pb_add_shade_rating',12);
 function pb_add_shade_rating(){
 	global $post;
 	$output = '';
@@ -116,8 +116,9 @@ function pb_add_shade_rating(){
 
 	if ( !empty($shade_score) && get_field('shade_rating') ):
 		$output = '<div class="shade-assessment wrap">';
-		$output .= '<div class="one-sixth first"><p class="grade">'.$shade_score.'</p></div>';
-	    $output .= '<div class="five-sixths summary">'.get_field('shade_summary').'</div></div>';
+	$output .= '<h3>Shade Grade</h3>';
+		$output .= '<div class="one-third first"><p class="grade">'.$shade_score.'</p></div>';
+	    $output .= '<div class="two-thirds summary">'.get_field('shade_summary').'</div></div>';
     echo $output;
 endif;
 }
@@ -133,14 +134,10 @@ function pb_add_atg_comment(){
 endif;
 }
 
-
-function pb_single_plant_sidebar(){
-	$output ='<h3>Tree Garden Stats</h3>';
-	if ( get_field('nursery_tag')):
-			$output .= '<div class="taxonomy"><h5 class="taxonomy-title">Plant Details</h5><p>';
-		    $output .= get_field('nursery_tag').'</p></div>';	        
-	endif;
-	$output .= '<div class="columns-2"><div class="one-half first">';
+add_action('genesis_entry_header', 'pb_plant_stats',14);
+function pb_plant_stats(){
+	$output ='<div class="stats">';
+	$output .= '<div class="columns-3 "><div class="one-third first">';
 	global $post;
 	//get all term objects. $terms = array of terms
 	$terms = get_object_taxonomies( $post, 'object' );
@@ -152,19 +149,48 @@ function pb_single_plant_sidebar(){
 	//get the terms for each taxonomy existing on the post and output them as a list
 	foreach ($terms as $term) {
 		if ($term_count == floor($num_terms/2) ){
-			$term_list .= '</div><div class="one-half">';
+			$term_list .= '</div><div class="one-third">';
 		}
 		$single_name = $term->labels->singular_name;
 		$name = $term->name;
-		$label = '<ul class="taxonomy"><li class="taxonomy-title '.$name.'">'.$single_name.'</li>';
-		$term_list .= get_the_term_list( $post->ID, $term->name, $label, '</li><li>','</li></ul>' );
-
+		$term_list .= '<ul class="taxonomy">';
+		$label = '<li class="taxonomy-title '.$name.'">'.$single_name.'</li><li>';
+		$term_list .= get_the_term_list( $post->ID, $term->name, $label, '</li><li>','</li>' );
+		$term_list .= '</ul>';
 		$term_count = $term_count + 1;
 	}
 	$output .= $term_list;
-	$output .="</div>";
+	$output .= '</div><div class="one-third">';
+	if ( get_field('nursery_tag')):
+			$output .= '<div class="taxonomy"><h5 class="taxonomy-title">Nursery Tag</h5><p>';
+		    $output .= get_field('nursery_tag').'</p></div>';	        
+	endif;
+	$output .='</div></div></div><div class="clear">';
 	
 	echo $output;
 }
+
+function jptweak_remove_share() {
+    remove_filter( 'the_content', 'sharing_display', 19 );
+    remove_filter( 'the_excerpt', 'sharing_display', 19 );
+    if ( class_exists( 'Jetpack_Likes' ) ) {
+        remove_filter( 'the_content', array( Jetpack_Likes::init(), 'post_likes' ), 30, 1 );
+    }
+}
+add_action( 'loop_start', 'jptweak_remove_share' );
+
+add_filter('the_content', 'pb_add_content_title');
+function pb_add_content_title($content){
+	if(!empty($content)){
+		return '<div class="content-inner"><h3>Photo Gallery</h3>' . $content . '</div>';
+	}else { return; }
+}
+
+function output_sharing_display(){
+	if ( function_exists( 'sharing_display' ) ) {
+	    sharing_display( '', true );
+	}
+}
+add_action('genesis_after_loop', 'output_sharing_display');
 
 genesis();
