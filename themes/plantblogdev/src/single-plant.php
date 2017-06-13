@@ -52,11 +52,7 @@ function pb_alt_names(){
 	echo '<h4 class="latin">'.esc_textarea( pb_get_latin_name($post->ID) ).'</h4>';
 }
 
-// add_action('genesis_entry_header', 'pb_notes',12);
-// function pb_alt_names(){
-// 	global $post;
-// 	echo '<h4 class="latin">'.esc_textarea( pb_notes($post->ID) ).'</h4>';
-// }
+
 
 add_action('genesis_entry_header', 'pb_add_common_name',10);
 function pb_add_common_name(){
@@ -85,7 +81,7 @@ endif;
 	
 }
 
-add_action('genesis_entry_header', 'pb_add_gardeners_log',13);
+add_action('genesis_entry_header', 'pb_add_gardeners_log',14);
 function pb_add_gardeners_log(){
 	global $post;
 	$output = '';
@@ -105,17 +101,7 @@ function pb_add_gardeners_log(){
 endif;
 }
 
-add_action('genesis_entry_header', 'pb_add_nursery_tag',14);
-function pb_add_nursery_tag(){
-	global $post;
-	$output = '';
-	if ( get_field('nursery_tag')):
-		$output = '<div class="notes accordion-2"><a class="accordion-title" href=""><h4>Plant Details</h4></a><div class="inside">';
-	    $output .= get_field('nursery_tag').'</div></div>';	        
-    echo $output;
-endif;
-}
-add_action('genesis_entry_header', 'pb_add_shade_rating',15);
+add_action('genesis_entry_header', 'pb_add_shade_rating',12);
 function pb_add_shade_rating(){
 	global $post;
 	$output = '';
@@ -129,45 +115,55 @@ function pb_add_shade_rating(){
 	}
 
 	if ( !empty($shade_score) && get_field('shade_rating') ):
-		$output = '<div class="shade-assessment wrap"><h5>Shady Assessment</h5>';
+		$output = '<div class="shade-assessment wrap">';
 		$output .= '<div class="one-sixth first"><p class="grade">'.$shade_score.'</p></div>';
 	    $output .= '<div class="five-sixths summary">'.get_field('shade_summary').'</div></div>';
     echo $output;
 endif;
 }
 
-add_action('genesis_entry_header', 'pb_add_atg_comment',12);
+add_action('genesis_entry_header', 'pb_add_atg_comment',13);
 function pb_add_atg_comment(){
 	global $post;
 	$output = '';
 	if ( get_field('atg_commentary')):
 		$output = '<div class="atg-commentary">';
-	    $output .= get_field('atg_commentary').'</div>';	        
+	    $output .= get_field('atg_commentary').'</div>';
     echo $output;
 endif;
 }
 
 
-
 function pb_single_plant_sidebar(){
 	$output ='<h3>Tree Garden Stats</h3>';
-	
+	if ( get_field('nursery_tag')):
+			$output .= '<div class="taxonomy"><h5 class="taxonomy-title">Plant Details</h5><p>';
+		    $output .= get_field('nursery_tag').'</p></div>';	        
+	endif;
+	$output .= '<div class="columns-2"><div class="one-half first">';
 	global $post;
 	//get all term objects. $terms = array of terms
 	$terms = get_object_taxonomies( $post, 'object' );
-	// lr_print_pre($terms);
+	
+	$num_terms = count ($terms);
 	$term_list = '';
-
+	$term_count = 0;
+	
 	//get the terms for each taxonomy existing on the post and output them as a list
 	foreach ($terms as $term) {
+		if ($term_count == floor($num_terms/2) ){
+			$term_list .= '</div><div class="one-half">';
+		}
 		$single_name = $term->labels->singular_name;
-		// lr_print_pre($term);
 		$name = $term->name;
 		$label = '<ul class="taxonomy"><li class="taxonomy-title '.$name.'">'.$single_name.'</li>';
 		$term_list .= get_the_term_list( $post->ID, $term->name, $label, '</li><li>','</li></ul>' );
+
+		$term_count = $term_count + 1;
 	}
 	$output .= $term_list;
-
+	$output .="</div>";
+	
 	echo $output;
 }
 

@@ -6,8 +6,10 @@
 //Sharing
 .content { 
 	div.sharedaddy h3.sd-title  {
-		font-size: 19px;
-		font-weight: 300;
+		font-size: 13px;
+		font-weight:400;
+		font-family: $body-font;
+		text-transform: uppercase;
 	}
 	.sd-content ul li{
 		margin:0 8px 5px 0;
@@ -44,7 +46,8 @@
 		box-shadow: unset;
 	}
 	div.sharedaddy h3.sd-title:before {
-		border-top: 1px solid $gray-rule;
+		display: none;
+		// border-top: 1px solid $gray-rule;
 	}
 }
 
@@ -77,6 +80,15 @@ div[id*="ajaxsearchliteres"] .results .item .asl_content h3, div[id*="ajaxsearch
 			width: 100%;
 			max-width: 100%;
 		}
+	}
+}
+.page-id-717 #mc4wp-form-1{
+	 label {
+		display: block;
+
+	}
+	input[type='email'] {
+		width: 300px;
 	}
 }
 
