@@ -6,8 +6,8 @@
 //Sharing
 .content { 
 	div.sharedaddy h3.sd-title  {
-		font-size: 13px;
-		font-weight:400;
+		font-size: 14px;
+		font-weight:700;
 		font-family: $body-font;
 		text-transform: uppercase;
 	}
@@ -81,6 +81,14 @@ div[id*="ajaxsearchliteres"] .results .item .asl_content h3, div[id*="ajaxsearch
 			max-width: 100%;
 		}
 	}
+
+}
+.sidebar .mc4wp-form-fields{
+	input[type=email] {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+	}
 }
 .page-id-717 #mc4wp-form-1{
 	 label {
@@ -91,7 +99,17 @@ div[id*="ajaxsearchliteres"] .results .item .asl_content h3, div[id*="ajaxsearch
 		width: 300px;
 	}
 }
+//Instagram Feed 
+#sb_instagram {
+	#sbi_load .sbi_follow_btn a {
+		border-radius: inherit !important;
+	}
 
+	#sbi_load {
+		background-color: #fff;
+		padding: 10px 0;
+	}
+}
 
 
 	

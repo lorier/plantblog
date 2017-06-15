@@ -106,6 +106,14 @@ function pb_add_backtotop(){
 </a>';
 }
 
+add_filter( 'genesis_post_meta', 'pb_post_meta_filter' );
+
+function pb_post_meta_filter( $post_meta ) {
+	if (is_archive() || is_home()){
+	    $post_meta = '[post_categories before=""]';
+	}
+ 	return $post_meta;
+}
 
 
 add_shortcode('wp_caption', 'pb_img_caption_shortcode');

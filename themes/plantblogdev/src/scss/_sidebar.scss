@@ -1,10 +1,15 @@
 // ==== SIDEBAR ==== //
 
+/* Titles */
+.sidebar .widget-title {
+	text-transform: none;
+}
+
 /* Categories
 --------------------------------------------- */
 
 .sidebar .widget_categories ul {
-	margin-left: 6px;
+	// margin-left: 6px;
 }
 
 .sidebar .widget_categories ul li {
@@ -97,8 +102,10 @@
 
 .sidebar .widget {
 	background-color: transparent;
-	border-radius: 3px;
 	margin-bottom: 40px;
+	margin-bottom: 40px;
+    border-top: 4px solid $gray-rule;
+    padding-top: 10px;
 }
 
 .sidebar .widget input {

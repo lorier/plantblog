@@ -10,12 +10,77 @@
 	// font-size: 30px;
 }
 
-/* Post thumbnail */
-.single .wp-post-image {
-	float: left;
-	max-width: 30%;
-	border: 4px solid white;
-	margin: 5px 25px 10px 0;
+.blog, 
+.archive.category{ 
+	article {
+			position: relative;
+			background-color: white;
+	    	height: 243px;
+	    	overflow: hidden;
+	    	padding-right: 20px;
+
+		.entry-meta:first-child {
+			display: inline-block;
+		    position: absolute;
+		    left: 0;
+		    padding: 0px 10px;
+		    background-color: $yellow;
+		    a{
+		    	color: white;
+		    		    font-weight: bold;
+		    letter-spacing: .06em;
+
+		    }
+		}
+		.entry-image-link {
+			float: left;
+	    	margin-right: 20px;
+	    	height: 100%;
+	    	img {
+	    		height: 100%;
+	    		// height: auto;
+	    	}
+		}
+		.entry-content:before {
+			    content: "";
+			    width: 57%;
+			    display: block;
+			    height: 60px;
+			    position: absolute;
+			    bottom: 0;
+			    right: 0;
+			    background: linear-gradient(180deg,hsla(0,0%,100%,0) 0,#fff 68%,#fff);
+		}
+		.entry-time {
+		    // margin-top: 5px;
+		    padding-top: 0;
+		}
+
+	}
+
+	article {
+		
+		// .entry-image-link {
+		// 	float: left;
+	 //    	margin-right: 20px;
+	 //    	img {
+	 //    		height: 243px;
+	 //    	}
+		// }
+		.entry-title {
+			// font-size: 25px;
+			margin-bottom: 5px;
+		}
+		.entry-time {
+			display: inline-block;
+		    clear: left;
+		    width: 122px;
+		    font-weight: bold;
+		    letter-spacing: .06em;
+		    // border-top: 4px solid $yellow;
+		    padding-top: 5px;
+		}
+	}
 }
 
 /* Entry Meta 
@@ -37,20 +102,20 @@
 }
 
 .entry-header .entry-meta {
-	margin-bottom: 24px;
+	margin-bottom: 17px;
 	font-size: 12px;
-
+	margin-top: 7px;
 }
 
 
-.entry-header .entry-meta::before {
-	background-color: $yellow;
-	content: "";
-	display: block;
-	height: 6px;
-	margin-bottom: 7px;
-	width: 61px;
-}
+// .entry-header .entry-meta::before {
+// 	background-color: $yellow;
+// 	content: "";
+// 	display: block;
+// 	height: 6px;
+// 	margin-bottom: 7px;
+// 	width: 61px;
+// }
 
 .entry-footer {
 	clear: both;

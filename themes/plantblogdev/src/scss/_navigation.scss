@@ -593,6 +593,9 @@ body .genesis-nav-menu {
 	background-color: $brown;
 	//logo & pinterest
 	.footer-widgets-1 {
+		#footerlogo{
+			text-transform: none;
+		}
 		width: 28%;
 		h3{
 			font-family: 'Lobster', Georgia, serif;
