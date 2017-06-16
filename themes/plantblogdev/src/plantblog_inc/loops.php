@@ -38,7 +38,7 @@ function pb_list_dead_plants() {
                 if($is_dead == 'No'){
                     continue;
                 }else {
-                    $plant_types = pb_get_terms($post->ID);
+                    $plant_types = pb_get_terms_list($post->ID, '');
                     $reason = get_field('reason', $post->id);
 
                     $plant_types = !empty($plant_types) ? $plant_types : '--';
@@ -48,11 +48,10 @@ function pb_list_dead_plants() {
                     
                     printf( '<div %s>', genesis_attr( 'entry' ) );
                         // $output = '<a href="'.esc_url(get_the_permalink()).'">'.pb_get_thumbnail($post->post_id);
-                        $output = '<a href="'.esc_url(get_the_permalink()).'"><div class="plant-list-thumb"">'.$thumb.'</div>';
+                        $output = '<div class="plant-list-thumb"">'.$thumb.'</div>';
                         $output .= '<div class="pb_entry_content"><h3>'.get_the_title().'</h3>';
-                        $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p></a>';
-                        $output .= '<p><span>Reason: </span>'.$reason.'</p>';
-                        $output .= '<p><span>Type: </span>'.$plant_types.'</p></div>';
+                        $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p>';
+                        $output .= '<p><span>Reason: </span>'.$reason.'</p></div>';
                         echo $output;
                     echo '</div>';
 
@@ -160,8 +159,6 @@ function pb_list_plants() {
              );
             $args['tax_query'] = $tax_args;
 
-            // print_r($tax_args);
-
             //get all the posts for each term
             $query = new WP_Query( $args );
 
@@ -182,13 +179,21 @@ function pb_list_plants() {
                     if ( empty($shade_score) ){
                         $shade_score = 'TBD';
                     }
+                    //flag if new addition < 3 months
+                    $post_date = new DateTime($post->post_date); 
+                    $date_now   = new DateTime("now"); 
+                    $date_diff  = $post_date->diff($date_now);
 
+                    $new_plant_flag = $date_diff->days <= 30 ? "<span class='new-flag'>New! </span>" : "";
+                    
                     $tax_classes = pb_get_post_terms($post);
 
                     $thumb = lr_get_post_thumb($post);
 
                     //check our custom field value
+                    // $is_dead = get_field('is_this_plant_dead', $post->id);
                     $is_dead = get_field('is_this_plant_dead', $post->id);
+
                     $is_dead = $is_dead =='Yes' ? true : false;
 
                         //only output living plants
@@ -198,7 +203,7 @@ function pb_list_plants() {
                             do_action( 'genesis_before_entry' );
                             printf( '<div class="plant '. $tax_classes.'" %s>', genesis_attr( 'entry' ) );
                                 $output = '<a href="'.esc_url(get_the_permalink()).'"><div class="plant-list-thumb"">'.$thumb.'</div>';
-                                $output .= '<div class="text"><h3>'.get_the_title().'</h3>';
+                                $output .= '<div class="text"><h3>'.$new_plant_flag .get_the_title().'</h3>';
                                 $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p></div></a>';
                                 $output .= '<div class="grade"><span>'. $shade_score . '</span></div>';
                                 echo $output;

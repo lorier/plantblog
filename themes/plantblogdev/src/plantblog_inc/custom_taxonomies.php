@@ -45,6 +45,52 @@ add_action( 'init', 'pb_type_taxonomy', 0 );
 
 }
 
+//Dead Plant Taxonomy
+if ( ! function_exists( 'pb_dead_taxonomy' ) ) {
+
+// Register Custom Taxonomy
+function pb_dead_taxonomy() {
+
+	$labels = array(
+		'name'                       => _x( 'Dead or Alive', 'Taxonomy General Name', 'text_domain' ),
+		'singular_name'              => _x( 'Dead or Alive', 'Taxonomy Singular Name', 'text_domain' ),
+		'menu_name'                  => __( 'Dead or Alive', 'text_domain' ),
+		'all_items'                  => __( 'All Items', 'text_domain' ),
+		'parent_item'                => __( 'Parent Item', 'text_domain' ),
+		'parent_item_colon'          => __( 'Parent Item:', 'text_domain' ),
+		'new_item_name'              => __( 'New Item Name', 'text_domain' ),
+		'add_new_item'               => __( 'Add New Item', 'text_domain' ),
+		'edit_item'                  => __( 'Edit Item', 'text_domain' ),
+		'update_item'                => __( 'Update Item', 'text_domain' ),
+		'view_item'                  => __( 'View Item', 'text_domain' ),
+		'separate_items_with_commas' => __( 'Separate items with commas', 'text_domain' ),
+		'add_or_remove_items'        => __( 'Add or remove items', 'text_domain' ),
+		'choose_from_most_used'      => __( 'Choose from the most used', 'text_domain' ),
+		'popular_items'              => __( 'Popular Items', 'text_domain' ),
+		'search_items'               => __( 'Search Items', 'text_domain' ),
+		'not_found'                  => __( 'Not Found', 'text_domain' ),
+		'no_terms'                   => __( 'No items', 'text_domain' ),
+		'items_list'                 => __( 'Items list', 'text_domain' ),
+		'items_list_navigation'      => __( 'Items list navigation', 'text_domain' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_in_rest'      		 => true,		
+		'show_tagcloud'              => true,
+		'query_var'					 => true
+	);
+	register_taxonomy( 'dead-alive', array( 'plant' ), $args );
+
+}
+add_action( 'init', 'pb_dead_taxonomy', 0 );
+
+}
+
 //Shade Grade taxonomy
 if ( ! function_exists( 'pb_grade_taxonomy' ) ) {
 

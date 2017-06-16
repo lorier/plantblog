@@ -65,6 +65,16 @@ div[id*="ajaxsearchliteres"] .results .item .asl_content h3, div[id*="ajaxsearch
 	color: $yellow !important;
 }
 
+div[id*="ajaxsearchliteres"].vertical {
+	padding: 0 !important;
+}
+
+div[id*='ajaxsearchlite'] .mCSBap_scrollTools {
+	background-color: $lightest-gray;
+}
+div[id*='ajaxsearchlite'] .probox .proclose svg {
+	background-color: $dark-gray !important;
+}
 //Mailchimp
 .category, .single {
 	aside .mc4wp-form-fields{
