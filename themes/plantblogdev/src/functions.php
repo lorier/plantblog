@@ -8,14 +8,6 @@ add_action( 'genesis_setup', 'pb_load_includes', 15 );
 function pb_load_includes() {
     foreach ( glob( dirname( __FILE__ ) . '/plantblog_inc/*.php' ) as $file ) { include $file; }
 }
-//add plant loop to dead plants page
-add_action('genesis_after_content_sidebar_wrap', 'pb_add_plant_loop', 16);
-function pb_add_plant_loop(){
-	global $post;
-	if($post->ID == 20) {
-		pb_list_dead_plants();
-	}
-}
 
 // Start the engine
 include_once( get_template_directory() . '/lib/init.php' );

@@ -175,12 +175,12 @@ function pb_plant_stats(){
 		$term_count = $term_count + 1;
 	}
 	$output .= $term_list;
-	$output .= '</div><div class="one-third">';
+	$output .= '</div><div class="one-third"><div class="taxonomy">';
 	if ( get_field('nursery_tag')):
-			$output .= '<div class="taxonomy"><h5 class="taxonomy-title">Nursery Tag</h5><p>';
-		    $output .= get_field('nursery_tag').'</p></div>';	        
+			$output .= '<h5 class="taxonomy-title">Nursery Tag</h5><p>';
+		    $output .= get_field('nursery_tag').'</p>';	        
 	endif;
-	$output .='</div></div></div><div class="clear">';
+	$output .='</div></div></div></div><div class="clear">';
 	
 	echo $output;
 }

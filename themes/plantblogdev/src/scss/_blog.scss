@@ -5,6 +5,9 @@
 
 .blog, 
 .archive.category{ 
+	.entry-header {
+		padding-top: 5px;
+	}
 	.entry-meta {
 		color: $site-description;
 		font-size: 14px;
@@ -12,6 +15,7 @@
 		font-family: $body-font, sans-serif;
 		letter-spacing: .01em;
 		text-transform: uppercase;
+		display: inline-block;
 	}
 	.entry-header .entry-meta {
 		margin-bottom: 4px;
@@ -20,7 +24,6 @@
 	}
 	.entry-header h2.entry-title {
 		margin-bottom: 20px;
-			margin-bottom: 5px;
 
 		a:hover {
 			color: lighten($dark-gray, 20%);
@@ -30,6 +33,7 @@
 
 	.entry-meta a {
 		color: $site-description;
+		display: inline-block;
 	}
 	article {
 			position: relative;
@@ -86,6 +90,34 @@
 		    letter-spacing: .06em;
 		    // border-top: 4px solid $yellow;
 		    padding-top: 5px;
+		}
+	}
+	@media screen and (max-width: 700px){
+		article {
+			max-width: 460px;
+			padding: 0;
+			height: auto;
+			margin: 0 auto;
+			margin-bottom: 30px;
+
+			.entry-image-link {
+				float: left;
+		    	margin-right: 0;
+		    	height: auto;
+		    	img {
+		    		height: auto;
+		    		position: relative;
+		    		z-index: 50;
+		    		// height: auto;
+		    	}
+			}
+			.entry-header, .entry-content {
+				// padding-top: 20px;
+				margin: 10px 20px 20px 20px;
+			}
+			.entry-content:before {
+				width: 100%;
+			}
 		}
 	}
 }

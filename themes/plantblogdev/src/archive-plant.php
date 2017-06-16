@@ -111,7 +111,8 @@ $sort_by_taxonomy = sanitize_text_field($_GET['sort-by']);
 
 add_action( 'genesis_before_content_sidebar_wrap', 'pb_add_light_needs_qualifier' );
 function pb_add_light_needs_qualifier(){
-    echo '<div class="note">Note: A plant may show up on more than one light needs category.</div>';
+    echo '<div class="notes"><div class="note note-light-requirement">Note: Plants may have multiple light needs.</div>
+        <div class="note note-location">Note: Plants may appear in more than one location.</div></div>';
 }
 
 // For a list of given taxonomy terms, output the posts for each term, then move on to the next term

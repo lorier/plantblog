@@ -707,7 +707,7 @@ body .genesis-nav-menu {
 		text-align: center;
 	}
 	.widget-title {
-		display: none;
+		// display: none;
 	}
 	.footer-widgets .footer-widgets-1 {
 		width: 100%;
@@ -735,7 +735,31 @@ body .genesis-nav-menu {
 		float: none;
 		// display: none;
 	}
+	#text-3 {
+		width: 53%;
+	    float: right;
+	}
+	.footer-widgets .footer-widgets-3 {
+		float: left;
+	}
+	.footer-widgets .footer-widgets-4 {
+		float: left;
+	}
 }
+@media screen and (max-width: 500px){
+	
+	.footer-widgets .footer-widgets-3,
+	.footer-widgets .footer-widgets-4 {
+		width: 100%;
+		padding: 10px;
+		float: none;
+		// display: none;
+	}
+	#text-3 {
+		display: none;
+	}
+}
+
 
 .site-footer {
 	font-size: 10px;

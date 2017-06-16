@@ -27,7 +27,6 @@
 	  		}
   		})
 
-  		//REFACTOR
 		// journal notes accordion
 		$('.accordion-1 .inside').hide();
 		$('h4:before').css('content','\\f0d7');   
@@ -35,15 +34,6 @@
 			e.preventDefault();
 	    	$('.accordion-1 .accordion-title h4').toggleClass('open');
 		    $('.accordion-1 > .inside').slideToggle('default');
-		    // return false;
-		  });
-
-		$('.accordion-2 .inside').hide();
-		$('h4:before').css('content','\\f0d7');   
-		$('.accordion-2 .accordion-title').click(function(e) {
-			e.preventDefault();
-	    	$('.accordion-2 .accordion-title h4').toggleClass('open');
-		    $('.accordion-2 > .inside').slideToggle('default');
 		    // return false;
 		  });
 		
@@ -55,12 +45,10 @@
 			e.preventDefault();
 
 			var groupName = e.target.getAttribute('id');
-			if (groupName === 'light-requirement'){
-				$('.note').addClass('show-light-needs-note');
-				// $('.site-inner').toggle().prepend('<div>Note: A plant may show up on more than one light needs category.</div>');
-			}else {
-				$('.note').removeClass('show-light-needs-note');
-			}
+			$('.note').removeClass('show-note');
+			$('.note-'+groupName).addClass('show-note');
+		
+
 			//disable action for the active state
 			if(e.target.parentNode.classList.contains('active-link')){
 				return;

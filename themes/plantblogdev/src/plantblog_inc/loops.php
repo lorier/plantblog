@@ -11,6 +11,13 @@ function pb_list_dead_plants() {
         'posts_per_archive_page' => '30',
         'order'                  => 'ASC',
         'orderby'                => 'title',
+        'tax_query' => array(
+                        array(
+                            'taxonomy' => 'dead-alive',
+                            'field'    => 'slug',
+                            'terms'    => 'Dead',
+                        )
+                    )
         // 'cache_results'          => true,
         // 'update_post_meta_cache' => true,
         // 'update_post_term_cache' => true,
@@ -32,12 +39,12 @@ function pb_list_dead_plants() {
             $thumb = lr_get_post_thumb($post);
            
             //check our custom field value
-            $is_dead = get_field('is_this_plant_dead', $post->id);
+            // $is_dead = get_field('is_this_plant_dead', $post->id);
 
                 //only output living plants
-                if($is_dead == 'No'){
-                    continue;
-                }else {
+                // if($is_dead == 'No'){
+                //     continue;
+                // }else {
                     $plant_types = pb_get_terms_list($post->ID, '');
                     $reason = get_field('reason', $post->id);
 
@@ -56,7 +63,7 @@ function pb_list_dead_plants() {
                     echo '</div>';
 
                     do_action( 'genesis_after_post' );
-                }
+                // }
         }
     } else {
         // no posts found
@@ -121,10 +128,17 @@ function pb_list_plants() {
         // 'update_post_meta_cache' => true,
         // 'update_post_term_cache' => true,
         'tax_query' =>          array(
+                'relation' => 'AND',
                 array(
                     'taxonomy' => $sort_by_taxonomy,
                     'field'     => 'term_id',
                     'terms'     => $tax_terms
+                ),
+                array(
+                    'taxonomy' => 'dead-alive',
+                    'field'    => 'slug',
+                    'terms'    => 'Dead',
+                    'operator' => 'NOT IN'
                 )
         )
     );
@@ -134,10 +148,6 @@ function pb_list_plants() {
     //loop through each term, gathering all the posts for each term in chunks
     foreach ( $tax_terms as $term ) {
 
-        //don't show certain types
-        if ( in_array($term->slug, array('evergreen', 'dead') ) ) {
-            continue;
-        }
 
         $page_title = $term->name;
 
@@ -204,8 +214,8 @@ function pb_list_plants() {
                             printf( '<div class="plant '. $tax_classes.'" %s>', genesis_attr( 'entry' ) );
                                 $output = '<a href="'.esc_url(get_the_permalink()).'"><div class="plant-list-thumb"">'.$thumb.'</div>';
                                 $output .= '<div class="text"><h3>'.$new_plant_flag .get_the_title().'</h3>';
-                                $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p></div></a>';
-                                $output .= '<div class="grade"><span>'. $shade_score . '</span></div>';
+                                $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p>';
+                                $output .= '<p>'. $shade_score . '</p></div></a>';
                                 echo $output;
                             echo '</div>';
 

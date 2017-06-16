@@ -76,7 +76,7 @@ div[id*='ajaxsearchlite'] .probox .proclose svg {
 	background-color: $dark-gray !important;
 }
 //Mailchimp
-.category, .single {
+.category, .single, .blog {
 	aside .mc4wp-form-fields{
 		p:first-child {
 			margin-bottom:8px;
@@ -84,6 +84,9 @@ div[id*='ajaxsearchlite'] .probox .proclose svg {
 				display: block;
 				margin-bottom: 5px;
 			}
+		}
+		label {
+			margin-bottom: 10px;
 		}
 		input[type=email] {
 			display: block;
