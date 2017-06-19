@@ -131,7 +131,7 @@ function pb_add_shade_rating(){
 		$shade_score = 'TBD';
 	}
 
-	if ( !empty($shade_score) && get_field('shade_rating') ):
+	if ( !empty($shade_score) && get_field('shade_summary') ):
 		$output = '<div class="shade-assessment wrap">';
 	$output .= '<h3>Shade Grade</h3>';
 		$output .= '<div class="one-third first"><p class="grade">'.$shade_score.'</p></div>';
@@ -139,6 +139,7 @@ function pb_add_shade_rating(){
     echo $output;
 endif;
 }
+
 
 function pb_add_atg_comment(){
 	global $post;

@@ -19,8 +19,7 @@
 
 /* Entry Meta 
 -----------------------------------------------*/
-// New styling 2-26
-
+	
 .post-type-archive-plant {
 	.custom-archive-description {
 		background-color: $green;
@@ -270,4 +269,15 @@
 		}
 	}
 	
+}
+.tax-plant-type {
+	.latin-name {
+		margin-bottom: 0px;
+		font-family: $body-font;
+		color: $light-gray;
+		font-size: 14px;
+		line-height: 16px;
+		font-style: oblique;
+	}
+
 }
