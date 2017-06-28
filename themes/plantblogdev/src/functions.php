@@ -4,6 +4,45 @@ function lr_print_pre($value) {
     echo "<pre>",print_r($value, true),"</pre>";
 }
 
+
+
+
+
+
+
+//testing rewrites
+function print_rules(){
+		if (is_single()){
+			global $wp_rewrite;
+			lr_print_pre($wp_rewrite->rules);
+	}
+}
+// add_action('wp', 'print_rules');
+
+function generate_author_rewrite_rules() {
+	// echo 'rewrite called';
+	global $wp_rewrite;
+	 // add_rewrite_rule(
+  //       'writer/([^/]+)/?',
+  //       'index.php?author_name=$matches[1]',
+  //       'top');
+	$new_rules = array(
+		'writer/([^/]+)/?' => 'index.php?author_name='.$wp_rewrite->preg_index(1)
+	);
+	$wp_rewrite->rules = $new_rules + (array)$wp_rewrite->rules; //php is barfing on the + sign, though I see it used everywhere
+
+}
+add_action( 'init', 'generate_author_rewrite_rules' );
+
+function welcome_rewrite_rule()
+{
+    add_rewrite_rule('^welcome$', 'index.php?p=1864', 'top');
+}
+add_action('init', 'welcome_rewrite_rule');
+
+
+
+
 add_action( 'genesis_setup', 'pb_load_includes', 15 );
 function pb_load_includes() {
     foreach ( glob( dirname( __FILE__ ) . '/plantblog_inc/*.php' ) as $file ) { include $file; }
