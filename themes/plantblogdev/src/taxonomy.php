@@ -69,7 +69,7 @@ function pb_do_plant_loop() {
         'post_type'              => array( 'plant' ),
         'post_status'            => array( 'publish' ),
         'paged'                  => $paged,
-        'posts_per_archive_page' => '100',
+        'posts_per_archive_page' => '30',
         'order'                  => 'ASC',
         'orderby'                => 'title',
         'cache_results'          => true,
@@ -123,8 +123,6 @@ function pb_do_plant_loop() {
         // no posts found
         do_action( 'genesis_loop_else' );
     }
-global $numpages;
-echo '<p>Outside loop: '. $numpages.'</p>';
  
 }
 genesis();
