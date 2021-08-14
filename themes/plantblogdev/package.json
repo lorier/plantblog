@@ -7,6 +7,12 @@
     "type": "git",
     "url": "https://github.com/synapticism/wordpress-gulp-starter-kit.git"
   },
+  "scripts": {
+    "preinstall": "npx npm-force-resolutions"
+  },
+  "resolutions": {
+    "graceful-fs": "^4.2.4"
+  },
   "keywords": [
     "wordpress",
     "wordpress-theme",
@@ -41,7 +47,7 @@
     "gulp-postcss": "^6.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-ruby-sass": "^2.0.6",
-    "gulp-sass": "^2.2.0",
+    "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.2",
     "gulp-util": "^3.0.7",

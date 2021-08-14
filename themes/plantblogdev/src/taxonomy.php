@@ -61,14 +61,15 @@ $term_id = $term->term_id;
 
 
 function pb_do_plant_loop() {
+
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
    
     global $term_id;
     $args = array (
         'post_type'              => array( 'plant' ),
         'post_status'            => array( 'publish' ),
-        'nopaging'               => false,
-        'posts_per_page'         => '30',
-        'posts_per_archive_page' => '30',
+        'paged'                  => $paged,
+        'posts_per_archive_page' => '100',
         'order'                  => 'ASC',
         'orderby'                => 'title',
         'cache_results'          => true,
@@ -84,17 +85,16 @@ function pb_do_plant_loop() {
     );
 
     // The Query
+    // get and set the global query and overwrite it with our custom query so that the
+    // genesis pagination function can have access to our args. Fix for messed up archive navigation 8/21
+    global $wp_query;
 
-    $query = new WP_Query( $args );
-
-    global $loop_counter;
-
-    $loop_counter = 0;
+    $wp_query = new WP_Query( $args );
 
     // The Loop
-    if ( $query->have_posts() ) {
-        while ( $query->have_posts() ) {
-            $query->the_post();
+    if ( $wp_query->have_posts() ) {
+        while ( $wp_query->have_posts() ) {
+            $wp_query->the_post();
 
             do_action( 'genesis_before_entry' );
             $output = '';
@@ -110,39 +110,21 @@ function pb_do_plant_loop() {
             echo '</article>';
 
             do_action( 'genesis_after_post' );
-            $loop_counter++;
 
             // do_action( 'genesis_after_entry' );
         }
         do_action( 'genesis_after_endwhile' );
+        // echo '<p>Inside loop: '. print_r($wp_query).'</p>';
+        
+        // Restore original Post Data
+        wp_reset_postdata();
 
     } else {
         // no posts found
         do_action( 'genesis_loop_else' );
     }
-
-    // Restore original Post Data
-    wp_reset_postdata();
+global $numpages;
+echo '<p>Outside loop: '. $numpages.'</p>';
  
 }
-
-// function pb_get_terms_list($id=null){
-    
-//     //get all the term objects
-//     $post_terms = wp_get_post_terms($id, array('plant-type','location', 'light-requirement', 'year-planted'), array("fields" => "all"));
-    
-//     //loop through term objects and build an li for each term. Add the li to the term item array.
-//     $term_items;
-//     foreach($post_terms as $term_object) {
-//         $term_items[] = '<li><a href="'.get_term_link( $term_object->term_id, $term_object->taxonomy ).'">'.$term_object->name.'</a></li>';
-//     }
-//     //build an unordered list from the contents of the term item array
-//     ob_start();
-//     $term_list = '<ul>';
-//     $term_list .= implode('', $term_items);
-//     $term_list .= '</ul>';
-//     ob_clean(); 
-//     // lr_print_pre($term_list);
-//     return $term_list;
-// }
 genesis();
