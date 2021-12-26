@@ -18,9 +18,6 @@ function pb_list_dead_plants() {
                             'terms'    => 'Dead',
                         )
                     )
-        // 'cache_results'          => true,
-        // 'update_post_meta_cache' => true,
-        // 'update_post_term_cache' => true,
     );
 
     //loop through each term, gathering all the posts for each term in chunks
@@ -30,41 +27,45 @@ function pb_list_dead_plants() {
     if ( $query->have_posts() ) {
 
         do_action( 'genesis_before_while' );
+        
+        $half_num_posts = ceil( $query->found_posts / 2 );
+        $count = 0;
 
+        echo '<div class="column-grid"><div class="column">';
+        
         while ( $query->have_posts() ) {
             
             $query->the_post();
             global $post;
 
+            $count++;
+
             $thumb = lr_get_post_thumb($post);
            
-            //check our custom field value
-            // $is_dead = get_field('is_this_plant_dead', $post->id);
+            $plant_types = pb_get_terms_list($post->ID, '');
+            $reason = get_field('reason', $post->id);
 
-                //only output living plants
-                // if($is_dead == 'No'){
-                //     continue;
-                // }else {
-                    $plant_types = pb_get_terms_list($post->ID, '');
-                    $reason = get_field('reason', $post->id);
+            $plant_types = !empty($plant_types) ? $plant_types : '--';
+            $reason = !empty($reason) ? $reason : '--';
 
-                    $plant_types = !empty($plant_types) ? $plant_types : '--';
-                    $reason = !empty($reason) ? $reason : '--';
+            do_action( 'genesis_before_entry' );
+            
+            printf( '<div %s>', genesis_attr( 'entry' ) );
+                $output = '<div class="plant-list-thumb">'.$thumb.'</div>';
+                $output .= '<div class="pb_entry_content"><h3><a href="'.esc_url(get_the_permalink()).'">'.get_the_title().'</a></h3>';
+                $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p>';
+                $output .= '<p><span>Reason: </span>'.wp_strip_all_tags( $reason ).'</p></div>';
+                echo $output;
+            echo '</div>';
 
-                    do_action( 'genesis_before_entry' );
-                    
-                    printf( '<div %s>', genesis_attr( 'entry' ) );
-                        // $output = '<a href="'.esc_url(get_the_permalink()).'">'.pb_get_thumbnail($post->post_id);
-                        $output = '<div class="plant-list-thumb"">'.$thumb.'</div>';
-                        $output .= '<div class="pb_entry_content"><h3>'.get_the_title().'</h3>';
-                        $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p>';
-                        $output .= '<p><span>Reason: </span>'.$reason.'</p></div>';
-                        echo $output;
-                    echo '</div>';
+            do_action( 'genesis_after_post' );
 
-                    do_action( 'genesis_after_post' );
-                // }
+            if ( $half_num_posts == $count ){
+                echo '</div><div class="column">';
+            }
         }
+        echo '</div></div>';
+
     } else {
         // no posts found
         do_action( 'genesis_loop_else' );
@@ -124,23 +125,6 @@ function pb_list_plants() {
         'posts_per_archive_page' => '100',
         'order'                  => 'ASC',
         'orderby'                => 'title',
-        // 'cache_results'          => true,
-        // 'update_post_meta_cache' => true,
-        // 'update_post_term_cache' => true,
-        'tax_query' =>          array(
-                'relation' => 'AND',
-                array(
-                    'taxonomy' => $sort_by_taxonomy,
-                    'field'     => 'term_id',
-                    'terms'     => $tax_terms
-                ),
-                array(
-                    'taxonomy' => 'dead-alive',
-                    'field'    => 'slug',
-                    'terms'    => 'Dead',
-                    'operator' => 'NOT IN'
-                )
-        )
     );
 
     echo '<main class="masonry pb-wrap">';
@@ -161,12 +145,19 @@ function pb_list_plants() {
             echo term_description($term);
         }
             $tax_args = array(
+            'relation' => 'AND',
                 array(
                     'taxonomy' => $sort_by_taxonomy,
                     'field' => 'slug',
                     'terms' =>$term->slug,
+                ),
+                array(
+                    'taxonomy' => 'dead-alive',
+                    'field'    => 'slug',
+                    'terms'    => array('dead'),
+                    'operator' => 'NOT IN'
                 )
-             );
+            );
             $args['tax_query'] = $tax_args;
 
             //get all the posts for each term

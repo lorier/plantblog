@@ -2,6 +2,8 @@
 
 define('TAXONOMIES', "['plant-type','location','year-planted','light-requirement']");
 
+remove_action( 'genesis_site_description', 'genesis_seo_site_description' );
+
 //remove ability to comment on single images in jetpack gallery
 function pb_tweakjp_rm_comments_att( $open, $post_id ) {
     $post = get_post( $post_id );
@@ -57,12 +59,6 @@ function sp_custom_footer() {
 	$output .= '<a href="'.get_page_link(1012 ).'">Terms of Service</a> ';
 	echo $output;
 }
-
-// Hacky fix for Scroll-to-Fixed issue
-// add_action('genesis_before_header', 'add_blank_div', 10);
-// function add_blank_div(){
-// 	echo '<div class="decorative-bar"></div>';
-// }
 
 // Enable shortcode use in widgets
 add_filter('widget_text', 'do_shortcode');

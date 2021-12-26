@@ -4,12 +4,6 @@ function lr_print_pre($value) {
     echo "<pre>",print_r($value, true),"</pre>";
 }
 
-
-
-
-
-
-
 //testing rewrites
 function print_rules(){
 		if (is_single()){
@@ -75,14 +69,6 @@ function kickstart_fonts_scripts() {
 	);
 	wp_localize_script( 'kickstart-responsive-menu', 'KickstartL10n', $output );
 }
-
-// add_action( 'wp_enqueue_scripts', 'pb_enqueue_stickynav_script' );
-// function pb_enqueue_stickynav_script() {
-
-// 	wp_enqueue_script( 'sample-sticky-menu', get_stylesheet_directory_uri() . '/js/stickynav.js', array( 'jquery' ), '1.0.0' );
-// 	wp_enqueue_script( 'slick','//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js', array( 'jquery' ), '1.7.2' );
-// }
-
 
 add_action( 'wp_enqueue_scripts', 'pb_enqueue_corejs');
 

@@ -13,23 +13,35 @@ remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_close', 15 )
 remove_action( 'genesis_before_loop', 'genesis_do_breadcrumbs' );
 add_action( 'genesis_before_content', 'genesis_do_breadcrumbs' );
 
+
+// function is_dead_plant(){
+// 	$dead = pb_get_first_term_name($post, 'dead-alive');
+// 	if ($dead != 'Dead'){
+// 		add_action('genesis_entry_header', 'pb_add_gardeners_log',15);
+// 		add_action('genesis_sidebar', 'pb_add_shade_rating');
+// 		add_action('genesis_entry_header', 'pb_add_atg_comment',13);
+// 		add_action('genesis_entry_header', 'pb_plant_stats',14);
+// 	}else {
+// 		add_action('genesis_entry_content', 'pb_list_reason' );
+// 	}
+// }
+add_action('genesis_entry_header', 'pb_add_gardeners_log',15);
+add_action('genesis_sidebar', 'pb_add_shade_rating');
+add_action('genesis_entry_header', 'pb_add_atg_comment',13);
+add_action('genesis_entry_header', 'pb_plant_stats',14);
+
 add_action('genesis_before', 'is_dead_plant');
 
 function is_dead_plant(){
 	$dead = pb_get_first_term_name($post, 'dead-alive');
-	if ($dead != 'Dead'){
-		add_action('genesis_entry_header', 'pb_add_gardeners_log',15);
-		add_action('genesis_sidebar', 'pb_add_shade_rating');
-		add_action('genesis_entry_header', 'pb_add_atg_comment',13);
-		add_action('genesis_entry_header', 'pb_plant_stats',14);
-	}else {
-		add_action('genesis_entry_content', 'pb_list_reason' );
+	if ($dead == 'Dead'){
+		add_action('genesis_entry_header', 'pb_list_reason', 12 );
 	}
 }
 
 function pb_list_reason(){
 	$reason = get_field('reason', $post->id);
-	$output = '<h3>Reason</h3>' . $reason;
+	$output = '<div class="dead-note"><h3>This plant died!</h3>' . $reason . '</div>';
 	echo $output;
 }
 function pb_the_content_filter($content) {

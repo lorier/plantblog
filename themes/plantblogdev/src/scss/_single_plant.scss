@@ -77,27 +77,15 @@
 	    font-size: 19px;
 	}
 	.notes {
-		// max-width: 600px;
-	    // padding: 8px 10px;
-	    // margin-top: 6px;
-	    // margin-bottom: 10;
-	    // background-color: #dddecc;
-	    // margin-top: -1px;
-        // background-color: #dddecc;
+	
         background-color: #dddecc;
-	    // border-top: 1px solid #eef1e0;
-    	// border-top: 1px solid $gray-rule;
-    	// border-bottom: 1px solid $gray-rule;
+	 
     	margin-bottom: 20px;
 	    a {
 	    	display: block;
 	    	padding: 10px 0 10px 20px
 	    }
 		h3{
-			// font-family: Muli,sans-serif;
-		 //    text-transform: uppercase;
-		    // font-size: 13px;
-		    // font-weight: border-left: d;
 		    margin: 0;
 
 		    position: relative;
@@ -148,6 +136,19 @@
 		}
 	.atg-commentary {
 		margin-top: 20px;
+	}
+	.dead-note {
+		color: white;
+		display: block;
+		margin-top: 20px;
+		padding: 1em;
+		background-color:$dark-gray;
+		h3 {
+			color: white;
+		}
+		p {
+			margin-bottom: 0;
+		}
 	}
 	
 	.shade-assessment {
