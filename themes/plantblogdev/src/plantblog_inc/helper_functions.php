@@ -12,6 +12,14 @@ function pb_get_latin_name($id=null){
     return '--';
 
 }
+function pb_get_pronunciation($id=null){
+    $pronunciation = get_field('pronunciation', $id, true);
+    if($pronunciation){
+        return $pronunciation;
+    }
+    return '';
+
+}
 
 //use placeholder thumbnail when featured image is missing
 function lr_get_post_thumb($post){

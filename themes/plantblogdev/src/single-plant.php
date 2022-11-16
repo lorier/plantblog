@@ -79,7 +79,7 @@ function pb_featured_image_sidebar() {
 add_action('genesis_entry_header', 'pb_alt_names',11);
 function pb_alt_names(){
 	global $post;
-	echo '<h4 class="latin">'.esc_textarea( pb_get_latin_name($post->ID) ).'</h4>';
+	echo '<h4 class="latin">'.esc_textarea( pb_get_latin_name($post->ID) ).' '. esc_html( pb_get_pronunciation($post->ID) ). '</h4>';
 	echo '<div id="date-first-planted"></div>';
 
 }
