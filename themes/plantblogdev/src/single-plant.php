@@ -80,6 +80,8 @@ add_action('genesis_entry_header', 'pb_alt_names',11);
 function pb_alt_names(){
 	global $post;
 	echo '<h4 class="latin">'.esc_textarea( pb_get_latin_name($post->ID) ).'</h4>';
+	echo '<div id="date-first-planted"></div>';
+
 }
 
 
@@ -209,6 +211,8 @@ add_action( 'loop_start', 'jptweak_remove_share' );
 
 add_filter('the_content', 'pb_add_content_title');
 function pb_add_content_title($content){
+	global $post;
+
 	if(!empty($content)){
 		return '<div class="content-inner"><h3>Photo Gallery</h3>' . $content . '</div>';
 	}else { return; }
@@ -220,5 +224,17 @@ function output_sharing_display(){
 	}
 }
 add_action('genesis_after_loop', 'output_sharing_display');
+add_action( 'genesis_entry_header', 'add_link_pages', 1 );
+
+function add_link_pages(){
+	ob_start();
+	echo '<div class="single-plant-navigation"><ul><li class="prev">';
+	previous_post_link( '&laquo; %link', 'Previous Plant');
+	echo '</li><li> | </li><li class="next">';
+	next_post_link( '%link &raquo;', 'Next Plant');
+	echo '</li></ul></div>';
+	$contents = ob_get_clean();
+	echo $contents;
+}
 
 genesis();

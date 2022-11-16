@@ -9,7 +9,14 @@
   			e.target.preventDefault;
   			$('body').animate({'scrollTop': '0px'}, 700);
   		})
-  		$(window).scroll(function(){
+  		
+		//Copy the first planted date to the top of post
+		var txt = $('.inside p:first-child .date').text();
+		txt = 'First planted: ' + txt.slice(0,-2);
+		console.log('txt:' + txt);
+		$('.single-plant #date-first-planted').text(txt);
+
+		$(window).scroll(function(){
 	  		// console.log('button scrolled: ' + ofst.top );
 	  		// console.log('window y: ' + window.scrollY);
 			var opcty = $('.back-to-top').css('opacity');
