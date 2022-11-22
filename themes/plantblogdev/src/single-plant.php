@@ -25,10 +25,11 @@ add_action( 'genesis_before_content', 'genesis_do_breadcrumbs' );
 // 		add_action('genesis_entry_content', 'pb_list_reason' );
 // 	}
 // }
-add_action('genesis_entry_header', 'pb_add_gardeners_log',15);
 add_action('genesis_sidebar', 'pb_add_shade_rating');
 add_action('genesis_entry_header', 'pb_add_atg_comment',13);
 add_action('genesis_entry_header', 'pb_plant_stats',14);
+add_action('genesis_entry_header', 'pb_companions',15);
+add_action('genesis_entry_header', 'pb_add_gardeners_log',16);
 
 add_action('genesis_before', 'is_dead_plant');
 
@@ -198,6 +199,16 @@ function pb_plant_stats(){
 	$output .='</div></div></div></div><div class="clear">';
 	
 	echo $output;
+}
+function pb_companions(){
+	$companions = get_field('companion_plants');
+	if ( $companions ) {
+		$output ='<div class="stats">';
+		$output .= '<h5 class="taxonomy-title">Suggested Companions</h5>';
+		$output .= $companions ;
+		$output .= '</div>';
+		echo $output;
+	}
 }
 
 function jptweak_remove_share() {

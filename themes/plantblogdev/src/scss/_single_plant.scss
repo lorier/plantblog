@@ -13,6 +13,11 @@
 	.latin {
 		// color: $light-gray;
 	}
+	#date-first-planted {
+		margin-bottom: 16px;
+		margin-top: 20px;
+		font-size: 15px;
+	}
 	aside {
 		width: 35%;
 		background-color: #fff;
@@ -125,7 +130,8 @@
 
 	}
 	h1.entry-title {
-		margin-bottom: 10px;
+		margin-bottom: 15px;
+		margin-top: 10px;
 	}
 	.latin {
 		font-family: $body-font;
@@ -200,7 +206,7 @@
 		clear: both;
 	}
 	.stats {
-		float: left;
+		// float: left;
 		font-size: 15px;
 		border-top: 3px solid $gray-rule;
 		margin-bottom: 20px;
