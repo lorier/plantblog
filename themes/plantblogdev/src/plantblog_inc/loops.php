@@ -206,7 +206,7 @@ function pb_list_plants() {
                                 $output = '<a href="'.esc_url(get_the_permalink()).'"><div class="plant-list-thumb"">'.$thumb.'</div>';
                                 $output .= '<div class="text"><h3>'.$new_plant_flag .get_the_title().'</h3>';
                                 $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p>';
-                                $output .= '<p>'. $shade_score . '</p></div></a>';
+                                $output .= '<p></p></div></a>'; //removed shade score but kept markup for styling
                                 echo $output;
                             echo '</div>';
 
