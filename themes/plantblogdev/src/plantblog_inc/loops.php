@@ -165,6 +165,7 @@ function pb_list_plants() {
 
 
             if ( $query->have_posts() ) {
+                $output = '<div class="plant-card">';
 
                 do_action( 'genesis_before_while' );
 
@@ -202,17 +203,19 @@ function pb_list_plants() {
                             continue;
                         }else{
                             do_action( 'genesis_before_entry' );
-                            printf( '<div class="plant '. $tax_classes.'" %s>', genesis_attr( 'entry' ) );
-                                $output = '<a href="'.esc_url(get_the_permalink()).'"><div class="plant-list-thumb"">'.$thumb.'</div>';
+                                $output .= '<div class="plant '. $tax_classes.'" >';
+                                $output .= '<a href="'.esc_url(get_the_permalink()).'"><div class="plant-list-thumb"">'.$thumb.'</div>';
                                 $output .= '<div class="text"><h3>'.$new_plant_flag .get_the_title().'</h3>';
                                 $output .= '<p class="latin-name">'.pb_get_latin_name($post->post_id).'</p>';
                                 $output .= '<p></p></div></a>'; //removed shade score but kept markup for styling
-                                echo $output;
-                            echo '</div>';
+                                $output .= '</div>';//end .plant
 
                             do_action( 'genesis_after_post' );
                         }
                 }
+                
+                $output .= '</div>';
+                echo $output;
             } else {
                 // no posts found
                 do_action( 'genesis_loop_else' );

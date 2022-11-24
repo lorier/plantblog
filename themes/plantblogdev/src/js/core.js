@@ -1,7 +1,6 @@
 // ==== CORE ==== //
 
 
-// A simple wrapper for all your custom jQuery; everything in this file will be run on every page
 ;(function($){
   $(document).ready(function() {
   		//scroll button
@@ -9,7 +8,16 @@
   			e.target.preventDefault;
   			$('body').animate({'scrollTop': '0px'}, 700);
   		})
-  		
+  	
+		//view changer on plant list
+		const viewToggle = document.getElementById('view-toggle');
+		const bodyElem = document.getElementsByTagName('body');
+
+		viewToggle.addEventListener('click', (e) => {
+			console.log('clicked');
+			bodyElem[0].classList.toggle('big-view');
+		});
+
 		//Copy the first planted date to the top of post
 		var txt = $('.inside p:first-child .date').text();
 		txt = 'First planted: ' + txt.slice(0,-2);
