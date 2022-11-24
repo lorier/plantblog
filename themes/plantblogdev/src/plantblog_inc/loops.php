@@ -74,20 +74,6 @@ function pb_list_dead_plants() {
     wp_reset_postdata();
 }
 
-// //Get the plant type(s) for each entry
-// function pb_get_terms($post_id, $term){
-//     $term_array = wp_get_post_terms( $post_id, $term );
-//     $terms = array();
-//     if(is_array($term_array)){
-//         foreach($term_array as $term_object){
-//             // lr_print_pre($term_object);
-//             $terms[] = $term_object->name;
-//         }
-//         $the_terms = implode(", ", $terms);
-//     }
-//     return $the_terms;
-// }
-//Get the plant type(s) for each entry
 
 function pb_get_first_term_name($post, $taxonomy){
 
@@ -102,6 +88,10 @@ function pb_get_first_term_name($post, $taxonomy){
         $term = $term_obj->name;
     }
     return $term;
+}
+//Sidebar filter for big view
+function pb_big_list_filter(){
+    echo '<div class="big-view-filter"><h3>Filter</h3></div>';
 }
 
 //Plant List Loop
@@ -165,7 +155,7 @@ function pb_list_plants() {
 
 
             if ( $query->have_posts() ) {
-                $output = '<div class="plant-card">';
+                $output = '<div class="plant-cards">';
 
                 do_action( 'genesis_before_while' );
 

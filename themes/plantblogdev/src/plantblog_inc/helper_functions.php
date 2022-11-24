@@ -28,9 +28,9 @@ function lr_get_post_thumb($post){
     // $thumb_url = $thumb_url_array[0];
 
     if ( has_post_thumbnail($post) ) {
-        return get_the_post_thumbnail($post,'thumbnail');
+        return get_the_post_thumbnail($post,'post_featured_large');
     } else {
-            return '<img src="'.get_site_url().'/wp-content/uploads/2016/07/Untitled-1.png" class="size-post-thumbnail"/>';
+            return '<img src="/images/pb-thumb-placeholder.png" class="size-post-thumbnail"/>';
         }
 }
 

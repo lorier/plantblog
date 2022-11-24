@@ -94,6 +94,7 @@ function pb_add_light_needs_qualifier(){
 // For a list of given taxonomy terms, output the posts for each term, then move on to the next term
 // https://gist.github.com/jaredkc/6191133
 
-add_action( 'genesis_loop', 'pb_list_plants' );
+add_action( 'genesis_loop', 'pb_list_plants', 10 );
+add_action('genesis_loop', 'pb_big_list_filter', 9 );
 
 genesis();

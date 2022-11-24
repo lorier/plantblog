@@ -171,6 +171,7 @@ add_theme_support( 'post-formats', array( 'quote' ) );
 add_post_type_support( 'page', 'excerpt' );
 
 // Image sizes
+add_image_size( 'post_featured_large', 400, 400, true );
 add_image_size( 'post_featured', 460, 311, true );
 add_image_size( 'post_medium', 400, 218, true );
 add_image_size( 'post_large', 573, 285, true );

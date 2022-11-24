@@ -1,5 +1,40 @@
 // ==== Plants Page ==== //
+.big-view-filter {
+	display:none;
+}
 
+body.big-view {
+	.big-view-filter {
+		display:block;
+	}
+	#genesis-content {
+		display: grid;
+		grid-template-columns: 1fr 4fr;
+		gap: 30px;
+	}
+	.masonry.pb-wrap {
+		column-count: 1;
+	}
+	.plant-cards {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+	.plant {
+		border-bottom: none;
+		.text {
+			margin-top: 8px;
+		}
+	}
+	.plant .plant-list-thumb {
+		width:100%;
+		height: auto;
+		max-width: 100%;
+	}
+	.plant .plant-list-thumb img {
+		max-width:100%;
+	} 
+
+}
 
 /* Search 
 ----------------------------------*/
@@ -140,8 +175,11 @@
 	}
 }
 
-.post-type-archive-plant .site-inner {
+.post-type-archive-plant {
+	.site-inner {
 	padding-top: 0;
+
+	}
 	.content {
 		padding-top: 0;
 	}
@@ -221,7 +259,7 @@
 			overflow: hidden;
 			display: flex;
 			align-items: center;
-			background-color: #fff;
+			background-color: transparent;
 			max-width: 30%;
 	    }
 	    .text {
@@ -240,7 +278,8 @@
 	    }
 
 		img {
-			width: 80px;
+			// width: 80px;
+			max-width: 300px;
 			// float: left;
 		}
 	}
