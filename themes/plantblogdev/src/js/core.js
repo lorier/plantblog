@@ -5,19 +5,99 @@
   $(document).ready(function() {
   		//scroll button
   		$('.back-to-top').on('click', function(e){
-  			e.target.preventDefault;
+  			e.target.preventDefault();
   			$('body').animate({'scrollTop': '0px'}, 700);
   		})
   	
-		//view changer on plant list
+		//View changer on plant list
 		const viewToggle = document.getElementById('view-toggle');
 		const bodyElem = document.getElementsByTagName('body');
 
 		viewToggle.addEventListener('click', (e) => {
 			console.log('clicked');
 			bodyElem[0].classList.toggle('big-view');
+			add_filter_sidebar();
 		});
 
+		let filterableItems;
+		// let filterItems;
+		let checkboxes;
+		
+		function triggerEvent (element, eventName) {
+			var event = new Event(eventName);
+			element.dispatchEvent(event);
+		}
+
+		//Build sidebar filter on plant list big view
+		function add_filter_sidebar(){
+			filterableItems = document.querySelectorAll('.filterable-items');
+			// let checkboxes = [];
+			let filterContainer = document.getElementById('filterList');
+			for (let i = 0; i < filterableItems.length; i++){
+				let div = document.createElement('div');
+				let nameUC = filterableItems[i].firstChild.innerText;
+				let name = nameUC.toLowerCase();
+				let checkbox = document.createElement('input');
+					checkbox.type = "checkbox";
+					checkbox.name = name;
+					checkbox.value = name;
+					checkbox.id = name;
+					checkbox.checked = true;
+					checkbox.setAttribute('checked','checked');
+				
+				checkbox.addEventListener('change', run_filter );
+				checkbox.addEventListener('click', (e) =>{
+					if(e.target.hasAttribute('checked')){
+						e.target.removeAttribute('checked');
+					}else{
+						e.target.setAttribute('checked','checked');
+					}
+				});
+				
+				var label = document.createElement('label')
+					label.htmlFor = name;
+					label.appendChild(document.createTextNode(nameUC));
+				
+				div.appendChild(checkbox);
+				div.appendChild(label);
+				filterContainer.appendChild(div);
+
+				checkboxes = document.querySelectorAll('#filterList div input');
+			}
+			select_or_deselect_all();
+			run_filter();
+		}
+		function select_or_deselect_all(){
+			let selectAll = document.getElementById('selectAll');
+			let allSelected = false;
+			let filterItems = 
+			
+			selectAll.addEventListener('click', (e) => {
+				e.preventDefault(); 
+				allSelected = !allSelected;
+				checkboxes.forEach( (elem) => {
+					elem.checked = !elem.checked;
+					if(allSelected){
+						elem.removeAttribute('checked');
+					}else{
+						elem.setAttribute('checked','checked');
+					}
+				} );
+				//TODO figure out custom even firing
+				// triggerEvent(elem, 'change');
+			});
+		}
+		function run_filter(e){
+			console.log('filter called');
+			// checkboxes.forEach( (elem) => {
+			// 	elem.addEventListener('click', (elem) => {
+			// 		elem.checked = elem.checked ? false : true; 
+			// 		console.log('checkbox is clicked');
+			// 	})
+			// });
+		}
+		//TODO add init
+		
 		//Copy the first planted date to the top of post
 		var txt = $('.inside p:first-child .date').text();
 		txt = 'First planted: ' + txt.slice(0,-2);

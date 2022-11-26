@@ -30,7 +30,7 @@ function lr_get_post_thumb($post){
     if ( has_post_thumbnail($post) ) {
         return get_the_post_thumbnail($post,'post_featured_large');
     } else {
-            return '<img src="/images/pb-thumb-placeholder.png" class="size-post-thumbnail"/>';
+            return '<img src="'.get_stylesheet_directory_uri().'/images/pb-thumb-placeholder.png" class="size-post-thumbnail"/>';
         }
 }
 

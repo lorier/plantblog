@@ -91,7 +91,7 @@ function pb_get_first_term_name($post, $taxonomy){
 }
 //Sidebar filter for big view
 function pb_big_list_filter(){
-    echo '<div class="big-view-filter"><h3>Filter</h3></div>';
+    echo '<div><fieldset id="filterList" class="big-view-filter"><legend>Filter</legend><a href="#" id="selectAll">Select/deselect all</a></fieldset></div>';
 }
 
 //Plant List Loop
@@ -126,7 +126,7 @@ function pb_list_plants() {
         $page_title = $term->name;
 
 
-        echo '<article class="item">';
+        echo '<article id="'.$term->slug.'" class="item filterable-items">';
         
         //add title before each grouping
         echo '<a href="'.esc_url(get_term_link($term->term_id)).'"><h2>' . ucfirst($page_title) . '</h2></a>';

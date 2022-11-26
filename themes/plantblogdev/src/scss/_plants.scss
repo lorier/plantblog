@@ -4,9 +4,7 @@
 }
 
 body.big-view {
-	.big-view-filter {
-		display:block;
-	}
+
 	#genesis-content {
 		display: grid;
 		grid-template-columns: 1fr 4fr;
@@ -31,8 +29,63 @@ body.big-view {
 		max-width: 100%;
 	}
 	.plant .plant-list-thumb img {
+		width: 400px;
 		max-width:100%;
+		image-rendering: crisp-edges;
 	} 
+	.big-view-filter {
+		display:block;
+		// input[type="checkbox"] {
+		// 	padding: 10px;
+		// 	margin-right: 5px;
+		// 	display:inline;
+		// 	width: 16px;
+		// 	height: 16px;
+		// 	border-width: 1px;
+		// 	// -webkit-appearance: auto;
+		// }
+		&#filterList div {
+			display: grid;
+			grid-template-columns: 1fr 6fr;
+			align-items: center;
+		}
+		
+		input[type="checkbox"] {
+			appearance: none;
+			background-color: #fff;
+			margin: 0;
+			font: inherit;
+			color: currentColor;
+			width: 1.15em;
+			height: 1.15em;
+			// border: 0.15em solid currentColor;
+			border-radius: 0.15em;
+			transform: translateY(-0.075em);
+			position: relative;
+			}
+
+		input[type="checkbox"]::before {
+			// display: block;
+			content: "";
+			width: 12px;
+			height: 12px;
+			transform: scale(0);
+			transition: transform .12s ease-in-out;
+			box-shadow: inset 1em 1em #dbaf34;
+			left: 50%;
+			position: absolute;
+			margin-left: -6px;
+			top: 50%;
+			margin-top: -6px;
+		}
+
+		input[checked="checked"]::before {
+		transform: scale(1);
+		background-color: green;
+		display: inline-block;
+		}
+	}
+
 
 }
 
@@ -278,7 +331,7 @@ body.big-view {
 	    }
 
 		img {
-			// width: 80px;
+			width: 80px;
 			max-width: 300px;
 			// float: left;
 		}
