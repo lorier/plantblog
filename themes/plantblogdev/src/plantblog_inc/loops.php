@@ -122,11 +122,9 @@ function pb_list_plants() {
     //loop through each term, gathering all the posts for each term in chunks
     foreach ( $tax_terms as $term ) {
 
-
         $page_title = $term->name;
 
-
-        echo '<article id="'.$term->slug.'" class="item filterable-items">';
+        echo '<article id="'.$term->slug.'-section" class="item filterable-items">';
         
         //add title before each grouping
         echo '<a href="'.esc_url(get_term_link($term->term_id)).'"><h2>' . ucfirst($page_title) . '</h2></a>';

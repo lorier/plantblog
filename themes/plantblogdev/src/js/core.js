@@ -9,29 +9,24 @@
   			$('body').animate({'scrollTop': '0px'}, 700);
   		})
   	
+		let filterableItems = document.querySelectorAll('.filterable-items');
+		let checkboxes;
+		
+		add_filter_sidebar();
+
 		//View changer on plant list
 		const viewToggle = document.getElementById('view-toggle');
 		const bodyElem = document.getElementsByTagName('body');
 
+		const event = new Event('progchange');
+
 		viewToggle.addEventListener('click', (e) => {
-			console.log('clicked');
 			bodyElem[0].classList.toggle('big-view');
-			add_filter_sidebar();
 		});
 
-		let filterableItems;
-		// let filterItems;
-		let checkboxes;
 		
-		function triggerEvent (element, eventName) {
-			var event = new Event(eventName);
-			element.dispatchEvent(event);
-		}
-
 		//Build sidebar filter on plant list big view
 		function add_filter_sidebar(){
-			filterableItems = document.querySelectorAll('.filterable-items');
-			// let checkboxes = [];
 			let filterContainer = document.getElementById('filterList');
 			for (let i = 0; i < filterableItems.length; i++){
 				let div = document.createElement('div');
@@ -44,15 +39,10 @@
 					checkbox.id = name;
 					checkbox.checked = true;
 					checkbox.setAttribute('checked','checked');
+
+				checkbox.addEventListener('click', run_filter );
 				
-				checkbox.addEventListener('change', run_filter );
-				checkbox.addEventListener('click', (e) =>{
-					if(e.target.hasAttribute('checked')){
-						e.target.removeAttribute('checked');
-					}else{
-						e.target.setAttribute('checked','checked');
-					}
-				});
+				checkbox.addEventListener('progchange', run_filter );
 				
 				var label = document.createElement('label')
 					label.htmlFor = name;
@@ -65,48 +55,83 @@
 				checkboxes = document.querySelectorAll('#filterList div input');
 			}
 			select_or_deselect_all();
-			run_filter();
 		}
 		function select_or_deselect_all(){
 			let selectAll = document.getElementById('selectAll');
-			let allSelected = false;
-			let filterItems = 
+			let toggleState = 'on'; 
 			
 			selectAll.addEventListener('click', (e) => {
+				//TODO change this to be handled by run_filter
 				e.preventDefault(); 
-				allSelected = !allSelected;
+				console.log(checkboxes);
 				checkboxes.forEach( (elem) => {
-					elem.checked = !elem.checked;
-					if(allSelected){
+					// elem.checked = !elem.checked;
+					if( toggleState === 'on' ){
+						console.log('all are selected so remove checks');
 						elem.removeAttribute('checked');
 					}else{
+						console.log('none are selected so add checks');
 						elem.setAttribute('checked','checked');
 					}
+					elem.dispatchEvent(event);
 				} );
-				//TODO figure out custom even firing
-				// triggerEvent(elem, 'change');
+				toggleSelected = !toggleSelected;
 			});
 		}
+		let filterCalls = 0;
 		function run_filter(e){
-			console.log('filter called');
-			// checkboxes.forEach( (elem) => {
-			// 	elem.addEventListener('click', (elem) => {
-			// 		elem.checked = elem.checked ? false : true; 
-			// 		console.log('checkbox is clicked');
-			// 	})
-			// });
+			let id;
+			let section;
+
+			if (e.target.type === 'checkbox'){
+				id = e.target.id + '-section';
+				section = document.getElementById(id);
+			}
+			//handle checkbox
+			if(e.target.hasAttribute('checked')){
+				e.target.removeAttribute('checked');
+				section.classList.add('hide-section');
+			}else if( !e.target.hasAttribute('checked') ){
+				e.target.setAttribute('checked','checked');
+				section.classList.remove('hide-section');
+			}
+
+			// }else if ( e.target.id === 'selectAll'){
+			// 	// do stuff
+			// }
+			// if (e.target.id === 'bamboo') {
+			// 	console.log('---- before logic run:');
+			// 	console.log(e.target);
+			// 	console.log('bamboo is checked: ' + e.target.checked);
+			// 	console.log('bamboo section has class hide-section?: ' + section.classList.contains('hide-section') );
+			// }
+			// //handle section visibility
+			// if (e.target.checked) {
+			// 	if( section.classList.contains('hide-section')) {
+			// 		section.classList.remove('hide-section');
+			// 	}
+			// }else if(!e.target.checked){
+			// 	if (!section.classList.contains('hide-section') ) {
+			// 		section.classList.add('hide-section');
+			// 	}
+			// }
+			// if (e.target.id === 'bamboo') {
+			// 	console.log('---- after logic run:');
+			// 	console.log('bamboo is checked: ' + e.target.checked);
+			// 	console.log('bamboo section has class hide-section?: ' + section.classList.contains('hide-section') );
+			// 	console.log('---------------------------------');
+
+			// }
 		}
 		//TODO add init
 		
 		//Copy the first planted date to the top of post
 		var txt = $('.inside p:first-child .date').text();
 		txt = 'First planted: ' + txt.slice(0,-2);
-		console.log('txt:' + txt);
 		$('.single-plant #date-first-planted').text(txt);
 
 		$(window).scroll(function(){
-	  		// console.log('button scrolled: ' + ofst.top );
-	  		// console.log('window y: ' + window.scrollY);
+
 			var opcty = $('.back-to-top').css('opacity');
 
 	  		if(window.scrollY > 1000 && opcty === '0'){
@@ -179,7 +204,6 @@
 	 	//taxonomy_data is localized via functions.php
 	 	//filterview = array off terms associated with a taxonomy (eg location)
  		var filterView = taxonomy_data[groupName];
- 		console.log(filterView);
 
  		// loop through the taxonomies
 		var cloned = null;
@@ -194,7 +218,6 @@
 			 	var classList = item.className.split(/\s+/); //get all classes on each entry
 		 		
 		 		if (classList.includes(i)){
-		 			console.log(jQuery.type(item));
 
 		 			// clone items for duplicates in light needs view
 		 			var $jItem = $(item);
@@ -215,7 +238,6 @@
 			 	tempContainer.sort(function(a,b){
 			 		var aFirst = (a.textContent.match(/[a-zA-Z]/) || []).pop();
 			 		var bFirst = (b.textContent.match(/[a-zA-Z]/) || []).pop();
-			 		// console.log(aFirst)
 			 		if (aFirst < bFirst) return -1;
 			 		if (aFirst > bFirst) return 1;
 
