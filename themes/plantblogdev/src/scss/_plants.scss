@@ -46,10 +46,18 @@ body.big-view {
 		// 	border-width: 1px;
 		// 	// -webkit-appearance: auto;
 		// }
-		&#filterList div {
+		#checkboxContainer div {
 			display: grid;
 			grid-template-columns: 1fr 6fr;
 			align-items: center;
+		}
+		&#filterList .selectors {
+			display: block;
+			margin-bottom: 10px; 
+			a {
+				font-size: 14px;
+				color: $dark-gray;
+			}
 		}
 		
 		input[type="checkbox"] {

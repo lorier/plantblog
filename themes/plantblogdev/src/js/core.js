@@ -2,129 +2,39 @@
 
 
 ;(function($){
-  $(document).ready(function() {
-  		//scroll button
+	
+	let filterableItems;
+	let checkboxes;
+	let bool = false;
+	let plantView = 'plant-type';
+ 
+	$(document).ready(function() {
+  	
+		//scroll button
   		$('.back-to-top').on('click', function(e){
   			e.target.preventDefault();
   			$('body').animate({'scrollTop': '0px'}, 700);
   		})
   	
-		let filterableItems = document.querySelectorAll('.filterable-items');
-		let checkboxes;
-		
-		add_filter_sidebar();
-
-		//View changer on plant list
+		// Grid change vars
+		const viewText = document.getElementById('grid-size');
 		const viewToggle = document.getElementById('view-toggle');
 		const bodyElem = document.getElementsByTagName('body');
-
+		
+		
 		const event = new Event('progchange');
+
+		// temp for development
+		// bodyElem[0].classList.toggle('big-view');
 
 		viewToggle.addEventListener('click', (e) => {
 			bodyElem[0].classList.toggle('big-view');
+			let viewState;
+			viewState = bool ? 'Large' : 'Small'
+			viewText.textContent = viewState;
+			bool = !bool;
 		});
 
-		
-		//Build sidebar filter on plant list big view
-		function add_filter_sidebar(){
-			let filterContainer = document.getElementById('filterList');
-			for (let i = 0; i < filterableItems.length; i++){
-				let div = document.createElement('div');
-				let nameUC = filterableItems[i].firstChild.innerText;
-				let name = nameUC.toLowerCase();
-				let checkbox = document.createElement('input');
-					checkbox.type = "checkbox";
-					checkbox.name = name;
-					checkbox.value = name;
-					checkbox.id = name;
-					checkbox.checked = true;
-					checkbox.setAttribute('checked','checked');
-
-				checkbox.addEventListener('click', run_filter );
-				
-				checkbox.addEventListener('progchange', run_filter );
-				
-				var label = document.createElement('label')
-					label.htmlFor = name;
-					label.appendChild(document.createTextNode(nameUC));
-				
-				div.appendChild(checkbox);
-				div.appendChild(label);
-				filterContainer.appendChild(div);
-
-				checkboxes = document.querySelectorAll('#filterList div input');
-			}
-			select_or_deselect_all();
-		}
-		function select_or_deselect_all(){
-			let selectAll = document.getElementById('selectAll');
-			let toggleState = 'on'; 
-			
-			selectAll.addEventListener('click', (e) => {
-				//TODO change this to be handled by run_filter
-				e.preventDefault(); 
-				console.log(checkboxes);
-				checkboxes.forEach( (elem) => {
-					// elem.checked = !elem.checked;
-					if( toggleState === 'on' ){
-						console.log('all are selected so remove checks');
-						elem.removeAttribute('checked');
-					}else{
-						console.log('none are selected so add checks');
-						elem.setAttribute('checked','checked');
-					}
-					elem.dispatchEvent(event);
-				} );
-				toggleSelected = !toggleSelected;
-			});
-		}
-		let filterCalls = 0;
-		function run_filter(e){
-			let id;
-			let section;
-
-			if (e.target.type === 'checkbox'){
-				id = e.target.id + '-section';
-				section = document.getElementById(id);
-			}
-			//handle checkbox
-			if(e.target.hasAttribute('checked')){
-				e.target.removeAttribute('checked');
-				section.classList.add('hide-section');
-			}else if( !e.target.hasAttribute('checked') ){
-				e.target.setAttribute('checked','checked');
-				section.classList.remove('hide-section');
-			}
-
-			// }else if ( e.target.id === 'selectAll'){
-			// 	// do stuff
-			// }
-			// if (e.target.id === 'bamboo') {
-			// 	console.log('---- before logic run:');
-			// 	console.log(e.target);
-			// 	console.log('bamboo is checked: ' + e.target.checked);
-			// 	console.log('bamboo section has class hide-section?: ' + section.classList.contains('hide-section') );
-			// }
-			// //handle section visibility
-			// if (e.target.checked) {
-			// 	if( section.classList.contains('hide-section')) {
-			// 		section.classList.remove('hide-section');
-			// 	}
-			// }else if(!e.target.checked){
-			// 	if (!section.classList.contains('hide-section') ) {
-			// 		section.classList.add('hide-section');
-			// 	}
-			// }
-			// if (e.target.id === 'bamboo') {
-			// 	console.log('---- after logic run:');
-			// 	console.log('bamboo is checked: ' + e.target.checked);
-			// 	console.log('bamboo section has class hide-section?: ' + section.classList.contains('hide-section') );
-			// 	console.log('---------------------------------');
-
-			// }
-		}
-		//TODO add init
-		
 		//Copy the first planted date to the top of post
 		var txt = $('.inside p:first-child .date').text();
 		txt = 'First planted: ' + txt.slice(0,-2);
@@ -135,15 +45,11 @@
 			var opcty = $('.back-to-top').css('opacity');
 
 	  		if(window.scrollY > 1000 && opcty === '0'){
-	  			// console.log('make visible');
-	  			// $('.back-to-top').css({'opacity': '1', 'transition': 'opacity 0.5s ease' });
 	  			$('.back-to-top').toggleClass('off');
 	  		}
 	  		if(window.scrollY < 1000 && opcty === '1'){
 	  			// console.log('make invisible');
 	  			$('.back-to-top').toggleClass('off');
-
-	  			// $('.back-to-top').css({'opacity': '0', 'transition': 'opacity 0.5s ease' });
 	  		}
   		})
 
@@ -154,21 +60,19 @@
 			e.preventDefault();
 	    	$('.accordion-1 .accordion-title h4').toggleClass('open');
 		    $('.accordion-1 > .inside').slideToggle('default');
-		    // return false;
 		  });
-		
-
 		
 		// Hook up sorter functionality for Plant List page
 		// toggle active state for css
 		$('#sorter a').on('click', function(e){
 			e.preventDefault();
-
+			
+			init_sidebar(e);
+			
 			var groupName = e.target.getAttribute('id');
 			$('.note').removeClass('show-note');
 			$('.note-'+groupName).addClass('show-note');
-		
-
+			
 			//disable action for the active state
 			if(e.target.parentNode.classList.contains('active-link')){
 				return;
@@ -178,21 +82,130 @@
 					sortEntriesBySubcategory(allEntries, groupName);
 				});
 			}
-
+			
 			$('#sorter li').removeClass('active-link');
 			e.target.parentNode.classList.toggle('active-link');
-		})
-
+			
+		});
+		
+		// Build sidebar
+		init_sidebar();
+	
 		
 		//Plant List: On page load, get all the entries from the Plant List page. 
 		if ( document.body.className.match('post-type-archive-plant') ){
 			var allEntries = $('div.plant');
 		}
 
-
-
 	}); //end doc ready
 	
+	function init_sidebar(e) {
+		filterableItems = document.querySelectorAll('.filterable-items');
+		bool = false;
+		// console.log(filterableItems);
+
+		if (arguments.length >0 && e.target.classList.contains('sorter-link') ) {
+			if (e.target.id !== plantView) {
+				checkboxes = [];
+				remove_filter_sidebar();
+				add_filter_sidebar();
+				select_all();
+				plantView = e.target.id;
+			}
+		}else {
+			add_filter_sidebar();
+			select_all();
+		}
+	}
+	
+	function remove_filter_sidebar(){
+		document.getElementById('checkboxContainer').replaceChildren();
+		checkboxes = null;
+	}
+
+	//Build sidebar filter on plant list big view
+	function add_filter_sidebar() {
+		let filterContainer = document.getElementById('checkboxContainer');
+		for (let i = 0; i < filterableItems.length; i++) {
+			let div = document.createElement('div');
+			let nameUC = filterableItems[i].firstChild.innerText;
+			let name = nameUC.toLowerCase();
+			let checkbox = document.createElement('input');
+			checkbox.type = "checkbox";
+			checkbox.name = name;
+			checkbox.value = name;
+			checkbox.id = name;
+			checkbox.checked = true;
+			checkbox.setAttribute('checked', 'checked');
+
+			checkbox.addEventListener('click', run_filter);
+
+			checkbox.addEventListener('progchange', run_filter);
+
+			var label = document.createElement('label')
+			label.htmlFor = name;
+			label.appendChild(document.createTextNode(nameUC));
+
+			div.appendChild(checkbox);
+			div.appendChild(label);
+			filterContainer.appendChild(div);
+
+			checkboxes = document.querySelectorAll('#checkboxContainer div input');
+		}
+		
+	}
+	function select_all() {
+		let selectAll = document.getElementById('selectAll');
+		let selectNone = document.getElementById('selectNone');
+
+		selectAll.addEventListener('click', (e) => {
+			//TODO change this to be handled by run_filter
+			e.preventDefault();
+			run_filter(e);
+		});
+		selectNone.addEventListener('click', (e) => {
+			//TODO change this to be handled by run_filter
+			e.preventDefault();
+			run_filter(e);
+		});
+	}
+	
+	function run_filter(e) {
+		let id;
+		let sectionId;
+		let section;
+
+		if (e.target.id === 'selectAll' || e.target.id === 'selectNone') {
+
+			checkboxes.forEach((elem) => {
+				sectionId = elem.id + '-section';
+				section = document.getElementById(sectionId);
+				if (e.target.id === 'selectAll') {
+					elem.setAttribute('checked', 'checked')
+					section.classList.remove('hide-section');
+				} else if (e.target.id === 'selectNone') {
+					elem.removeAttribute('checked');
+					if (!section.classList.contains('hide-section')) {
+						section.classList.add('hide-section');
+					}
+				}
+			})
+		}
+
+		if (e.target.type === 'checkbox') {
+			console.log('target is checkbox');
+			id = e.target.id + '-section';
+			section = document.getElementById(id);
+			//handle checkbox
+			if (e.target.hasAttribute('checked')) {
+				e.target.removeAttribute('checked');
+				section.classList.add('hide-section');
+			} else if (!e.target.hasAttribute('checked')) {
+				e.target.setAttribute('checked', 'checked');
+				section.classList.remove('hide-section');
+			}
+		}
+	}
 
 	function sortEntriesBySubcategory(entries, groupName){
 
@@ -210,6 +223,7 @@
 	 	for ( var i in filterView) {
 			var article;
 			article = buildArticleContainer(i,groupName,filterView);
+			article.id = i;
 
 			var tempContainer = [];
 
@@ -267,8 +281,11 @@
 		var headline;
 		var title;
 		
+		console.log(filterView);
+
 		article = document.createElement("article");
-		article.className += " item entry-section";
+		article.className += "item filterable-items";
+		// article.id = filterView[taxonomy];
 		anchor = document.createElement("a");
 
 		// //temporary for localhost

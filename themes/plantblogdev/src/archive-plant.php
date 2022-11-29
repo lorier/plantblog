@@ -67,7 +67,7 @@ add_action('genesis_after_header', 'js_pb_sort_menu', 10);
 add_action('genesis_after_header', 'js_view_toggle', 11);
 
 function js_view_toggle(){
-    echo '<a id="view-toggle">Change Views</a>';
+    echo '<a id="view-toggle">View <span id="grid-size">Large</span> Grid</a>';
 }
 
 
@@ -77,10 +77,10 @@ function js_pb_sort_menu(){
 
     $output = '<ul id="sorter" class="'.esc_attr($sorter_class).'">';
     $output .= '
-        <li class="plant-type-link active-link"><a id="plant-type" href="">Plant Type</a></li>
-        <li class="location-link"><a id="location" href="">Location</a></li>
-        <li class="light-link"><a id="light-requirement" href="">Light Needs</a></li>
-        <li class="light-link"><a id="shade-grade" href="">Shade Grade</a></li>
+        <li class="plant-type-link active-link"><a id="plant-type" href="" class="sorter-link">Plant Type</a></li>
+        <li class="location-link"><a id="location" href="" class="sorter-link">Location</a></li>
+        <li class="light-link"><a id="light-requirement" href="" class="sorter-link">Light Needs</a></li>
+        <li class="light-link"><a id="shade-grade" href="" class="sorter-link">Shade Grade</a></li>
     </ul>';
     echo $output;
 }

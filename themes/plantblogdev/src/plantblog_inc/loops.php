@@ -91,7 +91,10 @@ function pb_get_first_term_name($post, $taxonomy){
 }
 //Sidebar filter for big view
 function pb_big_list_filter(){
-    echo '<div><fieldset id="filterList" class="big-view-filter"><legend>Filter</legend><a href="#" id="selectAll">Select/deselect all</a></fieldset></div>';
+    echo '<div><fieldset id="filterList" class="big-view-filter"><legend>Filter</legend>
+            <div class="selectors"><a href="#" id="selectAll">Select All</a><span>&nbsp;</span>|<span>&nbsp;</span><a href="#" id="selectNone">Select None</a></div>
+            <div id="checkboxContainer"></div>
+           </fieldset></div>';
 }
 
 //Plant List Loop

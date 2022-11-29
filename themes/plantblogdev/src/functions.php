@@ -77,22 +77,22 @@ function pb_enqueue_corejs(){
 
 	//pass plant terms to browser
 	$taxa = array('plant-type','light-requirement','location','shade-grade');
-    $taxon_list = array();
+  $taxon_list = array();
 
 	foreach($taxa as $taxon){
-	    $data = array();
+	  $data = array();
 		$taxon_list[$taxon] = array(); 
 		$plant_terms = get_terms($taxon);
-	    foreach ($plant_terms as $plant_term){
-	        $name = $plant_term->name;
-	        $slug = $plant_term->slug;
-	        if($slug=='evergreen'){
-	        	continue;
-	        }else {
-		        $data[$slug]=$name;
-	        }
-	    }
-	    $taxon_list[$taxon] = $data;
+		foreach ($plant_terms as $plant_term){
+				$name = $plant_term->name;
+				$slug = $plant_term->slug;
+				if($slug=='evergreen'){
+					continue;
+				}else {
+					$data[$slug]=$name;
+				}
+		}
+		$taxon_list[$taxon] = $data;
 	}
 	//send nested array of taxonomies. Each nested array contains a list of terms associated with a taxonomy name
     wp_localize_script( 'core', 'taxonomy_data', $taxon_list );
