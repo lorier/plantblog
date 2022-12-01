@@ -74,7 +74,6 @@ function js_view_toggle(){
 
 function js_pb_sort_menu(){
    
-
     $output = '<ul id="sorter" class="'.esc_attr($sorter_class).'">';
     $output .= '
         <li class="plant-type-link active-link"><a id="plant-type" href="" class="sorter-link">Plant Type</a></li>

@@ -90,6 +90,7 @@ function pb_enqueue_corejs(){
 					continue;
 				}else {
 					$data[$slug]=$name;
+					$data['slug']=$slug;
 				}
 		}
 		$taxon_list[$taxon] = $data;

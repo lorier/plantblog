@@ -67,7 +67,6 @@
 		$('#sorter a').on('click', function(e){
 			e.preventDefault();
 			
-			init_sidebar(e);
 			
 			var groupName = e.target.getAttribute('id');
 			$('.note').removeClass('show-note');
@@ -79,13 +78,13 @@
 			}else{
 				$('.masonry.pb-wrap').fadeTo( 200, '0', function() {
 					$('.masonry.pb-wrap').empty();
-					sortEntriesBySubcategory(allEntries, groupName);
+					sortEntriesBySubcategory(e, allEntries, groupName);
 				});
 			}
 			
 			$('#sorter li').removeClass('active-link');
 			e.target.parentNode.classList.toggle('active-link');
-			
+			// init_sidebar(e);
 		});
 		
 		// Build sidebar
@@ -105,11 +104,12 @@
 		// console.log(filterableItems);
 
 		if (arguments.length >0 && e.target.classList.contains('sorter-link') ) {
-			if (e.target.id !== plantView) {
-				checkboxes = [];
+			// console.log('top sorter clicked: ' + e.target.id);
+			
+			if (e.target.id !== plantView) { //don't run if clicking the same sorter tab
+				// checkboxes = [];
 				remove_filter_sidebar();
 				add_filter_sidebar();
-				select_all();
 				plantView = e.target.id;
 			}
 		}else {
@@ -121,20 +121,23 @@
 	function remove_filter_sidebar(){
 		document.getElementById('checkboxContainer').replaceChildren();
 		checkboxes = null;
+		// console.log('remove sidebar');
 	}
 
 	//Build sidebar filter on plant list big view
 	function add_filter_sidebar() {
 		let filterContainer = document.getElementById('checkboxContainer');
 		for (let i = 0; i < filterableItems.length; i++) {
+			// console.log(filterableItems[i]);
 			let div = document.createElement('div');
 			let nameUC = filterableItems[i].firstChild.innerText;
 			let name = nameUC.toLowerCase();
 			let checkbox = document.createElement('input');
+			let id = filterableItems[i].getAttribute('data-id');
 			checkbox.type = "checkbox";
 			checkbox.name = name;
 			checkbox.value = name;
-			checkbox.id = name;
+			checkbox.id = id;
 			checkbox.checked = true;
 			checkbox.setAttribute('checked', 'checked');
 
@@ -176,7 +179,7 @@
 		let section;
 
 		if (e.target.id === 'selectAll' || e.target.id === 'selectNone') {
-
+			// console.log(checkboxes);
 			checkboxes.forEach((elem) => {
 				sectionId = elem.id + '-section';
 				section = document.getElementById(sectionId);
@@ -193,7 +196,7 @@
 		}
 
 		if (e.target.type === 'checkbox') {
-			console.log('target is checkbox');
+			// console.log('target is checkbox');
 			id = e.target.id + '-section';
 			section = document.getElementById(id);
 			//handle checkbox
@@ -207,7 +210,7 @@
 		}
 	}
 
-	function sortEntriesBySubcategory(entries, groupName){
+	function sortEntriesBySubcategory(e, entries, groupName){
 
 	 	var sortedEntries = [];
 	 	
@@ -217,13 +220,21 @@
 	 	//taxonomy_data is localized via functions.php
 	 	//filterview = array off terms associated with a taxonomy (eg location)
  		var filterView = taxonomy_data[groupName];
-
+		 
  		// loop through the taxonomies
-		var cloned = null;
+		 var cloned = null;
 	 	for ( var i in filterView) {
+			//  console.log(i);
 			var article;
+			let div = document.createElement('div');
+			
 			article = buildArticleContainer(i,groupName,filterView);
-			article.id = i;
+			article.id = i + '-section';
+			article.setAttribute('data-id', i);
+			div.classList.add('plant-cards');
+			article.appendChild(div);
+
+
 
 			var tempContainer = [];
 
@@ -244,7 +255,7 @@
 		 			//flag item so we know we've picked it
 		 			item['picked'] = true;
 		 		};
-			 }
+			}
 
 			if ( tempContainer.length > 0){
 
@@ -260,7 +271,7 @@
 
 				// populate the article node with sorted entries;
 				for(var i = 0; i < tempContainer.length; i++ ) {
-					article.appendChild(tempContainer[i]);
+					div.appendChild(tempContainer[i]);
 				}
 
 			 	sortedEntries.push(article);
@@ -271,6 +282,7 @@
 		//TODO store selected data to local storage to persist 
 		// and retrieve later
 		displayEntries(sortedEntries);
+		init_sidebar(e);
 	}
 
 	//Plant List: provide a container in which to place the sorted items
@@ -280,13 +292,15 @@
 		var anchor;
 		var headline;
 		var title;
+		var container;
 		
-		console.log(filterView);
+		// console.log(filterView);
 
 		article = document.createElement("article");
 		article.className += "item filterable-items";
 		// article.id = filterView[taxonomy];
 		anchor = document.createElement("a");
+
 
 		// //temporary for localhost
 		// http://atreegarden.dev/light-requirement/part-shade/
