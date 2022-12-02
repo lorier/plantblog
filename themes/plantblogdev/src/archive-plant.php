@@ -64,11 +64,6 @@ function lr_add_custom_class( $attributes ) {
 //https://codepen.io/the_ruther4d/post/custom-query-string-vars-in-wordpress
 // add query args to the query for each link. 
 add_action('genesis_after_header', 'js_pb_sort_menu', 10);
-add_action('genesis_after_header', 'js_view_toggle', 11);
-
-function js_view_toggle(){
-    echo '<a id="view-toggle">View <span id="grid-size">Large</span> Grid</a>';
-}
 
 
 
@@ -84,7 +79,7 @@ function js_pb_sort_menu(){
     echo $output;
 }
 
-add_action( 'genesis_before_content_sidebar_wrap', 'pb_add_light_needs_qualifier' );
+// add_action( 'genesis_before_content_sidebar_wrap', 'pb_add_light_needs_qualifier' );
 function pb_add_light_needs_qualifier(){
     echo '<div class="notes"><div class="note note-light-requirement">Note: Plants may have multiple light needs.</div>
         <div class="note note-location">Note: Plants may appear in more than one location.</div></div>';
