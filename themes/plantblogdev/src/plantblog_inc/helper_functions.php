@@ -26,12 +26,14 @@ function lr_get_post_thumb($post){
     // $thumb_id = get_post_thumbnail_id($post);
     // $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium', true);
     // $thumb_url = $thumb_url_array[0];
-
+    
     if ( has_post_thumbnail($post) ) {
-        return get_the_post_thumbnail($post,'post_featured_large');
+        if ( is_singular('plant') || is_archive('plant' ) || is_page('graveyard')){
+            return get_the_post_thumbnail($post,'post_featured_large');
+        }
     } else {
             return '<img src="'.get_stylesheet_directory_uri().'/images/pb-thumb-placeholder.png" class="size-post-thumbnail"/>';
-        }
+    }
 }
 
 function pb_get_thumbnail($id=null){

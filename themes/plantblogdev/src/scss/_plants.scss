@@ -1,7 +1,5 @@
 // ==== Plants Page ==== //
-.big-view-filter {
-	// display:none;
-}
+
 .post-type-archive-plant #genesis-content {
 		display: grid;
 		grid-template-columns: 1fr 4fr;
@@ -38,15 +36,28 @@
 		gap: 4px;
 	}
 	
-	&#filterList .selectors {
+	.clear-selections {
+		min-height: 30px;
+	}
+	.checkbox-header {
+		h3 {
+			padding-right: 10px;
+		}
+		display: flex;
+		align-items: baseline;
+	}
+	#clearSelections {
 		display: block;
 		margin-bottom: 10px; 
-		a {
-			font-size: 16px;
-			color: $text-yellow;
-		}
-		a:hover {
+		font-size: 14px;
+		color: $text-yellow;
+		&:hover {
 			color: $dark-gray;
+		}
+		&.hidden {
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity .1s ease-out;
 		}
 	}
 	
@@ -90,11 +101,22 @@
 }
 .post-type-archive-plant article.hide-section {
 	display:none;
+	opacity: 0;
+	height: 0;
+	transition: height 350ms ease-in-out, opacity 750ms ease-in-out;
+}
+.post-type-archive-plant article{
+	display: block;
+	opacity: 1;
+}
+.post-type-archive-plant .masonry.pb-wrap {
+	width: 100%;
 }
 
 body.big-view {
 	.masonry.pb-wrap {
 		column-count: 1;
+		width: 100%;
 	}
 	.plant-cards {
 		display: grid;

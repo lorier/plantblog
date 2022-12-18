@@ -74,7 +74,6 @@ function js_pb_sort_menu(){
         <li class="plant-type-link active-link"><a id="plant-type" href="" class="sorter-link">Plant Type</a></li>
         <li class="location-link"><a id="location" href="" class="sorter-link">Location</a></li>
         <li class="light-link"><a id="light-requirement" href="" class="sorter-link">Light Needs</a></li>
-        <li class="light-link"><a id="shade-grade" href="" class="sorter-link">Shade Grade</a></li>
     </ul>';
     echo $output;
 }

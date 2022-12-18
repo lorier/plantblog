@@ -93,8 +93,10 @@ function pb_get_first_term_name($post, $taxonomy){
 function pb_big_list_filter(){
     echo '<div class="filter-container" >
             <a id="view-toggle">View <span id="grid-size">Large</span> Grid</a>
-            <fieldset id="filterList" class="big-view-filter"><h3>Filter Results</h3>
-            <div class="selectors"><a href="#" id="selectAll">Select All</a><span>&nbsp;</span>|<span>&nbsp;</span><a href="#" id="selectNone">Select None</a></div>
+            <fieldset id="filterList" class="big-view-filter">
+            <div class="checkbox-header"><h3>Filter</h3>
+            <span class="clear-selections"><a href="#" id="clearSelections" class="hidden">Clear selections</a></span>
+            </div>
             <div id="checkboxContainer"></div>
            </fieldset></div>';
 }
