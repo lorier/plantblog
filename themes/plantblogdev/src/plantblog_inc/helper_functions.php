@@ -2,6 +2,37 @@
 
 // Helper functions called in other files
 
+// Get plant progress galler
+function pb_get_progress_gallery( $post, $count ){
+    // echo 'gallery func called';
+    global $post;
+	$images = get_field('plant_progress');
+    // lr_print_pre($images);
+	$size = 'full'; // (thumbnail, medium, large, full or custom size)
+	if( $images ) {
+        // lr_print_pre($post);
+        $output = '<div class="slider-container">';
+        $output .= '<h2><a href="'. get_the_permalink() .'">' . get_the_title() . '</a></h2>';
+		$output .= '<div class="swiper mySwiper">';
+		$output .= '<div class="swiper-wrapper">';
+		foreach( $images as $image_id ){
+            $attachment = get_post($image_id);
+            $caption = $attachment->post_excerpt;
+			$output .= '<div class="swiper-slide">';
+				$output .= '<div class="slide-caption">'.$caption .'</div>'; 
+				$output .= '<div class="slide-image">'. wp_get_attachment_image( $image_id, $size ) .'</div>'; 
+			$output .= '</div>';
+		}
+        $output .= '</div>';
+        $output .= '<div class="swiper-pagination"></div>';
+        $output .= '<div class="swiper-button-prev"></div>';
+        $output .= '<div class="swiper-button-next"></div>';
+        $output .= '</div>';
+        $output .= '</div>';
+	}
+    return $output;
+}
+
 // Plant CPT
 
 function pb_get_latin_name($id=null){

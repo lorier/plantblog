@@ -1,7 +1,19 @@
 // ==== CORE ==== //
 
-
 ;(function($){
+	var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+	});
 	
 	let filterableItems;
 	let checkboxes;
@@ -11,6 +23,8 @@
 	let clearFilterButton;
  
 	$(document).ready(function() {
+
+		
   	
 		//scroll button
   		$('.back-to-top').on('click', function(e){

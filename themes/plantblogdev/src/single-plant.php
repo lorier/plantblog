@@ -156,6 +156,7 @@ endif;
 }
 
 
+
 function pb_add_atg_comment(){
 	global $post;
 	$output = '';
