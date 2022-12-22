@@ -1,0 +1,22 @@
+.page-template-page-plant-progress {
+    h2 {
+        text-align: center;
+        margin-bottom: 3px;
+    }
+    .content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        gap: 20px 0;
+    }
+    .slider-container {
+        max-width: 500px;
+        // flex: 50%;
+        // float: left;
+    }
+    .slide-caption {
+        display: block;
+        min-height: 20px;
+        padding-bottom: 8px;
+    }
+}

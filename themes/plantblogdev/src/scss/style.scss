@@ -51,7 +51,9 @@ Domain Path: #{metadata(theme-text-domain-path)}
 @import "before_after";
 // @import "slick_slider";
 @import "garden_locations";
-@import "plugins"
+@import "plugins";
+@import "progress_slider";
+@import "plant_progress";
 // Reset: eliminate default browser styling (optional; commented out by default)
 //@import "reset";
 

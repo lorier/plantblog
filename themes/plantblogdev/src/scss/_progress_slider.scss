@@ -1,0 +1,21 @@
+.slide-image {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    img {
+        max-height: 450px;
+    }
+}
+.slide-caption {
+    text-align: center;
+}
+.slider-container {
+    .swiper-pagination-bullet {
+    background: white;
+    opacity: .6;
+    }
+    .swiper-pagination-bullet-active {
+     background: white;
+     opacity: 1;
+    }
+}
