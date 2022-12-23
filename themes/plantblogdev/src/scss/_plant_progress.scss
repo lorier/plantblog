@@ -19,6 +19,10 @@
         background-color: $yellow;
     }
     .content {
+        float: none;
+        text-align: center;
+    }
+    .slider-grid {
         @media (min-width: 1076px){
             display: grid;
             grid-template-columns: 1fr 1fr;

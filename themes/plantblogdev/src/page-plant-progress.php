@@ -33,7 +33,7 @@ function lr_do_entry_header_gallery() {
 // 		echo '<div class="before-content"></div>';
 // 	}
 // }
-add_action('genesis_before_entry', 'pb_output_progress_slider');
+add_action('genesis_after_content', 'pb_output_progress_slider');
 function pb_output_progress_slider(){
 	// function loop
 	//   get all plants that have gallery metafield content
@@ -56,6 +56,7 @@ function pb_output_progress_slider(){
 
 	// The Loop
 	if ( $the_query->have_posts() ) {
+		$output = '<div class="slider-grid">';
 		$count = 0;
 		while ( $the_query->have_posts() ) {
 			$the_query->the_post();
@@ -63,6 +64,7 @@ function pb_output_progress_slider(){
 			$output .= pb_get_progress_gallery( $post, $count );
 			$count++;
 		}
+		$output .= '</div>';
 	} else {
 		// no posts found
 	}
