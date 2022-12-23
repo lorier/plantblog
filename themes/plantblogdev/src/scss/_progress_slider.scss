@@ -4,18 +4,50 @@
     flex-direction: column;
     img {
         max-height: 450px;
+        max-width: 83%;
+        padding-bottom: 30px;
     }
 }
-.slide-caption {
-    text-align: center;
-}
+
 .slider-container {
+    margin: 0 auto;
+
     .swiper-pagination-bullet {
-    background: white;
-    opacity: .6;
+        background: white;
+        opacity: .6;
+        width: 12px;
+        height: 12px;
+        border: 1px solid $text-yellow;
     }
     .swiper-pagination-bullet-active {
-     background: white;
+     background: $yellow;
      opacity: 1;
+    }
+    .swiper-button-next, .swiper-button-prev {
+        color: $text-yellow;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 100px;
+        
+        width: 50px;
+        height: 50px;
+        @media (max-width:1460px){
+            width: 30px;
+            height: 30px;
+        }
+        @media (max-width: 500px){
+            display:none;
+        }
+    }
+    .swiper-button-prev  {
+        left: 0;
+    }
+    .swiper-button-next  {
+       right: 0;
+    }
+    .swiper-button-next:after, .swiper-button-prev:after {
+        font-size: 22px;
+    }
+    .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+        bottom: 0;
     }
 }
