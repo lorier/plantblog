@@ -46,10 +46,20 @@ function pb_output_progress_slider(){
 	
 
 	// Get all Plants, not sorted. For showing plant progress
+	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+	$my_value = array();
 	$args = array(
 		'post_type' => 'plant',
 		'post_status' => 'publish',
-		'posts_per_page' => '-1',
+		'posts_per_page' => '6',
+		'meta_query' => array(
+           array(
+            'key' => 'plant_progress',
+            'value' => $my_value,
+            'compare' => '='
+		   )
+		),
+		'paged' => $paged
 	);
 	// The Query
 	$the_query = new WP_Query( $args );
@@ -69,6 +79,24 @@ function pb_output_progress_slider(){
 		// no posts found
 	}
 	echo $output;
+	echo '<div class="pagination">';
+	echo paginate_links( array(
+            'base'         => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
+            'total'        => $the_query->max_num_pages,
+            'current'      => max( 1, get_query_var( 'paged' ) ),
+            'format'       => '?page=%#%',
+            'show_all'     => false,
+            'type'         => 'plain',
+            'end_size'     => 2,
+            'mid_size'     => 1,
+            'prev_next'    => true,
+            'prev_text'    => sprintf( '<i></i> %1$s', __( 'Newer Posts', 'text-domain' ) ),
+            'next_text'    => sprintf( '%1$s <i></i>', __( 'Older Posts', 'text-domain' ) ),
+            'add_args'     => false,
+            'add_fragment' => '',
+        ) );
+	echo '</div>';
+
 	/* Restore original Post Data */
 	wp_reset_postdata();
 

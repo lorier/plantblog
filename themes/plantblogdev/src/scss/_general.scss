@@ -105,3 +105,63 @@ body {
 		color: white;
 	}
 }
+/* Pagination
+--------------------------------------------- */
+
+.pagination,
+.entry-pagination {
+	font-size: 14px;
+	margin: 40px 0;
+	font-family: $body-font;
+	text-align: center;
+}
+.pagination a,
+.entry-pagination a {
+	// color: white;
+	// background-color: $yellow;
+	// border: 1px solid $gray-rule;
+	// padding: 11px 20px 10px 20px;
+	&:hover {
+		background-color: darken($yellow,8%);
+		// border-color: $yellow;
+		color: white;
+	}
+}
+.pagination li {
+	display: inline;
+}
+
+.pagination li a,
+.page-numbers {
+	background-color: white;
+	color: $dark-gray;
+	cursor: pointer;
+	display: inline-block;
+	padding: 8px 12px;
+}
+
+.pagination li a:hover,
+.pagination li.active a,
+.page-numbers.current  {
+	background-color: $yellow;
+}
+
+.entry-pagination a {
+	border-bottom: 1px solid $gray-rule;
+}
+.pagination-previous a:before {
+	font-family: 'FontAwesome';
+	content: '\f104';
+	font-size: 12px;
+	position: relative;
+	top: 0px;
+	left: -5px;
+}
+.pagination-next a:after {
+	font-family: 'FontAwesome';
+	content: '\f105';
+	font-size: 12px;
+	position: relative;
+	top: 0px;
+	right: -5px;
+}

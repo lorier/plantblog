@@ -8,6 +8,8 @@ function pb_get_progress_gallery( $post, $count ){
     global $post;
 	$images = get_field('plant_progress');
     // lr_print_pre($images);
+    // echo '--------';
+    // lr_print_pre($images);
 	$size = 'full'; // (thumbnail, medium, large, full or custom size)
 	if( $images ) {
         // lr_print_pre($post);
